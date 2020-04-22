@@ -2,12 +2,14 @@
 
 Group Members: Kaizen Conroy, Dominic Chui
 
-Vision Statement: Kaizen will update this
+Vision Statement: We plan on building a Ticket To Ride Board Builder (and potentially game engine) by leveraging the software skills we have learned in CS326. Our primary goal is to allow the user to create and save custom Ticket To Ride graphs on our iOS app. A secondary goal is to allow the user to partake in basic TTR gameplay using their custom graph. The primary features include functionality to include photo uploads and allow for users to create graphs by being responsive to touches and dragging. The intended users are TTR afficionados like ourselves who would enjoy playing TTR on custom graphs. We hope for a basic outcome of being able to create new graphs based off of the proportions of an uploaded map.
 
 Feature List:
-  * Make a Ticket To Ride graph based off of an uploaded image
+  * Allows user to upload an image (map)
+  * Access to map of Williams College, map of US, map of NYC/Boston
+  * User can create custom TTR graph by adding/deleting nodes and edges 
   * User can zoom/pan around the screen
-  * Create a basic TTR game engine for 1 player
+  * Bonus: Create a basic TTR game engine for 1 player
   * Bonus: Autogenerate destination tickets based off of board
 
 UI Sketches: photos coming later
