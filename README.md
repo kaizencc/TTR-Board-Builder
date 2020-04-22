@@ -14,6 +14,7 @@ Feature List:
 
 UI Sketches: 
   * ![Start Screen](Images/start_screen.png)
+  * ![Build screen](Images/build_example.png)
 
 Key Use Cases:
   Case 1: User optionally uploads an image and adds nodes at specific locations. User can create edges between nodes and specify the number of trains fit on each edge. User can save completed board (maybe). User can interact with board by adding trains to connect edges and complete routes. 
