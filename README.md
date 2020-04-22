@@ -17,17 +17,25 @@ UI Sketches:
   ![Build screen](Images/build_example.png)
 
 Key Use Cases:
+
   Case 1: User optionally uploads an image and adds nodes at specific locations. User can create edges between nodes and specify the number of trains fit on each edge. User can save completed board (maybe). User can interact with board by adding trains to connect edges and complete routes. 
+  
   Case 2: User starts with a saved board. Can play 1-person version of TTR by playing trains and completing destination tickets. 
 
 Domain Analysis:
+
   Ticket To Ride: https://en.wikipedia.org/wiki/Ticket_to_Ride_(board_game)
+  
+  TTR Game Engine: keeps track of the deck of railway cards, destination tickets, amount of trains left per player.
+  
 
 Architecture:
-  Model: Will be based off of our graphADT. 
-  View: User can click a location to place a node, or drag between nodes to create an edge, or click a button to delete items. Also will have save button and load button. 
-  Controller: A user click will add a node to the graph, a user drag will add an edge to the graph, using the delete button will delete node/edge from the graph. 
+
+  Model: Will be based off of our graphADT.
+  
+  View: User starts off with welcome page giving options to play, build, or upload. Upload options allows for image to be uploaded. Build option allows user to build a new graph either on a blank canvas or over the uploaded image. Here, the user has options to add a node, add an edge, or delete items. They can also save button and go back to welcome page. The play option gives the user a choice of graph to pick, and then allows for gameplay. This is part of our bonus features, not our initial idea. 
+  
+  Controller: A user will use buttons and click to add a node to the graph, a user drag will add an edge to the graph, using the delete button will delete node/edge from the graph. 
   
   
-  We can use a Dictionary to represent cards We will have a number to represent amount of trains and a list to represent 
-  
+
