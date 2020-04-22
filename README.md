@@ -13,7 +13,7 @@ Feature List:
   * Bonus: Autogenerate destination tickets based off of board
 
 UI Sketches: 
-  * ![Start Screen](Images/start_screen.png)
+  * ![Start Screen](https://github.com/kaizen3031593/TTR-Board-Builder/Images/start_screen.png)
 
 Key Use Cases:
   Case 1: User optionally uploads an image and adds nodes at specific locations. User can create edges between nodes and specify the number of trains fit on each edge. User can save completed board (maybe). User can interact with board by adding trains to connect edges and complete routes. 
