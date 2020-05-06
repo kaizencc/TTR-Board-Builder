@@ -29,6 +29,8 @@
 		17E7D3EE24636DF600FC8B98 /* PhotoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3ED24636DF600FC8B98 /* PhotoCollection.swift */; };
 		17E7D3F024636E0F00FC8B98 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3EF24636E0F00FC8B98 /* PhotoCollectionViewController.swift */; };
 		17E7D3F224636E2100FC8B98 /* GeometricTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F124636E2100FC8B98 /* GeometricTypes.swift */; };
+		17E7D3F424636EDE00FC8B98 /* PhotoMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F324636EDE00FC8B98 /* PhotoMatrix.swift */; };
+		17E7D3F624636F0100FC8B98 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F524636F0100FC8B98 /* ImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		17E7D3ED24636DF600FC8B98 /* PhotoCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollection.swift; sourceTree = "<group>"; };
 		17E7D3EF24636E0F00FC8B98 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		17E7D3F124636E2100FC8B98 /* GeometricTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometricTypes.swift; sourceTree = "<group>"; };
+		17E7D3F324636EDE00FC8B98 /* PhotoMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMatrix.swift; sourceTree = "<group>"; };
+		17E7D3F524636F0100FC8B98 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 				0ED3D71624625419001BCFFB /* Main.storyboard */,
 				0ED3D71E2462541B001BCFFB /* Info.plist */,
 				0E64DE6E2462619C00A93A26 /* TTRBModel.swift */,
+				17E7D3F524636F0100FC8B98 /* ImageViewController.swift */,
 			);
 			path = "Ticket To Ride Board Builder";
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 				17E7D3ED24636DF600FC8B98 /* PhotoCollection.swift */,
 				17E7D3EF24636E0F00FC8B98 /* PhotoCollectionViewController.swift */,
 				17E7D3F124636E2100FC8B98 /* GeometricTypes.swift */,
+				17E7D3F324636EDE00FC8B98 /* PhotoMatrix.swift */,
 			);
 			path = "Photo Support";
 			sourceTree = "<group>";
@@ -276,10 +282,12 @@
 				0ED3D73F24625947001BCFFB /* GraphADT.swift in Sources */,
 				0E64DE6724625D9E00A93A26 /* DijkstraGraph.swift in Sources */,
 				0ED3D74124625966001BCFFB /* EdgeADT.swift in Sources */,
+				17E7D3F624636F0100FC8B98 /* ImageViewController.swift in Sources */,
 				0E64DE73246263F000A93A26 /* DrawableGraph.swift in Sources */,
 				0ED3D71324625419001BCFFB /* AppDelegate.swift in Sources */,
 				17E7D3EC24636DDD00FC8B98 /* Photo.swift in Sources */,
 				0E64DE6924625DD200A93A26 /* PathADT.swift in Sources */,
+				17E7D3F424636EDE00FC8B98 /* PhotoMatrix.swift in Sources */,
 				0E64DE6524625D1800A93A26 /* PriorityQueue.swift in Sources */,
 				17E7D3F224636E2100FC8B98 /* GeometricTypes.swift in Sources */,
 				17E7D3EE24636DF600FC8B98 /* PhotoCollection.swift in Sources */,
