@@ -18,13 +18,13 @@ class PhotoCollectionViewController: ImageViewController {
   static private let photoCollectionPath = "Photo Collections"
   
   
-  @IBAction func chooseCollection(_ sender: UIBarButtonItem) {
-    if let photoCollectionNames = PhotoCollection.namesOfCollections(inFolder: PhotoCollectionViewController.photoCollectionPath) {
-      chooseItemFromList(photoCollectionNames, prompt: "Choose image collection") {
-        self.load(collectionNamed: $0)
-      }
-    }
-  }
+//  @IBAction func chooseCollection(_ sender: UIBarButtonItem) {
+//    if let photoCollectionNames = PhotoCollection.namesOfCollections(inFolder: PhotoCollectionViewController.photoCollectionPath) {
+//      chooseItemFromList(photoCollectionNames, prompt: "Choose image collection") {
+//        self.load(collectionNamed: $0)
+//      }
+//    }
+//  }
   
   override func viewDidLoad() {
     super.viewDidLoad()

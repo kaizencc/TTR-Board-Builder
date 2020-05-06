@@ -1,24 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Ticket To Ride Builder View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="BYZ-38-t0r" customClass="TicketToRideBuilderViewController" customModule="Ticket_To_Ride_Board_Builder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="TTRBView" customModule="Ticket_To_Ride_Board_Builder" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prX-TY-oq4">
+                                <rect key="frame" x="807" y="32" width="73" height="30"/>
+                                <state key="normal" title=" Add Node"/>
+                                <connections>
+                                    <action selector="AddNode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pKF-4V-DOk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQI-8l-l0r">
+                                <rect key="frame" x="835" y="124" width="45" height="30"/>
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="Delete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lP1-uS-LUr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCu-dg-Gca">
+                                <rect key="frame" x="842" y="170" width="38" height="30"/>
+                                <state key="normal" title="Move"/>
+                                <connections>
+                                    <action selector="Move:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Tx-bY-bIm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq3-ou-3Dj">
+                                <rect key="frame" x="813" y="78" width="67" height="30"/>
+                                <state key="normal" title="Add Edge"/>
+                                <connections>
+                                    <action selector="AddEdge:" destination="BYZ-38-t0r" eventType="touchUpInside" id="utI-1l-qJS"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="prX-TY-oq4" secondAttribute="trailing" constant="16" id="W14-57-nFr"/>
+                            <constraint firstAttribute="trailing" secondItem="Kq3-ou-3Dj" secondAttribute="trailing" constant="16" id="ZFP-I2-0so"/>
+                            <constraint firstAttribute="trailing" secondItem="FCu-dg-Gca" secondAttribute="trailing" constant="16" id="ajw-uD-SQd"/>
+                            <constraint firstAttribute="trailing" secondItem="HQI-8l-l0r" secondAttribute="trailing" constant="16" id="dp5-K3-7p2"/>
+                            <constraint firstItem="HQI-8l-l0r" firstAttribute="top" secondItem="Kq3-ou-3Dj" secondAttribute="bottom" constant="16" id="dtX-tq-8K0"/>
+                            <constraint firstItem="prX-TY-oq4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="fYF-uH-feL"/>
+                            <constraint firstItem="FCu-dg-Gca" firstAttribute="top" secondItem="HQI-8l-l0r" secondAttribute="bottom" constant="16" id="ryz-vI-BbN"/>
+                            <constraint firstItem="Kq3-ou-3Dj" firstAttribute="top" secondItem="prX-TY-oq4" secondAttribute="bottom" constant="16" id="wEB-nE-Yc7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="hVK-Me-L0l" appends="YES" id="Aqv-Dw-PIZ"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="view" destination="8bC-Xf-vdC" id="KQ2-LE-GHV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="hVK-Me-L0l">
+                    <connections>
+                        <action selector="ScreenTapped:" destination="BYZ-38-t0r" id="dUE-Fn-jfD"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="138.61607142857142" y="115.94202898550725"/>
         </scene>
     </scenes>
 </document>

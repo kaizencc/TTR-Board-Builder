@@ -31,6 +31,7 @@
 		17E7D3F224636E2100FC8B98 /* GeometricTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F124636E2100FC8B98 /* GeometricTypes.swift */; };
 		17E7D3F424636EDE00FC8B98 /* PhotoMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F324636EDE00FC8B98 /* PhotoMatrix.swift */; };
 		17E7D3F624636F0100FC8B98 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F524636F0100FC8B98 /* ImageViewController.swift */; };
+		17E7D3F8246382EE00FC8B98 /* TTRBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F7246382EE00FC8B98 /* TTRBView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		17E7D3F124636E2100FC8B98 /* GeometricTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometricTypes.swift; sourceTree = "<group>"; };
 		17E7D3F324636EDE00FC8B98 /* PhotoMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMatrix.swift; sourceTree = "<group>"; };
 		17E7D3F524636F0100FC8B98 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		17E7D3F7246382EE00FC8B98 /* TTRBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTRBView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				0ED3D71E2462541B001BCFFB /* Info.plist */,
 				0E64DE6E2462619C00A93A26 /* TTRBModel.swift */,
 				17E7D3F524636F0100FC8B98 /* ImageViewController.swift */,
+				17E7D3F7246382EE00FC8B98 /* TTRBView.swift */,
 			);
 			path = "Ticket To Ride Board Builder";
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				0ED3D71324625419001BCFFB /* AppDelegate.swift in Sources */,
 				17E7D3EC24636DDD00FC8B98 /* Photo.swift in Sources */,
 				0E64DE6924625DD200A93A26 /* PathADT.swift in Sources */,
+				17E7D3F8246382EE00FC8B98 /* TTRBView.swift in Sources */,
 				17E7D3F424636EDE00FC8B98 /* PhotoMatrix.swift in Sources */,
 				0E64DE6524625D1800A93A26 /* PriorityQueue.swift in Sources */,
 				17E7D3F224636E2100FC8B98 /* GeometricTypes.swift in Sources */,
