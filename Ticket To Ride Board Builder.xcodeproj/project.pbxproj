@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E64DE6324625CC100A93A26 /* EdgeImplementationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6224625CC100A93A26 /* EdgeImplementationTests.swift */; };
+		0E64DE6524625D1800A93A26 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6424625D1800A93A26 /* PriorityQueue.swift */; };
+		0E64DE6724625D9E00A93A26 /* DijkstraGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6624625D9E00A93A26 /* DijkstraGraph.swift */; };
+		0E64DE6924625DD200A93A26 /* PathADT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6824625DD200A93A26 /* PathADT.swift */; };
+		0E64DE6D24625E8600A93A26 /* DijkstraGraphImplementationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6C24625E8600A93A26 /* DijkstraGraphImplementationTests.swift */; };
 		0ED3D71324625419001BCFFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D71224625419001BCFFB /* AppDelegate.swift */; };
 		0ED3D71524625419001BCFFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D71424625419001BCFFB /* ViewController.swift */; };
 		0ED3D71824625419001BCFFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ED3D71624625419001BCFFB /* Main.storyboard */; };
 		0ED3D71A2462541B001BCFFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ED3D7192462541B001BCFFB /* Assets.xcassets */; };
 		0ED3D71D2462541B001BCFFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ED3D71B2462541B001BCFFB /* LaunchScreen.storyboard */; };
 		0ED3D7282462541B001BCFFB /* Ticket_To_Ride_Board_BuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D7272462541B001BCFFB /* Ticket_To_Ride_Board_BuilderTests.swift */; };
+		0ED3D733246254DF001BCFFB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0ED3D732246254DF001BCFFB /* README.md */; };
+		0ED3D73F24625947001BCFFB /* GraphADT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D73E24625947001BCFFB /* GraphADT.swift */; };
+		0ED3D74124625966001BCFFB /* EdgeADT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D74024625966001BCFFB /* EdgeADT.swift */; };
+		0ED3D74324625986001BCFFB /* MutableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D74224625986001BCFFB /* MutableCollection.swift */; };
+		0ED3D74724625A35001BCFFB /* GraphImplementationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D744246259A4001BCFFB /* GraphImplementationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +36,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E64DE6224625CC100A93A26 /* EdgeImplementationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeImplementationTests.swift; sourceTree = "<group>"; };
+		0E64DE6424625D1800A93A26 /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		0E64DE6624625D9E00A93A26 /* DijkstraGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DijkstraGraph.swift; sourceTree = "<group>"; };
+		0E64DE6824625DD200A93A26 /* PathADT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathADT.swift; sourceTree = "<group>"; };
+		0E64DE6C24625E8600A93A26 /* DijkstraGraphImplementationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DijkstraGraphImplementationTests.swift; sourceTree = "<group>"; };
 		0ED3D70F24625419001BCFFB /* Ticket To Ride Board Builder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ticket To Ride Board Builder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED3D71224625419001BCFFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ED3D71424625419001BCFFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +51,11 @@
 		0ED3D7232462541B001BCFFB /* Ticket To Ride Board BuilderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ticket To Ride Board BuilderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED3D7272462541B001BCFFB /* Ticket_To_Ride_Board_BuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket_To_Ride_Board_BuilderTests.swift; sourceTree = "<group>"; };
 		0ED3D7292462541B001BCFFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0ED3D732246254DF001BCFFB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0ED3D73E24625947001BCFFB /* GraphADT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphADT.swift; sourceTree = "<group>"; };
+		0ED3D74024625966001BCFFB /* EdgeADT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeADT.swift; sourceTree = "<group>"; };
+		0ED3D74224625986001BCFFB /* MutableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCollection.swift; sourceTree = "<group>"; };
+		0ED3D744246259A4001BCFFB /* GraphImplementationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphImplementationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +79,7 @@
 		0ED3D70624625419001BCFFB = {
 			isa = PBXGroup;
 			children = (
+				0ED3D732246254DF001BCFFB /* README.md */,
 				0ED3D71124625419001BCFFB /* Ticket To Ride Board Builder */,
 				0ED3D7262462541B001BCFFB /* Ticket To Ride Board BuilderTests */,
 				0ED3D71024625419001BCFFB /* Products */,
@@ -77,11 +98,10 @@
 		0ED3D71124625419001BCFFB /* Ticket To Ride Board Builder */ = {
 			isa = PBXGroup;
 			children = (
-				0ED3D71224625419001BCFFB /* AppDelegate.swift */,
+				0ED3D73D24625933001BCFFB /* GraphADT */,
+				0ED3D73624625826001BCFFB /* Support Files */,
 				0ED3D71424625419001BCFFB /* ViewController.swift */,
 				0ED3D71624625419001BCFFB /* Main.storyboard */,
-				0ED3D7192462541B001BCFFB /* Assets.xcassets */,
-				0ED3D71B2462541B001BCFFB /* LaunchScreen.storyboard */,
 				0ED3D71E2462541B001BCFFB /* Info.plist */,
 			);
 			path = "Ticket To Ride Board Builder";
@@ -90,10 +110,36 @@
 		0ED3D7262462541B001BCFFB /* Ticket To Ride Board BuilderTests */ = {
 			isa = PBXGroup;
 			children = (
-				0ED3D7272462541B001BCFFB /* Ticket_To_Ride_Board_BuilderTests.swift */,
 				0ED3D7292462541B001BCFFB /* Info.plist */,
+				0ED3D7272462541B001BCFFB /* Ticket_To_Ride_Board_BuilderTests.swift */,
+				0ED3D744246259A4001BCFFB /* GraphImplementationTests.swift */,
+				0E64DE6224625CC100A93A26 /* EdgeImplementationTests.swift */,
+				0E64DE6C24625E8600A93A26 /* DijkstraGraphImplementationTests.swift */,
 			);
 			path = "Ticket To Ride Board BuilderTests";
+			sourceTree = "<group>";
+		};
+		0ED3D73624625826001BCFFB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0ED3D71224625419001BCFFB /* AppDelegate.swift */,
+				0ED3D7192462541B001BCFFB /* Assets.xcassets */,
+				0ED3D71B2462541B001BCFFB /* LaunchScreen.storyboard */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		0ED3D73D24625933001BCFFB /* GraphADT */ = {
+			isa = PBXGroup;
+			children = (
+				0ED3D73E24625947001BCFFB /* GraphADT.swift */,
+				0ED3D74024625966001BCFFB /* EdgeADT.swift */,
+				0ED3D74224625986001BCFFB /* MutableCollection.swift */,
+				0E64DE6424625D1800A93A26 /* PriorityQueue.swift */,
+				0E64DE6824625DD200A93A26 /* PathADT.swift */,
+				0E64DE6624625D9E00A93A26 /* DijkstraGraph.swift */,
+			);
+			path = GraphADT;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +225,7 @@
 			files = (
 				0ED3D71D2462541B001BCFFB /* LaunchScreen.storyboard in Resources */,
 				0ED3D71A2462541B001BCFFB /* Assets.xcassets in Resources */,
+				0ED3D733246254DF001BCFFB /* README.md in Resources */,
 				0ED3D71824625419001BCFFB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,8 +244,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ED3D74324625986001BCFFB /* MutableCollection.swift in Sources */,
 				0ED3D71524625419001BCFFB /* ViewController.swift in Sources */,
+				0ED3D73F24625947001BCFFB /* GraphADT.swift in Sources */,
+				0E64DE6724625D9E00A93A26 /* DijkstraGraph.swift in Sources */,
+				0ED3D74124625966001BCFFB /* EdgeADT.swift in Sources */,
 				0ED3D71324625419001BCFFB /* AppDelegate.swift in Sources */,
+				0E64DE6924625DD200A93A26 /* PathADT.swift in Sources */,
+				0E64DE6524625D1800A93A26 /* PriorityQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,7 +259,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E64DE6D24625E8600A93A26 /* DijkstraGraphImplementationTests.swift in Sources */,
+				0ED3D74724625A35001BCFFB /* GraphImplementationTests.swift in Sources */,
 				0ED3D7282462541B001BCFFB /* Ticket_To_Ride_Board_BuilderTests.swift in Sources */,
+				0E64DE6324625CC100A93A26 /* EdgeImplementationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Ticket To Ride Board Builder.xcodeproj">
+      location = "group:/Users/dominicpx2016/Desktop/School/College/Senior Year/Spring Semester/CSCI 326/TTR-Board-Builder/Sources">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

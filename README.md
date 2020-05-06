@@ -39,3 +39,14 @@ Architecture:
   
   
 
+TODO:
+1. Upload images as background (load images out of photo library)
+2. UI to add nodes and edges
+..* click to add node, click and drag for edges (avoid duplicate paths)
+..* calculate edge weight based on distance
+..* let user specify color somehow?
+..* Use GraphADT to store nodes, edges with coordinates
+3. Zoom and pan
+4. Save/load
+5. Gameplay?
+
