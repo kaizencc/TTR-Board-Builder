@@ -44,10 +44,20 @@
                                     <action selector="AddEdge:" destination="BYZ-38-t0r" eventType="touchUpInside" id="utI-1l-qJS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qk9-2i-vnE">
+                                <rect key="frame" x="831" y="216" width="49" height="30"/>
+                                <state key="normal" title="Upload"/>
+                                <connections>
+                                    <action selector="Move:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8t7-Z1-1QF"/>
+                                    <action selector="Upload:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iwB-0Z-0Hv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Qk9-2i-vnE" secondAttribute="trailing" constant="16" id="2bI-kI-MDF"/>
+                            <constraint firstItem="Qk9-2i-vnE" firstAttribute="top" secondItem="FCu-dg-Gca" secondAttribute="bottom" constant="16" id="6rb-Qi-VZh"/>
                             <constraint firstAttribute="trailing" secondItem="prX-TY-oq4" secondAttribute="trailing" constant="16" id="W14-57-nFr"/>
                             <constraint firstAttribute="trailing" secondItem="Kq3-ou-3Dj" secondAttribute="trailing" constant="16" id="ZFP-I2-0so"/>
                             <constraint firstAttribute="trailing" secondItem="FCu-dg-Gca" secondAttribute="trailing" constant="16" id="ajw-uD-SQd"/>

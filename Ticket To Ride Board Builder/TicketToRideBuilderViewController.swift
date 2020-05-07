@@ -13,9 +13,12 @@ private enum Mode {
     case addEdge
     case delete
     case move
+    case upload
 }
 
-class TicketToRideBuilderViewController: UIViewController {
+class TicketToRideBuilderViewController: UIViewController,
+                                         UIImagePickerControllerDelegate,
+                                         UINavigationControllerDelegate {
     
     //Model
     
@@ -23,14 +26,48 @@ class TicketToRideBuilderViewController: UIViewController {
     
     //View
         
-    @IBOutlet weak var ttrbview: TTRBView!
+    @IBOutlet weak var ttrbview: GraphView!
+    
+    private var photo = UIImage()
+    
     private var mode = Mode.addNode
     
     private var counter = 0
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    /*
+      UIImagePickerControllerDelegate method to let user pick image.
+
+      This method creates a new controller that pops up to get the
+      user's choice.
+    */
+    func pickImage(_ sourceType : UIImagePickerController.SourceType) {
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = sourceType
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+
+    /*
+      Handler called when user has chosen an image.  Add code to do what you
+      like with the picked image.
+    */
+    private func imagePickerController(_ picker: UIImagePickerController,
+                  didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+     if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+      dismiss(animated:true, completion: nil)
+       
+      // TODO: do something with pickedImage here.
+       photo = pickedImage
+     }
     }
 
     @IBAction func AddNode(_ sender: UIButton) {
@@ -49,6 +86,10 @@ class TicketToRideBuilderViewController: UIViewController {
         mode = Mode.move
     }
     
+    @IBAction func Upload(_ sender: UIButton) {
+        mode = Mode.upload
+    }
+    
     @IBAction func ScreenTapped(_ sender: UITapGestureRecognizer) {
         switch mode {
         case Mode.addNode:
@@ -59,7 +100,10 @@ class TicketToRideBuilderViewController: UIViewController {
             break
         case Mode.move:
             break
+        case Mode.upload:
+            break
         }
+        print(mode)
     }
     
 }
