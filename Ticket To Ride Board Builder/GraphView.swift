@@ -34,6 +34,7 @@ public class GraphView: UIView {
   /// and scaled/offset according to the model-to-view conversion.
   @IBInspectable var background : UIImage? {
     didSet {
+        print("YESSS")
       setNeedsDisplay()
     }
   }

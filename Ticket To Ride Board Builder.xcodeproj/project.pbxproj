@@ -25,16 +25,12 @@
 		0ED3D74124625966001BCFFB /* EdgeADT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D74024625966001BCFFB /* EdgeADT.swift */; };
 		0ED3D74324625986001BCFFB /* MutableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D74224625986001BCFFB /* MutableCollection.swift */; };
 		0ED3D74724625A35001BCFFB /* GraphImplementationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D744246259A4001BCFFB /* GraphImplementationTests.swift */; };
-		17E7D3EC24636DDD00FC8B98 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3EB24636DDD00FC8B98 /* Photo.swift */; };
-		17E7D3EE24636DF600FC8B98 /* PhotoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3ED24636DF600FC8B98 /* PhotoCollection.swift */; };
-		17E7D3F024636E0F00FC8B98 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3EF24636E0F00FC8B98 /* PhotoCollectionViewController.swift */; };
-		17E7D3F224636E2100FC8B98 /* GeometricTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F124636E2100FC8B98 /* GeometricTypes.swift */; };
-		17E7D3F424636EDE00FC8B98 /* PhotoMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F324636EDE00FC8B98 /* PhotoMatrix.swift */; };
 		17E7D3F624636F0100FC8B98 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F524636F0100FC8B98 /* ImageViewController.swift */; };
 		17E7D3F8246382EE00FC8B98 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F7246382EE00FC8B98 /* GraphView.swift */; };
 		17E7D3FA246495B600FC8B98 /* GraphItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F9246495B600FC8B98 /* GraphItem.swift */; };
 		17E7D3FC246495E200FC8B98 /* ModelToViewCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */; };
 		17E7D3FE246496D600FC8B98 /* CGPointArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3FD246496D600FC8B98 /* CGPointArrow.swift */; };
+		17E7D4002464B70900FC8B98 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3FF2464B70900FC8B98 /* UIExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,16 +66,12 @@
 		0ED3D74024625966001BCFFB /* EdgeADT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeADT.swift; sourceTree = "<group>"; };
 		0ED3D74224625986001BCFFB /* MutableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCollection.swift; sourceTree = "<group>"; };
 		0ED3D744246259A4001BCFFB /* GraphImplementationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphImplementationTests.swift; sourceTree = "<group>"; };
-		17E7D3EB24636DDD00FC8B98 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
-		17E7D3ED24636DF600FC8B98 /* PhotoCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollection.swift; sourceTree = "<group>"; };
-		17E7D3EF24636E0F00FC8B98 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
-		17E7D3F124636E2100FC8B98 /* GeometricTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometricTypes.swift; sourceTree = "<group>"; };
-		17E7D3F324636EDE00FC8B98 /* PhotoMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMatrix.swift; sourceTree = "<group>"; };
 		17E7D3F524636F0100FC8B98 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		17E7D3F7246382EE00FC8B98 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		17E7D3F9246495B600FC8B98 /* GraphItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItem.swift; sourceTree = "<group>"; };
 		17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelToViewCoordinates.swift; sourceTree = "<group>"; };
 		17E7D3FD246496D600FC8B98 /* CGPointArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointArrow.swift; sourceTree = "<group>"; };
+		17E7D3FF2464B70900FC8B98 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +114,6 @@
 		0ED3D71124625419001BCFFB /* Ticket To Ride Board Builder */ = {
 			isa = PBXGroup;
 			children = (
-				17E7D3EA24636DCB00FC8B98 /* Photo Support */,
 				0ED3D73D24625933001BCFFB /* GraphADT */,
 				0ED3D73624625826001BCFFB /* Support Files */,
 				0ED3D71424625419001BCFFB /* TicketToRideBuilderViewController.swift */,
@@ -134,6 +125,7 @@
 				17E7D3F9246495B600FC8B98 /* GraphItem.swift */,
 				17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */,
 				17E7D3FD246496D600FC8B98 /* CGPointArrow.swift */,
+				17E7D3FF2464B70900FC8B98 /* UIExtensions.swift */,
 			);
 			path = "Ticket To Ride Board Builder";
 			sourceTree = "<group>";
@@ -172,18 +164,6 @@
 				0E64DE72246263F000A93A26 /* DrawableGraph.swift */,
 			);
 			path = GraphADT;
-			sourceTree = "<group>";
-		};
-		17E7D3EA24636DCB00FC8B98 /* Photo Support */ = {
-			isa = PBXGroup;
-			children = (
-				17E7D3EB24636DDD00FC8B98 /* Photo.swift */,
-				17E7D3ED24636DF600FC8B98 /* PhotoCollection.swift */,
-				17E7D3EF24636E0F00FC8B98 /* PhotoCollectionViewController.swift */,
-				17E7D3F124636E2100FC8B98 /* GeometricTypes.swift */,
-				17E7D3F324636EDE00FC8B98 /* PhotoMatrix.swift */,
-			);
-			path = "Photo Support";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,7 +270,6 @@
 			files = (
 				0ED3D74324625986001BCFFB /* MutableCollection.swift in Sources */,
 				0ED3D71524625419001BCFFB /* TicketToRideBuilderViewController.swift in Sources */,
-				17E7D3F024636E0F00FC8B98 /* PhotoCollectionViewController.swift in Sources */,
 				0ED3D73F24625947001BCFFB /* GraphADT.swift in Sources */,
 				0E64DE6724625D9E00A93A26 /* DijkstraGraph.swift in Sources */,
 				0ED3D74124625966001BCFFB /* EdgeADT.swift in Sources */,
@@ -298,15 +277,12 @@
 				17E7D3FA246495B600FC8B98 /* GraphItem.swift in Sources */,
 				0E64DE73246263F000A93A26 /* DrawableGraph.swift in Sources */,
 				0ED3D71324625419001BCFFB /* AppDelegate.swift in Sources */,
-				17E7D3EC24636DDD00FC8B98 /* Photo.swift in Sources */,
 				0E64DE6924625DD200A93A26 /* PathADT.swift in Sources */,
 				17E7D3F8246382EE00FC8B98 /* GraphView.swift in Sources */,
-				17E7D3F424636EDE00FC8B98 /* PhotoMatrix.swift in Sources */,
 				0E64DE6524625D1800A93A26 /* PriorityQueue.swift in Sources */,
-				17E7D3F224636E2100FC8B98 /* GeometricTypes.swift in Sources */,
+				17E7D4002464B70900FC8B98 /* UIExtensions.swift in Sources */,
 				17E7D3FE246496D600FC8B98 /* CGPointArrow.swift in Sources */,
 				17E7D3FC246495E200FC8B98 /* ModelToViewCoordinates.swift in Sources */,
-				17E7D3EE24636DF600FC8B98 /* PhotoCollection.swift in Sources */,
 				0E64DE6F2462619C00A93A26 /* TTRBModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
