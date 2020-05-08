@@ -9,57 +9,184 @@
 import Foundation
 import CoreGraphics
 
+
+/**
+ This class represents a drawable multigraph.
+ 
+ **Abstract Invariant**: each node in the graph must have a corresponding location
+ 
+ 
+ */
 public class DrawableGraph<N: Hashable, E: Comparable> {
     
     private let graph : Graph<N, E>
     private var locations : [N:CGPoint]
     
-    /* your abs function and rep invariant */
+    // Representation Invariant: for node in graph.nodes, locations[node] != nil
+    //
+    // Abstraction Function: G is a drawable graph such that the vertices are nodes in graph.nodes, edges and edges in graph.edges, and the location of each node is in location[node]
     
     private func checkRep() {
         graph.checkRep()
+        for node in graph.nodes {
+            assert(locations[node] != nil)
+        }
     }
     
+    /**
+     
+     **Requires**: none
+     
+     **Modifies**: self
+     
+     **Effects**: creates an empty graph
+     
+     */
     public init() {
         graph = Graph<N, E>()
         locations = [:]
+        checkRep()
     }
     
+    /**
+     
+     **Requires**: none
+     
+     **Modifies**: self
+     
+     **Effects**: returns list of all nodes in the graph
+     
+     - Returns: List of nodes in graph
+     
+     */
     public func getNodes() -> [N] {
+        checkRep()
         return graph.nodes
     }
     
+    
+    /**
+     
+     **Requires**: none
+     
+     **Modifies**: self
+     
+     **Effects**: returns list of all edges in the graph
+     
+     - Returns: List of nodes in edges
+     
+     */
     public func getEdges() -> [Edge<N,E>]{
+        checkRep()
         return graph.edges
     }
     
+    
+    /**
+     
+     **Requires**: none
+     
+     **Modifies**: self
+     
+     **Effects**: adds a node to the graph with the specified location
+     
+     - Parameter withName: name of node to be added
+                 withLocation: location of the node as a CGPoint
+     
+     */
     public func addNode(withName node: N, withLocation loc: CGPoint) {
+        checkRep()
         graph.addNode(withName: node)
         locations[node] = loc
+        checkRep()
     }
     
-    public func addEdge(edge: Edge<N, E>) {
+    /**
+     
+     **Requires**: the src and dst of the edge are in the graph
+     
+     **Modifies**: self
+     
+     **Effects**: adds the specified edge to the graph
+     
+     - Parameter edge: the edge to be added
+     
+     */
+    public func addEdge(_ edge: Edge<N, E>) {
+        checkRep()
         graph.addEdge(newEdge: edge)
+        checkRep()
     }
     
-    //required: node exists in graph
+    /**
+     
+     **Requires**: the node exists in the graph
+     
+     **Modifies**: none
+     
+     **Effects**: returns location of the specified node
+     
+     - Parameter forNode: name of the node to find location for
+     - Returns: location of the node
+     
+     */
     public func getLocation(forNode node: N) -> CGPoint {
+        checkRep()
         return locations[node]!
     }
     
+    
+    /**
+     
+     **Requires**: the node exists in the graph and has no attached edges
+     
+     **Modifies**: self
+     
+     **Effects**: removess the specified node from the graph
+     
+     - Parameter withName: the node to be removed
+     
+     */
     public func removeNode(withName node: N){
+        checkRep()
         graph.removeNode(withName: node)
         locations[node] = nil
+        checkRep()
     }
     
+    /**
+     
+     **Requires**: the edge exists in the graph
+     
+     **Modifies**: self
+     
+     **Effects**: removess the specified edge from the graph
+     
+     - Parameter withEdge: the edge to be removed
+     
+     */
     public func removeEdge(withEdge edge: Edge<N,E>){
+        checkRep()
         graph.removeEdge(targetEdge: edge)
+        checkRep()
     }
     
-    //required: node exists in graph
+    /**
+     
+     **Requires**: the node exists in the graph
+     
+     **Modifies**: self
+     
+     **Effects**: updates the location of the specified node
+     
+     - Parameter withName: the node to be moved
+                 newLocation: the new location for the node
+     
+     */
     public func moveNode(withName node: N, newLocation loc: CGPoint){
+        checkRep()
         locations[node] = loc
+        checkRep()
     }
-    
     
 }

@@ -24,7 +24,7 @@ public class TTRBModel {
     }
     
     public func addEdge(withEdge edge: Edge<String,Int>){
-        graph.addEdge(edge: edge)
+        graph.addEdge(edge)
     }
     
     public func removeNode(withName node: String){
