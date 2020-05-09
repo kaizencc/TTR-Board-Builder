@@ -101,6 +101,8 @@ class TicketToRideBuilderViewController: UIViewController,
             ttrbview.items = newItems
             nCounter = nCounter + 1
         case Mode.addEdge:
+            
+            // potentially add to view
             if startNode == CGPoint.zero {
                 if ttrbview.findPoint(sender.location(in: ttrbview)) != nil {
                     startNode = ttrbview.findPoint(sender.location(in: ttrbview))!
@@ -109,14 +111,21 @@ class TicketToRideBuilderViewController: UIViewController,
             else{
                 if ttrbview.findPoint(sender.location(in: ttrbview)) != nil {
                     
+                    //add to view
                     var newItems = ttrbview.items
                     newItems.append(GraphItem.edge(src: startNode, dst: sender.location(in: ttrbview), label: String(eCounter), highlighted: false))
                     ttrbview.items = newItems
                     
                     eCounter = eCounter + 1
                     
+                    //add to model
+                    //coming soon
+                    //let edge = Edge(from: , to: sender.location(in: ttrbview), withLabel: 0)
+                    //model.addEdge(withEdge: edge)
+                    
                     //reset startNode
                     startNode = CGPoint.zero
+                    
                 }
             }
             break
