@@ -34,7 +34,6 @@ public class GraphView: UIView {
   /// and scaled/offset according to the model-to-view conversion.
   @IBInspectable var background : UIImage? {
     didSet {
-        print("YESSS")
       setNeedsDisplay()
     }
   }
@@ -144,7 +143,7 @@ public class GraphView: UIView {
   
   /**
    
-   Tests whether a location in the view false within the circle drawn for a node
+   Tests whether a location in the view falls within the circle drawn for a node
    centered at the provided point.
    
    - Parameter point: View point of interest (in View Units)
@@ -160,6 +159,25 @@ public class GraphView: UIView {
     let dy = centerInViewUnits.y - point.y
     return sqrt(dx*dx + dy*dy) < nodeRadius
   }
+    
+    /**
+    
+    Tests whether a location in the view falls within the circle drawn for all nodes
+     already in the graph.
+    
+    - Parameter point: View point of interest (in View Units)
+    - Returns: the node if it is found, nil otherwise
+    
+    */
+    public func findPoint(_ point: CGPoint) -> CGPoint?{
+        let nodes = nodePoints()
+        for node in nodes{
+            if pointIsInside(point, nodeCenteredAt: node){
+                return node
+            }
+        }
+        return nil
+    }
   
   // MARK: Drawing
   
@@ -313,7 +331,7 @@ public class GraphView: UIView {
    
    **Effects**: the transform from model to view coords.
    */
-  @IBAction private func panned(_ sender: UIPanGestureRecognizer) {
+  @IBAction func panned(_ sender: UIPanGestureRecognizer) {
     if sender.state == .changed {
       let translation = sender.translation(in: sender.view)
       unitTransform = unitTransform.shift(by: translation)
@@ -329,11 +347,29 @@ public class GraphView: UIView {
    
    **Effects**: the transform from model to view coords.
    */
-  @IBAction private func doubleTapped(_ sender: UITapGestureRecognizer) {
-    zoomToMax()
-  }
+//  @IBAction private func doubleTapped(_ sender: UITapGestureRecognizer) {
+//    zoomToMax()
+//  }
   
-  
+    @IBAction func doubleTapped(_ sender: UITapGestureRecognizer) {
+        zoomToMax()
+    }
+    
+    
+    /// - Returns : all node locatons
+    private func nodePoints() -> [CGPoint]{
+        var points = [CGPoint]()
+        for item in items{
+            switch(item) {
+            case .node(let loc, _, _):
+              points.append(loc)
+            case .edge(_, _, _, _):
+              break
+            }
+        }
+        return points
+    }
+    
   /// - Returns : all node locations and edge start/end locations.
   private func points() -> [CGPoint] {
     var points = [CGPoint]()

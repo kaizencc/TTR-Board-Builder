@@ -25,7 +25,6 @@
 		0ED3D74124625966001BCFFB /* EdgeADT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D74024625966001BCFFB /* EdgeADT.swift */; };
 		0ED3D74324625986001BCFFB /* MutableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D74224625986001BCFFB /* MutableCollection.swift */; };
 		0ED3D74724625A35001BCFFB /* GraphImplementationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D744246259A4001BCFFB /* GraphImplementationTests.swift */; };
-		17E7D3F624636F0100FC8B98 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F524636F0100FC8B98 /* ImageViewController.swift */; };
 		17E7D3F8246382EE00FC8B98 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F7246382EE00FC8B98 /* GraphView.swift */; };
 		17E7D3FA246495B600FC8B98 /* GraphItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F9246495B600FC8B98 /* GraphItem.swift */; };
 		17E7D3FC246495E200FC8B98 /* ModelToViewCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */; };
@@ -66,7 +65,6 @@
 		0ED3D74024625966001BCFFB /* EdgeADT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeADT.swift; sourceTree = "<group>"; };
 		0ED3D74224625986001BCFFB /* MutableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCollection.swift; sourceTree = "<group>"; };
 		0ED3D744246259A4001BCFFB /* GraphImplementationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphImplementationTests.swift; sourceTree = "<group>"; };
-		17E7D3F524636F0100FC8B98 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		17E7D3F7246382EE00FC8B98 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		17E7D3F9246495B600FC8B98 /* GraphItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItem.swift; sourceTree = "<group>"; };
 		17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelToViewCoordinates.swift; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 				0ED3D71624625419001BCFFB /* Main.storyboard */,
 				0ED3D71E2462541B001BCFFB /* Info.plist */,
 				0E64DE6E2462619C00A93A26 /* TTRBModel.swift */,
-				17E7D3F524636F0100FC8B98 /* ImageViewController.swift */,
 				17E7D3F7246382EE00FC8B98 /* GraphView.swift */,
 				17E7D3F9246495B600FC8B98 /* GraphItem.swift */,
 				17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */,
@@ -273,7 +270,6 @@
 				0ED3D73F24625947001BCFFB /* GraphADT.swift in Sources */,
 				0E64DE6724625D9E00A93A26 /* DijkstraGraph.swift in Sources */,
 				0ED3D74124625966001BCFFB /* EdgeADT.swift in Sources */,
-				17E7D3F624636F0100FC8B98 /* ImageViewController.swift in Sources */,
 				17E7D3FA246495B600FC8B98 /* GraphItem.swift in Sources */,
 				0E64DE73246263F000A93A26 /* DrawableGraph.swift in Sources */,
 				0ED3D71324625419001BCFFB /* AppDelegate.swift in Sources */,

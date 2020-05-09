@@ -29,7 +29,10 @@ class TicketToRideBuilderViewController: UIViewController,
         
     private var mode = Mode.addNode
     
-    private var counter = 0
+    private var nCounter = 0
+    private var eCounter = 0
+    
+    private var startNode = CGPoint.zero
     
     
     override func viewDidLoad() {
@@ -44,15 +47,12 @@ class TicketToRideBuilderViewController: UIViewController,
       user's choice.
     */
     func pickImage(_ sourceType : UIImagePickerController.SourceType) {
-        print("OK")
         if UIImagePickerController.isSourceTypeAvailable(sourceType) {
-            print("IN")
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = sourceType
             imagePicker.allowsEditing = false
             self.present(imagePicker, animated: true, completion: nil)
-            print("OUT")
         }
     }
 
@@ -64,7 +64,8 @@ class TicketToRideBuilderViewController: UIViewController,
                   didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
      if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
        dismiss(animated:true, completion: nil)
-      // TODO: do something with pickedImage here.
+        
+        //make the background the image
         ttrbview.background = pickedImage.resized(toFitIn: CGSize(width: 1024, height: 1024))
      }
     }
@@ -92,8 +93,32 @@ class TicketToRideBuilderViewController: UIViewController,
     @IBAction func ScreenTapped(_ sender: UITapGestureRecognizer) {
         switch mode {
         case Mode.addNode:
-            model.addNode(withName: String(counter), withLocation: sender.location(in: ttrbview))
+            //add to model
+            model.addNode(withName: String(nCounter), withLocation: sender.location(in: ttrbview))
+            //add to view
+            var newItems = ttrbview.items
+            newItems.append(GraphItem.node(loc: sender.location(in: ttrbview), name: String(nCounter), highlighted: true))
+            ttrbview.items = newItems
+            nCounter = nCounter + 1
         case Mode.addEdge:
+            if startNode == CGPoint.zero {
+                if ttrbview.findPoint(sender.location(in: ttrbview)) != nil {
+                    startNode = ttrbview.findPoint(sender.location(in: ttrbview))!
+                }
+            }
+            else{
+                if ttrbview.findPoint(sender.location(in: ttrbview)) != nil {
+                    
+                    var newItems = ttrbview.items
+                    newItems.append(GraphItem.edge(src: startNode, dst: sender.location(in: ttrbview), label: String(eCounter), highlighted: false))
+                    ttrbview.items = newItems
+                    
+                    eCounter = eCounter + 1
+                    
+                    //reset startNode
+                    startNode = CGPoint.zero
+                }
+            }
             break
         case Mode.delete:
             break
@@ -102,6 +127,20 @@ class TicketToRideBuilderViewController: UIViewController,
         }
         print(mode)
     }
+    
+    
+//    @IBAction func ScreenDragged(_ sender: UIPanGestureRecognizer) {
+//        if mode == Mode.addEdge{
+//            //add to model
+//            //add to view
+//            var newItems = ttrbview.items
+//            newItems.append(GraphItem.edge(src: CGPoint(x: 100, y:100), dst: sender.location(in: ttrbview), label: String(eCounter), highlighted: false))
+//            eCounter = eCounter + 1
+//        }
+//        else{
+//            ttrbview.panned(sender)
+//        }
+//    }
     
 }
 
