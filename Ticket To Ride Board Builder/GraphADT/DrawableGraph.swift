@@ -187,7 +187,7 @@ public class DrawableGraph<N: Hashable, E: Comparable> {
      - Parameter withEdge: the edge to be removed
      
      */
-    public func removeEdge(withEdge edge: Edge<N,E>){
+    public func removeEdge(_ edge: Edge<N,E>){
         checkRep()
         graph.removeEdge(targetEdge: edge)
         checkRep()

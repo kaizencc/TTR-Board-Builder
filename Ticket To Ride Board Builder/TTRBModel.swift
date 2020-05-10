@@ -25,6 +25,8 @@ public class TTRBModel {
     
     public func addEdge(withEdge edge: Edge<String,Int>){
         graph.addEdge(edge)
+        let flippedEdge = Edge(from: edge.dst, to: edge.src, withLabel: edge.label)
+        graph.addEdge(flippedEdge)
     }
     
     public func removeNode(withName node: String){
@@ -32,7 +34,9 @@ public class TTRBModel {
     }
     
     public func removeEdge(withEdge edge: Edge<String,Int>){
-        graph.removeEdge(withEdge: edge)
+        graph.removeEdge(edge)
+        let flippedEdge = Edge(from: edge.dst, to: edge.src, withLabel: edge.label)
+        graph.removeEdge(flippedEdge)
     }
     
     public func moveNode(withName node: String, newLocation loc: CGPoint){
@@ -47,6 +51,11 @@ public class TTRBModel {
     //required: location is a valid location of a node
     public func getNodeName(withLocation point: CGPoint) -> String{
         return graph.getNodeName(withLocation: point)!
+    }
+    
+    //required: node exists in the graph
+    public func getLocation(forNode node: String) -> CGPoint{
+        return graph.getLocation(forNode: node)
     }
     
     public func getAllNodes() -> [String]{
