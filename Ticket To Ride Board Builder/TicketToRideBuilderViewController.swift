@@ -33,6 +33,8 @@ class TicketToRideBuilderViewController: UIViewController,
     
     private var startPoint: CGPoint? = nil
     
+    private var movePoint: CGPoint? = nil
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -184,10 +186,38 @@ class TicketToRideBuilderViewController: UIViewController,
                 model.printGraph()
             }
         case Mode.move:
-            //do we want move to be a drag functionality or click and then reclick
-//            if ttrbview.findPoint(sender.location(in: ttrbview)) != nil {
-//            }
-            break
+            //to move, user has to click and then reclick in the updated location
+            if movePoint == nil {
+                if let startPoint = ttrbview.findPoint(sender.location(in: ttrbview)){
+                    movePoint = startPoint
+                    ttrbview.switchHighlight(withLocation: startPoint)
+                }
+            } else {
+                let endPoint = sender.location(in: ttrbview)
+                //move node in model
+                model.moveNode(withName: model.getNodeName(withLocation: movePoint!),
+                               newLocation: endPoint)
+                //move node + edges in view
+                for i in 0..<ttrbview.items.count{
+                    switch ttrbview.items[i]{
+                    case .node(let loc, let name, let highlighted):
+                        if loc == movePoint{
+                            ttrbview.items[i] = GraphItem.node(loc: endPoint, name: name, highlighted: highlighted)
+                        }
+                    case .edge(let src, let dst, let label, let highlighted):
+                        if src == movePoint{
+                            ttrbview.items[i] = GraphItem.edge(src: endPoint, dst: dst, label: label, highlighted: highlighted)
+                        }
+                        if dst == movePoint{
+                            ttrbview.items[i] = GraphItem.edge(src: src, dst: endPoint, label: label, highlighted: highlighted)
+                        }
+                    }
+                }
+                ttrbview.switchHighlight(withLocation: endPoint)
+                movePoint = nil
+            }
+            
+            
         }
         print(mode)
     }
