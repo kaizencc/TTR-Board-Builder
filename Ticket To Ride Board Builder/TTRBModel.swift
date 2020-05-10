@@ -44,6 +44,11 @@ public class TTRBModel {
         return graph.getEdges().filter({$0.src == src && $0.dst == dst}).first!
     }
     
+    //required: location is a valid location of a node
+    public func getNodeName(withLocation point: CGPoint) -> String{
+        return graph.getNodeName(withLocation: point)!
+    }
+    
     public func getAllNodes() -> [String]{
         return graph.getNodes()
     }
@@ -52,5 +57,9 @@ public class TTRBModel {
         return graph.getEdges()
     }
     
+    public func printGraph() {
+        print(graph.getNodes())
+        print(graph.getEdges())
+    }
     
 }

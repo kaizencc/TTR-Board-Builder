@@ -135,6 +135,28 @@ public class DrawableGraph<N: Hashable, E: Comparable> {
         return locations[node]!
     }
     
+    /**
+    
+    **Requires**: the location exists in the graph
+    
+    **Modifies**: none
+    
+    **Effects**: returns name of node at specified location
+    
+    - Parameter withLocation: location of the node to find name for
+    - Returns: name of the node
+    
+    */
+    public func getNodeName(withLocation loc: CGPoint) -> N? {
+        checkRep()
+        for node in locations.keys {
+            if locations[node] == loc {
+                return node
+            }
+        }
+        return nil
+    }
+    
     
     /**
      

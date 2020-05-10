@@ -32,7 +32,7 @@ class TicketToRideBuilderViewController: UIViewController,
     private var nCounter = 0
     private var eCounter = 0
     
-    private var startNode = CGPoint.zero
+    private var startPoint = CGPoint.zero
     
     
     override func viewDidLoad() {
@@ -102,54 +102,52 @@ class TicketToRideBuilderViewController: UIViewController,
             nCounter = nCounter + 1
         case Mode.addEdge:
             
-            // potentially add to view
-            if startNode == CGPoint.zero {
+            // if we have not initialized a starting point
+            if startPoint == CGPoint.zero {
                 if ttrbview.findPoint(sender.location(in: ttrbview)) != nil {
-                    startNode = ttrbview.findPoint(sender.location(in: ttrbview))!
+                    startPoint = ttrbview.findPoint(sender.location(in: ttrbview))!
+                    //maybe we want to highlight the start point
                 }
             }
+            // if we've already initialized a starting point
             else{
                 if ttrbview.findPoint(sender.location(in: ttrbview)) != nil {
                     
                     //add to view
                     var newItems = ttrbview.items
-                    newItems.append(GraphItem.edge(src: startNode, dst: sender.location(in: ttrbview), label: String(eCounter), highlighted: false))
+                    newItems.append(GraphItem.edge(src: startPoint, dst: sender.location(in: ttrbview), label: String(eCounter), highlighted: false))
                     ttrbview.items = newItems
                     
                     eCounter = eCounter + 1
                     
                     //add to model
-                    //coming soon
-                    //let edge = Edge(from: , to: sender.location(in: ttrbview), withLabel: 0)
-                    //model.addEdge(withEdge: edge)
+                    //find name of start node
+                    let startName = model.getNodeName(withLocation: startPoint)
+                    //find name of end node
+                    let endName = model.getNodeName(withLocation: ttrbview.findPoint(sender.location(in: ttrbview))!)
+                    let edge = Edge(from: startName, to: endName, withLabel: 0)
+                    model.addEdge(withEdge: edge)
+                    
+                    //sorta verifies it works lmao
+                    model.printGraph()
                     
                     //reset startNode
-                    startNode = CGPoint.zero
+                    startPoint = CGPoint.zero
                     
                 }
             }
             break
         case Mode.delete:
+            //how do we delete edges? 
             break
         case Mode.move:
+            //do we want move to be a drag functionality or click and then reclick
+//            if ttrbview.findPoint(sender.location(in: ttrbview)) != nil {
+//            }
             break
         }
         print(mode)
     }
-    
-    
-//    @IBAction func ScreenDragged(_ sender: UIPanGestureRecognizer) {
-//        if mode == Mode.addEdge{
-//            //add to model
-//            //add to view
-//            var newItems = ttrbview.items
-//            newItems.append(GraphItem.edge(src: CGPoint(x: 100, y:100), dst: sender.location(in: ttrbview), label: String(eCounter), highlighted: false))
-//            eCounter = eCounter + 1
-//        }
-//        else{
-//            ttrbview.panned(sender)
-//        }
-//    }
     
 }
 
