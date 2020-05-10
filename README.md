@@ -2,6 +2,10 @@
 
 ### Group Members: Kaizen Conroy, Dominic Chui
 
+### Overview:
+
+Current status is that the user can add nodes and edges to the graph, and they show up in both the model and view. Underlying model and view are pretty solid. User can upload background image and pan/pinch as they see fit. What doesn't work is that the modelToViewCoordinates isn't translating the pan/pinch correctly. We still need to implement delete and move as part of our basic functionality.
+
 ### Vision Statement: 
 We plan on building a Ticket To Ride Board Builder (and potentially game engine) by leveraging the software skills we have learned in CS326. Our primary goal is to allow the user to create and save custom Ticket To Ride graphs on our iOS app. A secondary goal is to allow the user to partake in basic TTR gameplay using their custom graph. The primary features include functionality to include photo uploads and allow for users to create graphs by being responsive to touches and dragging. The intended users are TTR afficionados like ourselves who would enjoy playing TTR on custom graphs. We hope for a basic outcome of being able to create new graphs based off of the proportions of an uploaded map.
 
