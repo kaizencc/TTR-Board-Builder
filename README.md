@@ -53,7 +53,7 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
    - calculate edge weight based on distance
    - let user specify color somehow?
    - ~~Use GraphADT to store nodes, edges with coordinates~~
-3. Zoom and pan
+3. ~~Zoom and pan~~
 4. Save/load
 5. Multiple Views
 6. Gameplay?

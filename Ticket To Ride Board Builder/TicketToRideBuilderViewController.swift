@@ -95,12 +95,11 @@ class TicketToRideBuilderViewController: UIViewController,
         switch mode {
         case Mode.addNode:
             //add to model
-            model.addNode(withName: String(nCounter), withLocation: sender.location(in: ttrbview))
+            model.addNode(withName: String(nCounter), withLocation: ttrbview.unitTransform.fromView(viewPoint: sender.location(in: ttrbview)))
             //add to view
-            var newItems = ttrbview.items
-            newItems.append(GraphItem.node(loc: sender.location(in: ttrbview), name: String(nCounter), highlighted: false))
-            ttrbview.items = newItems
+            ttrbview.items.append(GraphItem.node(loc: ttrbview.unitTransform.fromView(viewPoint: sender.location(in: ttrbview)), name: String(nCounter), highlighted: false))
             nCounter = nCounter + 1
+            
         case Mode.addEdge:
             
             // if we have not initialized a starting point
@@ -193,7 +192,7 @@ class TicketToRideBuilderViewController: UIViewController,
                     ttrbview.switchHighlight(withLocation: startPoint)
                 }
             } else {
-                let endPoint = sender.location(in: ttrbview)
+                let endPoint = ttrbview.unitTransform.fromView(viewPoint: sender.location(in: ttrbview))
                 //move node in model
                 model.moveNode(withName: model.getNodeName(withLocation: movePoint!),
                                newLocation: endPoint)

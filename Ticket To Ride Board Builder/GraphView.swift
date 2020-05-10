@@ -140,7 +140,7 @@ public class GraphView: UIView {
     
     /// The Zoom/Offset transform to convert from the graph item's model coordinates
     /// to the view's coordinates
-    private var unitTransform = ModelToViewCoordinates(zoomScale: 1.0,
+    public var unitTransform = ModelToViewCoordinates(zoomScale: 1.0,
                                                        viewOffset: CGPoint.zero) {
         didSet {
             setNeedsDisplay()
