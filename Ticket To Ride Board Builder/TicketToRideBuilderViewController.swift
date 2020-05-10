@@ -94,10 +94,11 @@ class TicketToRideBuilderViewController: UIViewController,
     @IBAction func ScreenTapped(_ sender: UITapGestureRecognizer) {
         switch mode {
         case Mode.addNode:
-            //add to model
-            model.addNode(withName: String(nCounter), withLocation: ttrbview.unitTransform.fromView(viewPoint: sender.location(in: ttrbview)))
+            //add to model, transform tapped point to model coordinates
+            let point = ttrbview.unitTransform.fromView(viewPoint: sender.location(in: ttrbview))
+            model.addNode(withName: String(nCounter), withLocation: point)
             //add to view
-            ttrbview.items.append(GraphItem.node(loc: ttrbview.unitTransform.fromView(viewPoint: sender.location(in: ttrbview)), name: String(nCounter), highlighted: false))
+            ttrbview.items.append(GraphItem.node(loc: point, name: String(nCounter), highlighted: false))
             nCounter = nCounter + 1
             
         case Mode.addEdge:
@@ -115,9 +116,7 @@ class TicketToRideBuilderViewController: UIViewController,
                 if endPoint != nil && endPoint != startPoint{
                     
                     //add to view
-                    var newItems = ttrbview.items
-                    newItems.append(GraphItem.edge(src: startPoint!, dst: endPoint!, label: String(0), highlighted: false))
-                    ttrbview.items = newItems
+                    ttrbview.items.append(GraphItem.edge(src: startPoint!, dst: endPoint!, label: String(0), highlighted: false))
                     
                     //add to model
                     //find name of start node
@@ -192,7 +191,9 @@ class TicketToRideBuilderViewController: UIViewController,
                     ttrbview.switchHighlight(withLocation: startPoint)
                 }
             } else {
+                //transform tapped point to model coordinates
                 let endPoint = ttrbview.unitTransform.fromView(viewPoint: sender.location(in: ttrbview))
+                
                 //move node in model
                 model.moveNode(withName: model.getNodeName(withLocation: movePoint!),
                                newLocation: endPoint)
