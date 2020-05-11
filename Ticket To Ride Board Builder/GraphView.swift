@@ -76,7 +76,7 @@ public class GraphView: UIView {
     
     /// Color of node body
     @IBInspectable
-    public var nodeColor : UIColor = UIColor.cyan  {
+    public var nodeColor : UIColor = UIColor.gray  {
         didSet {
             setNeedsDisplay()
         }
@@ -162,6 +162,19 @@ public class GraphView: UIView {
     }
     
     // MARK: Coordinates
+    
+    /**
+    Find the distance between two points in the view.
+    
+    **Effects**: None
+    
+    - Parameter from: the starting point
+    - Parameter to: the ending point
+     - Returns: the distance between the two points
+    */
+    public func CGPointDistance(from: CGPoint, to: CGPoint) -> CGFloat {
+        return sqrt((from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y))
+    }
     
     /**
      
@@ -285,6 +298,12 @@ public class GraphView: UIView {
         
         let srcViewLocation = unitTransform.toView(modelPoint: srcLocation)
         let dstViewLocation = unitTransform.toView(modelPoint: dstLocation)
+        
+        //kaizen's additions
+        let size = Int(label)! //number of blocks
+        let viewDistance = CGPointDistance(from: srcViewLocation, to: dstViewLocation)
+        let viewBlockSize = viewDistance/CGFloat(size) //size of blocks
+        
         let  path = UIBezierPath()
         
         let  p0 = srcViewLocation
@@ -293,24 +312,25 @@ public class GraphView: UIView {
         let  p1 = dstViewLocation
         path.addLine(to: p1)
         
-        //    let  dashes: [ CGFloat ] = [ 16.0, 32.0 ]
-        //    path.setLineDash(dashes, count: dashes.count, phase: 0.0)
+        //kaizen's changes
+        //dashes is an array of CGPoints where the elements alternate between size of dash and size of space in-between
+        var dashes = [CGFloat]()
+        //first element is dash; this offsets that property
+        dashes.append(CGFloat.zero)
+        //start with some spacing
+        dashes.append(CGFloat(0.1*Double(viewBlockSize)))
+        for _ in 0..<size {
+            dashes.append(CGFloat(0.8*Double(viewBlockSize))) //add dash
+            dashes.append(CGFloat(0.2*Double(viewBlockSize))) //add spacing
+        }
+        //update last spacing to be less because we borrowed some for the start
+        dashes[dashes.count-1] = CGFloat(0.1*Double(viewBlockSize))
+        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
         
         path.lineWidth = lineWidth
         path.lineCapStyle = .butt
-        UIColor.red.set()
+        UIColor.lightGray.set()
         path.stroke()
-        //    let path = pathForArrow(from: srcViewLocation,
-        //                            to: dstViewLocation,
-        //                            fromRadius: edgesWontOverlapNodes ? nodeRadius : 0,
-        //                            toRadius: edgesWontOverlapNodes ? nodeRadius : 0)
-        //    if highlighted {
-        //      path.lineWidth = highlightThickness
-        //      outlineHighlightColor.set()
-        //    } else {
-        //      outlineColor.set()
-        //    }
-        //    path.stroke()
         
         let center = CGPoint(x: path.bounds.midX, y: path.bounds.midY)
         drawCenteredText(at: unitTransform.fromView(viewPoint: center), text: label, textColor: highlighted ? outlineHighlightColor : outlineColor, backgroundColor: UIColor.white)

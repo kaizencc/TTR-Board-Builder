@@ -67,8 +67,15 @@ class TicketToRideBuilderViewController: UIViewController,
        dismiss(animated:true, completion: nil)
         
         //make the background the image
-        ttrbview.background = pickedImage.resized(toFitIn: CGSize(width: 1024, height: 1024))
+        ttrbview.background = pickedImage.resized(toFitIn: CGSize(width: 256, height: 256))
      }
+    }
+    
+    //calculates what the edge length should be after adding an edge or moving a point
+    public func calculateEdgeLength(start src: CGPoint, end dst: CGPoint) -> Int{
+        let distance = ttrbview.CGPointDistance(from: src, to: dst)
+        print(distance)
+        return Int(distance/100) + 1
     }
 
     @IBAction func AddNode(_ sender: UIButton) {
@@ -116,14 +123,14 @@ class TicketToRideBuilderViewController: UIViewController,
                 if endPoint != nil && endPoint != startPoint{
                     
                     //add to view
-                    ttrbview.items.append(GraphItem.edge(src: startPoint!, dst: endPoint!, label: String(0), highlighted: false))
+                    ttrbview.items.append(GraphItem.edge(src: startPoint!, dst: endPoint!, label: String(calculateEdgeLength(start: startPoint!, end: endPoint!)), highlighted: false))
                     
                     //add to model
                     //find name of start node
                     let startName = model.getNodeName(withLocation: startPoint!)
                     //find name of end node
-                    let endName = model.getNodeName(withLocation: ttrbview.findPoint(sender.location(in: ttrbview))!)
-                    let edge = Edge(from: startName, to: endName, withLabel: 0)
+                    let endName = model.getNodeName(withLocation: endPoint!)
+                    let edge = Edge(from: startName, to: endName, withLabel: calculateEdgeLength(start: startPoint!, end: endPoint!))
                     model.addEdge(withEdge: edge)
                     
                     //sorta verifies it works lmao
@@ -206,10 +213,16 @@ class TicketToRideBuilderViewController: UIViewController,
                         }
                     case .edge(let src, let dst, let label, let highlighted):
                         if src == movePoint{
-                            ttrbview.items[i] = GraphItem.edge(src: endPoint, dst: dst, label: label, highlighted: highlighted)
+                            ttrbview.items[i] = GraphItem.edge(src: endPoint,
+                                                               dst: dst,
+                                                               label: String(calculateEdgeLength(start: endPoint, end: dst)),
+                                                               highlighted: highlighted)
                         }
                         if dst == movePoint{
-                            ttrbview.items[i] = GraphItem.edge(src: src, dst: endPoint, label: label, highlighted: highlighted)
+                            ttrbview.items[i] = GraphItem.edge(src: src,
+                                                               dst: endPoint,
+                                                               label: String(calculateEdgeLength(start: src, end: endPoint)),
+                                                               highlighted: highlighted)
                         }
                     }
                 }
