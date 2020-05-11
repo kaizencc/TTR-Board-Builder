@@ -76,7 +76,7 @@ public class GraphView: UIView {
     
     /// Color of node body
     @IBInspectable
-    public var nodeColor : UIColor = UIColor.gray  {
+    public var nodeColor : UIColor = UIColor.cyan  {
         didSet {
             setNeedsDisplay()
         }
@@ -329,7 +329,7 @@ public class GraphView: UIView {
         
         path.lineWidth = lineWidth
         path.lineCapStyle = .butt
-        UIColor.lightGray.set()
+        UIColor.purple.set()
         path.stroke()
         
         let center = CGPoint(x: path.bounds.midX, y: path.bounds.midY)
