@@ -237,8 +237,8 @@ public class GraphView: UIView {
             switch(item) {
             case .node(let loc, let name, let highlight):
                 drawNode(at: loc, labelled: name, highlighted: highlight)
-            case .edge(let src, let dst, let label, let highlight):
-                drawEdge(from: src, to: dst, label: label, highlighted: highlight)
+            case .edge(let src, let dst, let label, let highlight, let color):
+                drawEdge(from: src, to: dst, label: label, highlighted: highlight, color: color)
             }
         }
     }
@@ -294,7 +294,8 @@ public class GraphView: UIView {
     private func drawEdge(from srcLocation : CGPoint,
                           to dstLocation : CGPoint,
                           label : String,
-                          highlighted: Bool) {
+                          highlighted: Bool,
+                          color: UIColor) {
         
         let srcViewLocation = unitTransform.toView(modelPoint: srcLocation)
         let dstViewLocation = unitTransform.toView(modelPoint: dstLocation)
@@ -329,7 +330,7 @@ public class GraphView: UIView {
         
         path.lineWidth = lineWidth
         path.lineCapStyle = .butt
-        UIColor.purple.set()
+        color.set()
         path.stroke()
         
         let center = CGPoint(x: path.bounds.midX, y: path.bounds.midY)
@@ -426,7 +427,7 @@ public class GraphView: UIView {
             switch(item) {
             case .node(let loc, _, _):
                 points.append(loc)
-            case .edge(_, _, _, _):
+            case .edge(_, _, _, _, _):
                 break
             }
         }
@@ -440,7 +441,7 @@ public class GraphView: UIView {
             switch(item) {
             case .node(let loc, _, _):
                 points.append(loc)
-            case .edge(let src, let dst, _, _):
+            case .edge(let src, let dst, _, _, _):
                 points.append(src)
                 points.append(dst)
             }

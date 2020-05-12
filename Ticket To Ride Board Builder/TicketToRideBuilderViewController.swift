@@ -38,6 +38,8 @@ class TicketToRideBuilderViewController: UIViewController,
     @IBOutlet weak var orange: UIButton!
     @IBOutlet weak var grey: UIButton!
     
+    private var currentColor: UIColor = UIColor.gray
+    
     private var mode = Mode.addNode
     
     private var nCounter = 0
@@ -145,6 +147,42 @@ class TicketToRideBuilderViewController: UIViewController,
         hideAllColors()
     }
     
+    @IBAction func MakeRed(_ sender: UIButton) {
+        currentColor = UIColor.red
+    }
+    
+    @IBAction func MakeGreen(_ sender: UIButton) {
+        currentColor = UIColor.green
+    }
+    
+    @IBAction func MakeBlue(_ sender: UIButton) {
+        currentColor = UIColor.blue
+    }
+    
+    @IBAction func MakeYellow(_ sender: UIButton) {
+        currentColor = UIColor.yellow
+    }
+    @IBAction func MakePurple(_ sender: UIButton) {
+        currentColor = UIColor.purple
+    }
+    
+    @IBAction func MakeBlack(_ sender: UIButton) {
+        currentColor = UIColor.black
+    }
+    
+    @IBAction func MakeWhite(_ sender: UIButton) {
+        currentColor = UIColor.white
+    }
+    
+    @IBAction func MakeOrange(_ sender: UIButton) {
+        currentColor = UIColor.orange
+    }
+    
+    @IBAction func MakeGray(_ sender: UIButton) {
+        currentColor = UIColor.gray
+    }
+    
+    
     @IBAction func ScreenTapped(_ sender: UITapGestureRecognizer) {
         switch mode {
         case Mode.addNode:
@@ -170,7 +208,7 @@ class TicketToRideBuilderViewController: UIViewController,
                 if endPoint != nil && endPoint != startPoint{
                     
                     //add to view
-                    ttrbview.items.append(GraphItem.edge(src: startPoint!, dst: endPoint!, label: String(calculateEdgeLength(start: startPoint!, end: endPoint!)), highlighted: false))
+                    ttrbview.items.append(GraphItem.edge(src: startPoint!, dst: endPoint!, label: String(calculateEdgeLength(start: startPoint!, end: endPoint!)), highlighted: false, color: currentColor))
                     
                     //add to model
                     //find name of start node
@@ -204,7 +242,7 @@ class TicketToRideBuilderViewController: UIViewController,
                         switch ttrbview.items[i]{
                         case .node:
                             break
-                        case .edge(let src, let dst, _, _):
+                        case .edge(let src, let dst, _, _, _):
                             print(edgeSrc, edgeDst, src, dst)
                             if src == edgeSrc && dst == edgeDst {
                                 toBeDeletedEdges.append(i)
@@ -258,18 +296,20 @@ class TicketToRideBuilderViewController: UIViewController,
                         if loc == movePoint{
                             ttrbview.items[i] = GraphItem.node(loc: endPoint, name: name, highlighted: highlighted)
                         }
-                    case .edge(let src, let dst, let label, let highlighted):
+                    case .edge(let src, let dst, _, let highlighted, let color):
                         if src == movePoint{
                             ttrbview.items[i] = GraphItem.edge(src: endPoint,
                                                                dst: dst,
                                                                label: String(calculateEdgeLength(start: endPoint, end: dst)),
-                                                               highlighted: highlighted)
+                                                               highlighted: highlighted,
+                                                               color: color)
                         }
                         if dst == movePoint{
                             ttrbview.items[i] = GraphItem.edge(src: src,
                                                                dst: endPoint,
                                                                label: String(calculateEdgeLength(start: src, end: endPoint)),
-                                                               highlighted: highlighted)
+                                                               highlighted: highlighted,
+                                                               color: color)
                         }
                     }
                 }

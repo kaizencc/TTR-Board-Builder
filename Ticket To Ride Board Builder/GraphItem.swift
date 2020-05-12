@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+import UIKit
 
 /**
  
@@ -25,6 +26,6 @@ public enum GraphItem {
   
   /// An edge from one locatin to another.
   /// The highlighted flag indicates whether this is drawn specially or not.
-  case edge(src: CGPoint, dst: CGPoint, label: String, highlighted: Bool)
+    case edge(src: CGPoint, dst: CGPoint, label: String, highlighted: Bool, color: UIColor)
 }
 
