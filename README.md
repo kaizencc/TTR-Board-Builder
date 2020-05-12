@@ -48,13 +48,16 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
 ### TODO:
 
 1. ~~Upload images as background (load images out of photo library)~~ 
-2. UI to add nodes and edges 
+2. ~~UI to add nodes and edges~~
    - ~~click to add node, click and reclick for edges~~
    - ~~calculate edge weight based on distance~~
-   - let user specify color somehow?
+   - ~~let user specify color somehow?~~
    - ~~Use GraphADT to store nodes, edges with coordinates~~
 3. ~~Zoom and pan~~
-4. Save/load
-5. Multiple Views
-6. Gameplay?
+4. Add edge colors to model
+5. UI for edges with same src to dst
+6. Save/load
+7. Generate Destination tickets through dijsktras
+8. Multiple Views
+9. Gameplay?
 
