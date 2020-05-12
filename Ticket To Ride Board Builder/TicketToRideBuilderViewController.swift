@@ -26,7 +26,18 @@ class TicketToRideBuilderViewController: UIViewController,
     //View
         
     @IBOutlet weak var ttrbview: GraphView!
-        
+         
+    //color buttons
+    @IBOutlet weak var red: UIButton!
+    @IBOutlet weak var green: UIButton!
+    @IBOutlet weak var blue: UIButton!
+    @IBOutlet weak var yellow: UIButton!
+    @IBOutlet weak var purple: UIButton!
+    @IBOutlet weak var black: UIButton!
+    @IBOutlet weak var white: UIButton!
+    @IBOutlet weak var orange: UIButton!
+    @IBOutlet weak var grey: UIButton!
+    
     private var mode = Mode.addNode
     
     private var nCounter = 0
@@ -38,8 +49,38 @@ class TicketToRideBuilderViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //set color buttons to be hidden initially
+        hideAllColors()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    //hides color button
+    private func hideColor(_ button: UIButton!){
+        button.isHidden = true
+        button.backgroundColor = UIColor.clear
+    }
+    
+    private func hideAllColors(){
+        let allButtons = [red,green,blue,yellow,purple,black,white,orange,grey]
+        for button in allButtons{
+            hideColor(button)
+        }
+    }
+    
+    //unhides color button
+    private func openColor(_ button: UIButton!, _ color: UIColor!){
+        button.isHidden = false
+        button.backgroundColor = color
+    }
+    
+    private func openAllColors(){
+        let allButtons = [red,green,blue,yellow,purple,black,white,orange,grey]
+        let allColors = [UIColor.red, UIColor.green, UIColor.blue, UIColor.yellow, UIColor.purple, UIColor.black, UIColor.white, UIColor.orange, UIColor.gray]
+        for i in 0..<allButtons.count{
+            openColor(allButtons[i],allColors[i])
+        }
+    }
+
     
     /*
       UIImagePickerControllerDelegate method to let user pick image.
@@ -77,25 +118,31 @@ class TicketToRideBuilderViewController: UIViewController,
         print(distance)
         return Int(distance/100) + 1
     }
-
+    
+    
     @IBAction func AddNode(_ sender: UIButton) {
         mode = Mode.addNode
+        hideAllColors()
     }
     
     @IBAction func AddEdge(_ sender: UIButton) {
         mode = Mode.addEdge
+        openAllColors()
     }
     
     @IBAction func Delete(_ sender: UIButton) {
         mode = Mode.delete
+        hideAllColors()
     }
     
     @IBAction func Move(_ sender: UIButton) {
         mode = Mode.move
+        hideAllColors()
     }
     
     @IBAction func Upload(_ sender: UIButton) {
         pickImage(.photoLibrary)
+        hideAllColors()
     }
     
     @IBAction func ScreenTapped(_ sender: UITapGestureRecognizer) {

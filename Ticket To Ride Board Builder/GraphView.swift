@@ -316,7 +316,7 @@ public class GraphView: UIView {
         //dashes is an array of CGPoints where the elements alternate between size of dash and size of space in-between
         var dashes = [CGFloat]()
         //first element is dash; this offsets that property
-        dashes.append(CGFloat.zero)
+        dashes.append(CGFloat(0))
         //start with some spacing
         dashes.append(CGFloat(0.1*Double(viewBlockSize)))
         for _ in 0..<size {
