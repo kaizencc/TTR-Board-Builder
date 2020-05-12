@@ -121,30 +121,44 @@ class TicketToRideBuilderViewController: UIViewController,
         return Int(distance/100) + 1
     }
     
+    //reset the startPoint highlight if needed
+    private func resetStartPoint(){
+        if startPoint != nil{
+            ttrbview.switchHighlight(withLocation: startPoint!)
+            startPoint = nil
+        }
+    }
+    
     
     @IBAction func AddNode(_ sender: UIButton) {
         mode = Mode.addNode
         hideAllColors()
+        resetStartPoint()
+    
     }
     
     @IBAction func AddEdge(_ sender: UIButton) {
         mode = Mode.addEdge
         openAllColors()
+        resetStartPoint()
     }
     
     @IBAction func Delete(_ sender: UIButton) {
         mode = Mode.delete
         hideAllColors()
+        resetStartPoint()
     }
     
     @IBAction func Move(_ sender: UIButton) {
         mode = Mode.move
         hideAllColors()
+        resetStartPoint()
     }
     
     @IBAction func Upload(_ sender: UIButton) {
         pickImage(.photoLibrary)
         hideAllColors()
+        resetStartPoint()
     }
     
     @IBAction func MakeRed(_ sender: UIButton) {
