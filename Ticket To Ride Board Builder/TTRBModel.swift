@@ -33,12 +33,12 @@ public class TTRBModel {
 //                graph.removeEdge(edge)
 //            }
 //        }
-        let edges = graph.getEdges()
-        if (!edges.contains(edge) || edge.label.color == Color.gray) {
-            graph.addEdge(edge)
-            let flippedEdge = Edge(from: edge.dst, to: edge.src, withLabel: edge.label)
-            graph.addEdge(flippedEdge)
-        }
+        //let edges = graph.getEdges()
+        //if (!edges.contains(edge) /* || edge.label.color == Color.gray*/) {
+        graph.addEdge(edge)
+        let flippedEdge = Edge(from: edge.dst, to: edge.src, withLabel: edge.label)
+        graph.addEdge(flippedEdge)
+        //}
     }
     
     public func removeNode(withName node: String){

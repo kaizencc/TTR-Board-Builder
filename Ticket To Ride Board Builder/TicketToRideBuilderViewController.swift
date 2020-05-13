@@ -131,7 +131,7 @@ UINavigationControllerDelegate {
             dismiss(animated:true, completion: nil)
             
             //make the background the image
-            ttrbview.background = pickedImage.resized(toFitIn: CGSize(width: 256, height: 256))
+            ttrbview.background = pickedImage.resized(toFitIn: CGSize(width: 0.5*UIScreen.main.bounds.width, height: 0.5*UIScreen.main.bounds.height))
         }
     }
     

@@ -88,7 +88,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.89107027202072542" green="0.89107027202072542" blue="0.89107027202072542" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="V1e-ca-qdR" firstAttribute="leading" secondItem="Zfd-RF-qfg" secondAttribute="leading" constant="32" id="Aze-5f-WDt"/>
@@ -100,9 +100,9 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQI-8l-l0r">
-                                <rect key="frame" x="835" y="124" width="45" height="30"/>
+                                <rect key="frame" x="794" y="124" width="86" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Delete"/>
+                                <state key="normal" title="Delete Node"/>
                                 <connections>
                                     <action selector="Delete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lP1-uS-LUr"/>
                                 </connections>
@@ -141,7 +141,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Qk9-2i-vnE" secondAttribute="trailing" constant="16" id="2bI-kI-MDF"/>
@@ -191,7 +191,7 @@
                         <action selector="pinched:" destination="Zfd-RF-qfg" id="8Qz-be-GcZ"/>
                     </connections>
                 </pinchGestureRecognizer>
-                <tapGestureRecognizer numberOfTapsRequired="2" id="mVX-be-4P5">
+                <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="mVX-be-4P5">
                     <connections>
                         <action selector="doubleTapped:" destination="Zfd-RF-qfg" id="oLR-8O-4bX"/>
                     </connections>

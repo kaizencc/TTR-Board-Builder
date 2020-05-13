@@ -164,6 +164,28 @@ public class GraphView: UIView {
     // MARK: Coordinates
     
     /**
+    
+    Finds the orthogonal unit vector to a line between two points
+    
+    - Parameter src: Start point of the edge
+    - Parameter dst: End point of the edge
+    - Returns: tuple of x and y coordinates for the unit vector
+    
+    */
+    private func orthogonalUnitVector(src start: CGPoint, dst end: CGPoint) -> (CGFloat, CGFloat){
+        //original slope
+        let slope = (start.y - end.y) / (start.x - end.x)
+        //perpendicular slope
+        let orth_slope = -1 / slope
+        //y-intercept of perpendicular slope with start point
+        let orth_intercept = start.y - orth_slope * start.x
+        let vector = (0 - start.x, orth_intercept - start.y)
+        let distance = sqrt((vector.0*vector.0) + (vector.1*vector.1))
+        let unit_vector = (vector.0/distance , vector.1/distance)
+        return unit_vector
+    }
+    
+    /**
     Find the distance between two points in the view.
     
     **Effects**: None
@@ -239,7 +261,6 @@ public class GraphView: UIView {
     }
     
     // MARK: Drawing
-    
     /**
      
      Draw all of the items in the list of items.
@@ -260,22 +281,29 @@ public class GraphView: UIView {
                 case .none:
                     drawEdge(from: src, to: dst, label: label, highlighted: highlight, color: color)
                 case .left:
-                    // this is (hopefully) temporary just to show that it works
+                    let unit_vectorS = orthogonalUnitVector(src: src, dst: dst) //src unit vector
+                    //edge is offset from the center by 10 units
+                    let new_vectorS = (unit_vectorS.0 * 10, unit_vectorS.1 * 10)
                     var newSrc = src
-                    newSrc.x = newSrc.x + 10
-                    newSrc.y = newSrc.y + 10
+                    newSrc.x = newSrc.x + new_vectorS.0
+                    newSrc.y = newSrc.y + new_vectorS.1
+                    let unit_vectorD = orthogonalUnitVector(src: dst, dst: src) //dst unit vector
+                    let new_vectorD = (unit_vectorD.0 * 10, unit_vectorD.1 * 10)
                     var newDst = dst
-                    newDst.x = newDst.x + 10
-                    newDst.y = newDst.y + 10
+                    newDst.x = newDst.x + new_vectorD.0
+                    newDst.y = newDst.y + new_vectorD.1
                     drawEdge(from: newSrc, to: newDst, label: label, highlighted: highlight, color: color)
                 case .right:
-                    //again, hopefully temporary
+                    let unit_vectorS = orthogonalUnitVector(src: src, dst: dst)
+                    let new_vectorS = (unit_vectorS.0 * 10, unit_vectorS.1 * 10)
                     var newSrc = src
-                    newSrc.x = newSrc.x - 10
-                    newSrc.y = newSrc.y - 10
+                    newSrc.x = newSrc.x - new_vectorS.0
+                    newSrc.y = newSrc.y - new_vectorS.1
+                    let unit_vectorD = orthogonalUnitVector(src: dst, dst: src)
+                    let new_vectorD = (unit_vectorD.0 * 10, unit_vectorD.1 * 10)
                     var newDst = dst
-                    newDst.x = newDst.x - 10
-                    newDst.y = newDst.y - 10
+                    newDst.x = newDst.x - new_vectorD.0
+                    newDst.y = newDst.y - new_vectorD.1
                     drawEdge(from: newSrc, to: newDst, label: label, highlighted: highlight, color: color)
                 case .center:
                     drawEdge(from: src, to: dst, label: label, highlighted: highlight, color: color)
