@@ -62,12 +62,12 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
 7. Multiple Views
 8. Gameplay?
 
-Bug Fixes
+### Bug Fixes
 - Update model edge weights when nodes are moved in view
 - Have uploaded fill the screen initially
 - Change double tap to double double tap
 - Change "delete" to "delete node" 
 
-Nice Things to Have
+### Nice Things to Have
 - Delete edges in view
 - Change edge color in view
