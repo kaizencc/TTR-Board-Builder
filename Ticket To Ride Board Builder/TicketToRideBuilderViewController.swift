@@ -82,6 +82,27 @@ class TicketToRideBuilderViewController: UIViewController,
             openColor(allButtons[i],allColors[i])
         }
     }
+    
+    // Convert between model colors and view colors
+    private let uiColorToRouteColor = [UIColor.red: Color.red,
+                                       UIColor.green: Color.green,
+                                       UIColor.blue: Color.blue,
+                                       UIColor.yellow: Color.yellow,
+                                       UIColor.purple: Color.purple,
+                                       UIColor.black: Color.black,
+                                       UIColor.white: Color.white,
+                                       UIColor.orange: Color.orange,
+                                       UIColor.gray: Color.gray]
+    
+    private let routeColorToUIColor = [Color.red: UIColor.red,
+                                       Color.green: UIColor.green,
+                                       Color.blue: UIColor.blue,
+                                       Color.yellow: UIColor.yellow,
+                                       Color.purple: UIColor.purple,
+                                       Color.black: UIColor.black,
+                                       Color.white: UIColor.white,
+                                       Color.orange: UIColor.orange,
+                                       Color.gray: UIColor.gray]
 
     
     /*
@@ -219,7 +240,7 @@ class TicketToRideBuilderViewController: UIViewController,
             // if we've already initialized a starting point
             else{
                 let endPoint = ttrbview.findPoint(sender.location(in: ttrbview))
-                if endPoint != nil && endPoint != startPoint{
+                if endPoint != nil && endPoint != startPoint {
                     
                     //add to view
                     ttrbview.items.append(GraphItem.edge(src: startPoint!, dst: endPoint!, label: String(calculateEdgeLength(start: startPoint!, end: endPoint!)), highlighted: false, color: currentColor))
@@ -229,7 +250,11 @@ class TicketToRideBuilderViewController: UIViewController,
                     let startName = model.getNodeName(withLocation: startPoint!)
                     //find name of end node
                     let endName = model.getNodeName(withLocation: endPoint!)
-                    let edge = Edge(from: startName, to: endName, withLabel: calculateEdgeLength(start: startPoint!, end: endPoint!))
+                    let route = Route(withLength: calculateEdgeLength(start: startPoint!, end: endPoint!),
+                                      withColor: uiColorToRouteColor[currentColor]!)
+                    let edge = Edge(from: startName,
+                                    to: endName,
+                                    withLabel: route)
                     model.addEdge(withEdge: edge)
                     
                     //sorta verifies it works lmao
@@ -243,7 +268,7 @@ class TicketToRideBuilderViewController: UIViewController,
         case Mode.delete:
             //how do we delete edges? bonus
             //delete nodes + connected edges
-            if let targetPoint = ttrbview.findPoint(sender.location(in: ttrbview)){
+            if let targetPoint = ttrbview.findPoint(sender.location(in: ttrbview)) {
                 //deleting all connected edges
                 let targetName = model.getNodeName(withLocation: targetPoint)
                 let edges = model.getAllEdges().filter( {$0.src == targetName || $0.dst == targetName })
@@ -251,33 +276,30 @@ class TicketToRideBuilderViewController: UIViewController,
                     //delete from view
                     let edgeSrc = model.getLocation(forNode: edge.src)
                     let edgeDst = model.getLocation(forNode: edge.dst)
-                    var toBeDeletedEdges = [Int]()
+                    var newItems = [GraphItem]()
                     for i in 0..<ttrbview.items.count{
                         switch ttrbview.items[i]{
                         case .node:
-                            break
+                            newItems.append(ttrbview.items[i])
                         case .edge(let src, let dst, _, _, _):
                             print(edgeSrc, edgeDst, src, dst)
-                            if src == edgeSrc && dst == edgeDst {
-                                toBeDeletedEdges.append(i)
+                            if src != edgeSrc || dst != edgeDst {
+                                newItems.append(ttrbview.items[i])
                             }
                         }
                     }
-                    //so we can delete multiple edges
-                    for i in toBeDeletedEdges{
-                        ttrbview.items.remove(at: i)
-                    }
+                    ttrbview.items = newItems
                     //delete from model
                     model.removeEdge(withEdge: edge)
                 }
                 //deleting node
                 model.removeNode(withName: targetName)
                 var cont = true
-                for i in 0..<ttrbview.items.count{
+                for i in 0..<ttrbview.items.count {
                     if cont == false{
                         break
                     }
-                    switch ttrbview.items[i]{
+                    switch ttrbview.items[i] {
                     case .node(let loc, _, _):
                         if targetPoint == loc {
                             ttrbview.items.remove(at: i)
@@ -292,7 +314,7 @@ class TicketToRideBuilderViewController: UIViewController,
         case Mode.move:
             //to move, user has to click and then reclick in the updated location
             if movePoint == nil {
-                if let startPoint = ttrbview.findPoint(sender.location(in: ttrbview)){
+                if let startPoint = ttrbview.findPoint(sender.location(in: ttrbview)) {
                     movePoint = startPoint
                     ttrbview.switchHighlight(withLocation: startPoint)
                 }

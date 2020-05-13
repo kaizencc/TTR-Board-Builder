@@ -295,6 +295,14 @@ class GraphImplementationTests: XCTestCase {
         XCTAssert(graph.edges.count == 3)
     }
     
+    func testAddDuplicateEdge() {
+        let graph = Graph(nodes: intNodes, edges: intEdges)
+        graph.addEdge(newEdge: Edge(from: 3, to: 1, withLabel: 0))
+        graph.addEdge(newEdge: Edge(from: 3, to: 1, withLabel: 0))
+        XCTAssert(graph.nodes.count == 3)
+        XCTAssert(graph.edges.count == 4)
+    }
+    
     
     //REMOVEEDGE METHOD
     

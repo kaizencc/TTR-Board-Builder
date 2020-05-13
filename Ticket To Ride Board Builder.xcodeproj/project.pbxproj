@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E1E25DF246B672900E2D79F /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E25DE246B672900E2D79F /* ModelTests.swift */; };
+		0E1E25E1246B6D5200E2D79F /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E25E0246B6D5200E2D79F /* Route.swift */; };
 		0E64DE6324625CC100A93A26 /* EdgeImplementationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6224625CC100A93A26 /* EdgeImplementationTests.swift */; };
 		0E64DE6524625D1800A93A26 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6424625D1800A93A26 /* PriorityQueue.swift */; };
 		0E64DE6724625D9E00A93A26 /* DijkstraGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6624625D9E00A93A26 /* DijkstraGraph.swift */; };
@@ -19,7 +21,6 @@
 		0ED3D71824625419001BCFFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ED3D71624625419001BCFFB /* Main.storyboard */; };
 		0ED3D71A2462541B001BCFFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ED3D7192462541B001BCFFB /* Assets.xcassets */; };
 		0ED3D71D2462541B001BCFFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ED3D71B2462541B001BCFFB /* LaunchScreen.storyboard */; };
-		0ED3D7282462541B001BCFFB /* Ticket_To_Ride_Board_BuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D7272462541B001BCFFB /* Ticket_To_Ride_Board_BuilderTests.swift */; };
 		0ED3D733246254DF001BCFFB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0ED3D732246254DF001BCFFB /* README.md */; };
 		0ED3D73F24625947001BCFFB /* GraphADT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D73E24625947001BCFFB /* GraphADT.swift */; };
 		0ED3D74124625966001BCFFB /* EdgeADT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D74024625966001BCFFB /* EdgeADT.swift */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E1E25DE246B672900E2D79F /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
+		0E1E25E0246B6D5200E2D79F /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		0E64DE6224625CC100A93A26 /* EdgeImplementationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeImplementationTests.swift; sourceTree = "<group>"; };
 		0E64DE6424625D1800A93A26 /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		0E64DE6624625D9E00A93A26 /* DijkstraGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DijkstraGraph.swift; sourceTree = "<group>"; };
@@ -58,7 +61,6 @@
 		0ED3D71C2462541B001BCFFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0ED3D71E2462541B001BCFFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ED3D7232462541B001BCFFB /* Ticket To Ride Board BuilderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ticket To Ride Board BuilderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0ED3D7272462541B001BCFFB /* Ticket_To_Ride_Board_BuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket_To_Ride_Board_BuilderTests.swift; sourceTree = "<group>"; };
 		0ED3D7292462541B001BCFFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ED3D732246254DF001BCFFB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0ED3D73E24625947001BCFFB /* GraphADT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphADT.swift; sourceTree = "<group>"; };
@@ -114,15 +116,16 @@
 			children = (
 				0ED3D73D24625933001BCFFB /* GraphADT */,
 				0ED3D73624625826001BCFFB /* Support Files */,
-				0ED3D71424625419001BCFFB /* TicketToRideBuilderViewController.swift */,
+				0E1E25E0246B6D5200E2D79F /* Route.swift */,
 				0ED3D71624625419001BCFFB /* Main.storyboard */,
-				0ED3D71E2462541B001BCFFB /* Info.plist */,
 				0E64DE6E2462619C00A93A26 /* TTRBModel.swift */,
+				0ED3D71424625419001BCFFB /* TicketToRideBuilderViewController.swift */,
 				17E7D3F7246382EE00FC8B98 /* GraphView.swift */,
 				17E7D3F9246495B600FC8B98 /* GraphItem.swift */,
 				17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */,
 				17E7D3FD246496D600FC8B98 /* CGPointArrow.swift */,
 				17E7D3FF2464B70900FC8B98 /* UIExtensions.swift */,
+				0ED3D71E2462541B001BCFFB /* Info.plist */,
 			);
 			path = "Ticket To Ride Board Builder";
 			sourceTree = "<group>";
@@ -130,7 +133,7 @@
 		0ED3D7262462541B001BCFFB /* Ticket To Ride Board BuilderTests */ = {
 			isa = PBXGroup;
 			children = (
-				0ED3D7272462541B001BCFFB /* Ticket_To_Ride_Board_BuilderTests.swift */,
+				0E1E25DE246B672900E2D79F /* ModelTests.swift */,
 				0ED3D744246259A4001BCFFB /* GraphImplementationTests.swift */,
 				0E64DE6224625CC100A93A26 /* EdgeImplementationTests.swift */,
 				0E64DE6C24625E8600A93A26 /* DijkstraGraphImplementationTests.swift */,
@@ -270,6 +273,7 @@
 				0ED3D73F24625947001BCFFB /* GraphADT.swift in Sources */,
 				0E64DE6724625D9E00A93A26 /* DijkstraGraph.swift in Sources */,
 				0ED3D74124625966001BCFFB /* EdgeADT.swift in Sources */,
+				0E1E25E1246B6D5200E2D79F /* Route.swift in Sources */,
 				17E7D3FA246495B600FC8B98 /* GraphItem.swift in Sources */,
 				0E64DE73246263F000A93A26 /* DrawableGraph.swift in Sources */,
 				0ED3D71324625419001BCFFB /* AppDelegate.swift in Sources */,
@@ -289,7 +293,7 @@
 			files = (
 				0E64DE6D24625E8600A93A26 /* DijkstraGraphImplementationTests.swift in Sources */,
 				0ED3D74724625A35001BCFFB /* GraphImplementationTests.swift in Sources */,
-				0ED3D7282462541B001BCFFB /* Ticket_To_Ride_Board_BuilderTests.swift in Sources */,
+				0E1E25DF246B672900E2D79F /* ModelTests.swift in Sources */,
 				0E64DE6324625CC100A93A26 /* EdgeImplementationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

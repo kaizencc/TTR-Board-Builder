@@ -300,7 +300,6 @@ public class GraphView: UIView {
         let srcViewLocation = unitTransform.toView(modelPoint: srcLocation)
         let dstViewLocation = unitTransform.toView(modelPoint: dstLocation)
         
-        //kaizen's additions
         let size = Int(label)! //number of blocks
         let viewDistance = CGPointDistance(from: srcViewLocation, to: dstViewLocation)
         let viewBlockSize = viewDistance/CGFloat(size) //size of blocks
@@ -313,7 +312,6 @@ public class GraphView: UIView {
         let  p1 = dstViewLocation
         path.addLine(to: p1)
         
-        //kaizen's changes
         //dashes is an array of CGPoints where the elements alternate between size of dash and size of space in-between
         var dashes = [CGFloat]()
         //first element is dash; this offsets that property

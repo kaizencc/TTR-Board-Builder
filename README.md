@@ -54,10 +54,20 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
    - ~~let user specify color somehow?~~
    - ~~Use GraphADT to store nodes, edges with coordinates~~
 3. ~~Zoom and pan~~
-4. Add edge colors to model
-5. UI for edges with same src to dst
-6. Save/load
-7. Generate Destination tickets through dijsktras
-8. Multiple Views
-9. Gameplay?
+4. Add edge colors to model 
+   - ~~Add new struct for edge label~~
+   - Allow view to show multiple routes on an edge
+5. Save/load 
+6. Generate Destination tickets through dijsktras
+7. Multiple Views
+8. Gameplay?
 
+Bug Fixes
+- Update model edge weights when nodes are moved in view
+- Have uploaded fill the screen initially
+- Change double tap to double double tap
+- Change "delete" to "delete node" 
+
+Nice Things to Have
+- Delete edges in view
+- Change edge color in view

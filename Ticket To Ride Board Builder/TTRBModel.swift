@@ -13,27 +13,39 @@ import CoreGraphics
 public class TTRBModel {
     
     //potentially need []
-    private var graph: DrawableGraph<String, Int>
+    private var graph: DrawableGraph<String, Route>
     
     public init(){
-        graph = DrawableGraph<String, Int>()
+        graph = DrawableGraph<String, Route>()
     }
     
     public func addNode(withName node: String, withLocation location: CGPoint){
         graph.addNode(withName: node, withLocation: location)
     }
     
-    public func addEdge(withEdge edge: Edge<String,Int>){
-        graph.addEdge(edge)
-        let flippedEdge = Edge(from: edge.dst, to: edge.src, withLabel: edge.label)
-        graph.addEdge(flippedEdge)
+    // exact duplicates can only be added if they are gray
+    public func addEdge(withEdge edge: Edge<String,Route>){
+//        //if an edge already exists between the src and dst, replace it
+//        let existingEdges = graph.getEdges().filter({ ($0.src == edge.src && $0.dst == edge.dst) ||
+//                                                      ($0.src == edge.dst && $0.dst == edge.src) })
+//        if existingEdges.count != 0 {
+//            for edge in existingEdges {
+//                graph.removeEdge(edge)
+//            }
+//        }
+        let edges = graph.getEdges()
+        if (!edges.contains(edge) || edge.label.color == Color.gray) {
+            graph.addEdge(edge)
+            let flippedEdge = Edge(from: edge.dst, to: edge.src, withLabel: edge.label)
+            graph.addEdge(flippedEdge)
+        }
     }
     
     public func removeNode(withName node: String){
         graph.removeNode(withName: node)
     }
     
-    public func removeEdge(withEdge edge: Edge<String,Int>){
+    public func removeEdge(withEdge edge: Edge<String,Route>){
         graph.removeEdge(edge)
         let flippedEdge = Edge(from: edge.dst, to: edge.src, withLabel: edge.label)
         graph.removeEdge(flippedEdge)
@@ -44,7 +56,7 @@ public class TTRBModel {
     }
     
     //required: there is an edge between src and dst
-    public func getEdge(start src: String, end dst: String) -> Edge<String,Int> {
+    public func getEdge(start src: String, end dst: String) -> Edge<String,Route> {
         return graph.getEdges().filter({$0.src == src && $0.dst == dst}).first!
     }
     
@@ -62,7 +74,7 @@ public class TTRBModel {
         return graph.getNodes()
     }
     
-    public func getAllEdges() -> [Edge<String,Int>] {
+    public func getAllEdges() -> [Edge<String,Route>] {
         return graph.getEdges()
     }
     
