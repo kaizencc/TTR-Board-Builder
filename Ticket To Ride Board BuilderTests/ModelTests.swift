@@ -84,4 +84,20 @@ class ModelTests: XCTestCase {
         XCTAssert(model.getAllEdges().count == 4)
     }
     
+    func testAmountOfSimilarEdges() {
+        let model = TTRBModel()
+        model.addNode(withName: "1", withLocation: CGPoint(x: 0.0, y: 0.0))
+        model.addNode(withName: "2", withLocation: CGPoint(x: 5.0, y: 5.0))
+        model.addNode(withName: "3", withLocation: CGPoint(x: 10.0, y: 10.0))
+        model.addEdge(withEdge: Edge(from: "1", to: "2", withLabel: Route(withLength: 5, withColor: Color.gray)))
+        model.addEdge(withEdge: Edge(from: "1", to: "2", withLabel: Route(withLength: 5, withColor: Color.blue)))
+        model.addEdge(withEdge: Edge(from: "1", to: "2", withLabel: Route(withLength: 5, withColor: Color.green)))
+        model.addEdge(withEdge: Edge(from: "2", to: "3", withLabel: Route(withLength: 5, withColor: Color.blue)))
+        XCTAssert(model.amountOfSimilarEdges(src: "2", dst: "3") == 1)
+        XCTAssert(model.amountOfSimilarEdges(src: "1", dst: "2") == 3)
+        
+    }
+    
+    
+    
 }

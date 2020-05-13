@@ -195,11 +195,6 @@ public class GraphView: UIView {
         return sqrt(dx*dx + dy*dy) < nodeRadius
     }
     
-//    public func pointIsInsideEdge(_ point: CGPoint, edgeSrc src: CGPoint, edgeDst dst: CGPoint) -> Bool {
-//        //let rect = CGRect(
-//        //return rect.contains(point)
-//        return true
-//    }
     
     /**
      
@@ -215,6 +210,29 @@ public class GraphView: UIView {
         for node in nodes{
             if pointIsInside(point, nodeCenteredAt: node){
                 return node
+            }
+        }
+        return nil
+    }
+    
+    /**
+    
+    Finds an  edge in the list of items, nil if not found
+    
+    - Parameter src: Start point of the edge
+    - Parameter dst: End point of the edge
+    - Returns: GraphItem.edge or nil
+    
+    */
+    public func findEdge(src startPoint: CGPoint, dst endPoint: CGPoint) -> GraphItem?{
+        for item in items{
+            switch item{
+                case .node(_, _, _):
+                    break
+                case .edge(let src, let dst, _, _, _, _):
+                    if src == startPoint && dst == endPoint || src == endPoint && dst == startPoint {
+                        return item
+                }
             }
         }
         return nil
@@ -237,8 +255,31 @@ public class GraphView: UIView {
             switch(item) {
             case .node(let loc, let name, let highlight):
                 drawNode(at: loc, labelled: name, highlighted: highlight)
-            case .edge(let src, let dst, let label, let highlight, let color):
-                drawEdge(from: src, to: dst, label: label, highlighted: highlight, color: color)
+            case .edge(let src, let dst, let label, let highlight, let color, let duplicate):
+                switch duplicate{
+                case .none:
+                    drawEdge(from: src, to: dst, label: label, highlighted: highlight, color: color)
+                case .left:
+                    // this is (hopefully) temporary just to show that it works
+                    var newSrc = src
+                    newSrc.x = newSrc.x + 10
+                    newSrc.y = newSrc.y + 10
+                    var newDst = dst
+                    newDst.x = newDst.x + 10
+                    newDst.y = newDst.y + 10
+                    drawEdge(from: newSrc, to: newDst, label: label, highlighted: highlight, color: color)
+                case .right:
+                    //again, hopefully temporary
+                    var newSrc = src
+                    newSrc.x = newSrc.x - 10
+                    newSrc.y = newSrc.y - 10
+                    var newDst = dst
+                    newDst.x = newDst.x - 10
+                    newDst.y = newDst.y - 10
+                    drawEdge(from: newSrc, to: newDst, label: label, highlighted: highlight, color: color)
+                case .center:
+                    drawEdge(from: src, to: dst, label: label, highlighted: highlight, color: color)
+                }
             }
         }
     }
@@ -314,8 +355,8 @@ public class GraphView: UIView {
         
         //dashes is an array of CGPoints where the elements alternate between size of dash and size of space in-between
         var dashes = [CGFloat]()
-        //first element is dash; this offsets that property
-        dashes.append(CGFloat(0))
+        //first element is dash; this gets removed by the phase (didn't work well with CGFloat(0))
+        dashes.append(CGFloat(1))
         //start with some spacing
         dashes.append(CGFloat(0.1*Double(viewBlockSize)))
         for _ in 0..<size {
@@ -324,7 +365,7 @@ public class GraphView: UIView {
         }
         //update last spacing to be less because we borrowed some for the start
         dashes[dashes.count-1] = CGFloat(0.1*Double(viewBlockSize))
-        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
+        path.setLineDash(dashes, count: dashes.count, phase: 1.0)
         
         path.lineWidth = lineWidth
         path.lineCapStyle = .butt
@@ -425,7 +466,7 @@ public class GraphView: UIView {
             switch(item) {
             case .node(let loc, _, _):
                 points.append(loc)
-            case .edge(_, _, _, _, _):
+            case .edge(_, _, _, _, _, _):
                 break
             }
         }
@@ -439,7 +480,7 @@ public class GraphView: UIView {
             switch(item) {
             case .node(let loc, _, _):
                 points.append(loc)
-            case .edge(let src, let dst, _, _, _):
+            case .edge(let src, let dst, _, _, _, _):
                 points.append(src)
                 points.append(dst)
             }

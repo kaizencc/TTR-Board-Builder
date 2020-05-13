@@ -10,6 +10,13 @@ import Foundation
 import CoreGraphics
 import UIKit
 
+public enum dup {
+    case none
+    case left
+    case right
+    case center
+}
+
 /**
  
  Items that can be displayed by a GraphView.  These describe
@@ -18,7 +25,7 @@ import UIKit
  the view can zoom and scroll over them.
  
  */
-public enum GraphItem {
+public enum GraphItem : Equatable {
   
   /// A node at the given location and labelled with name.
   /// The highlighted flag indicates whether this is drawn specially or not.
@@ -26,6 +33,6 @@ public enum GraphItem {
   
   /// An edge from one locatin to another.
   /// The highlighted flag indicates whether this is drawn specially or not.
-    case edge(src: CGPoint, dst: CGPoint, label: String, highlighted: Bool, color: UIColor)
+    case edge(src: CGPoint, dst: CGPoint, label: String, highlighted: Bool, color: UIColor, duplicate: dup)
 }
 

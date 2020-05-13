@@ -16,17 +16,17 @@ private enum Mode {
 }
 
 class TicketToRideBuilderViewController: UIViewController,
-                                         UIImagePickerControllerDelegate,
-                                         UINavigationControllerDelegate {
+    UIImagePickerControllerDelegate,
+UINavigationControllerDelegate {
     
     //Model
     
     private let model = TTRBModel()
     
     //View
-        
+    
     @IBOutlet weak var ttrbview: GraphView!
-         
+    
     //color buttons
     @IBOutlet weak var red: UIButton!
     @IBOutlet weak var green: UIButton!
@@ -103,14 +103,14 @@ class TicketToRideBuilderViewController: UIViewController,
                                        Color.white: UIColor.white,
                                        Color.orange: UIColor.orange,
                                        Color.gray: UIColor.gray]
-
+    
     
     /*
-      UIImagePickerControllerDelegate method to let user pick image.
-
-      This method creates a new controller that pops up to get the
-      user's choice.
-    */
+     UIImagePickerControllerDelegate method to let user pick image.
+     
+     This method creates a new controller that pops up to get the
+     user's choice.
+     */
     func pickImage(_ sourceType : UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(sourceType) {
             let imagePicker = UIImagePickerController()
@@ -120,19 +120,19 @@ class TicketToRideBuilderViewController: UIViewController,
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
-
+    
     /*
-      Handler called when user has chosen an image.  Add code to do what you
-      like with the picked image.
-    */
+     Handler called when user has chosen an image.  Add code to do what you
+     like with the picked image.
+     */
     public func imagePickerController(_ picker: UIImagePickerController,
-                  didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-     if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-       dismiss(animated:true, completion: nil)
-        
-        //make the background the image
-        ttrbview.background = pickedImage.resized(toFitIn: CGSize(width: 256, height: 256))
-     }
+                                      didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            dismiss(animated:true, completion: nil)
+            
+            //make the background the image
+            ttrbview.background = pickedImage.resized(toFitIn: CGSize(width: 256, height: 256))
+        }
     }
     
     //calculates what the edge length should be after adding an edge or moving a point
@@ -155,7 +155,7 @@ class TicketToRideBuilderViewController: UIViewController,
         mode = Mode.addNode
         hideAllColors()
         resetStartPoint()
-    
+        
     }
     
     @IBAction func AddEdge(_ sender: UIButton) {
@@ -217,6 +217,58 @@ class TicketToRideBuilderViewController: UIViewController,
         currentColor = UIColor.gray
     }
     
+    //adds the edge to a view if 3 other paths do not already exist. returns true if successfully adds in edge.
+    private func addEdgeToView(_ similar: Int, _ startPoint: CGPoint, _ endPoint: CGPoint) -> Bool{
+        if similar == 0{
+            //add to view as dup.none
+            ttrbview.items.append(GraphItem.edge(src: startPoint,
+                                                 dst: endPoint,
+                                                 label: String(calculateEdgeLength(start: startPoint, end: endPoint)),
+                                                 highlighted: false,
+                                                 color: currentColor,
+                                                 duplicate: dup.none))
+            return true
+        }
+        else if similar == 1{
+            //modify existing edge to be dup.left
+            let modifyEdge = ttrbview.findEdge(src: startPoint, dst: endPoint)
+            switch modifyEdge {
+            case .node(_, _, _): break
+            case .edge(let src, let dst, let label, let highlighted, let color, _):
+                let newEdge = GraphItem.edge(src: src,
+                                            dst: dst,
+                                            label: label,
+                                            highlighted: highlighted,
+                                            color: color,
+                                            duplicate: dup.left)
+                let index = ttrbview.items.firstIndex(of: modifyEdge!)
+                ttrbview.items.append(newEdge)
+                ttrbview.items.remove(at: index!)
+            default: break
+            }
+            //add to view as dup.right
+            ttrbview.items.append(GraphItem.edge(src: startPoint,
+                                                 dst: endPoint,
+                                                 label: String(calculateEdgeLength(start: startPoint, end: endPoint)),
+                                                 highlighted: false,
+                                                 color: currentColor,
+                                                 duplicate: dup.right))
+            return true
+        }
+        else if similar == 2{
+            //add to view as dup.center
+            ttrbview.items.append(GraphItem.edge(src: startPoint,
+                                                 dst: endPoint,
+                                                 label: String(calculateEdgeLength(start: startPoint, end: endPoint)),
+                                                 highlighted: false,
+                                                 color: currentColor,
+                                                 duplicate: dup.center))
+            return true
+        }
+        //we don't allow more than 3 edges from same source to same destination
+        return false
+    }
+    
     
     @IBAction func ScreenTapped(_ sender: UITapGestureRecognizer) {
         switch mode {
@@ -237,26 +289,26 @@ class TicketToRideBuilderViewController: UIViewController,
                     ttrbview.switchHighlight(withLocation: startPoint!)
                 }
             }
-            // if we've already initialized a starting point
+                // if we've already initialized a starting point
             else{
                 let endPoint = ttrbview.findPoint(sender.location(in: ttrbview))
                 if endPoint != nil && endPoint != startPoint {
-                    
-                    //add to view
-                    ttrbview.items.append(GraphItem.edge(src: startPoint!, dst: endPoint!, label: String(calculateEdgeLength(start: startPoint!, end: endPoint!)), highlighted: false, color: currentColor))
-                    
-                    //add to model
                     //find name of start node
                     let startName = model.getNodeName(withLocation: startPoint!)
                     //find name of end node
                     let endName = model.getNodeName(withLocation: endPoint!)
-                    let route = Route(withLength: calculateEdgeLength(start: startPoint!, end: endPoint!),
-                                      withColor: uiColorToRouteColor[currentColor]!)
-                    let edge = Edge(from: startName,
-                                    to: endName,
-                                    withLabel: route)
-                    model.addEdge(withEdge: edge)
-                    
+                    //find amount of similar edges in the model
+                    let similar = model.amountOfSimilarEdges(src: startName, dst: endName)
+                    //add edge to view and if it succeeds, adds to model
+                    if addEdgeToView(similar, startPoint!, endPoint!) {
+                        //add to model
+                        let route = Route(withLength: calculateEdgeLength(start: startPoint!, end: endPoint!),
+                                          withColor: uiColorToRouteColor[currentColor]!)
+                        let edge = Edge(from: startName,
+                                        to: endName,
+                                        withLabel: route)
+                        model.addEdge(withEdge: edge)
+                    }
                     //sorta verifies it works lmao
                     model.printGraph()
                 }
@@ -264,7 +316,7 @@ class TicketToRideBuilderViewController: UIViewController,
                 //reset startNode
                 startPoint = nil
             }
-
+            
         case Mode.delete:
             //how do we delete edges? bonus
             //delete nodes + connected edges
@@ -281,7 +333,7 @@ class TicketToRideBuilderViewController: UIViewController,
                         switch ttrbview.items[i]{
                         case .node:
                             newItems.append(ttrbview.items[i])
-                        case .edge(let src, let dst, _, _, _):
+                        case .edge(let src, let dst, _, _, _, _):
                             print(edgeSrc, edgeDst, src, dst)
                             if src != edgeSrc || dst != edgeDst {
                                 newItems.append(ttrbview.items[i])
@@ -332,20 +384,22 @@ class TicketToRideBuilderViewController: UIViewController,
                         if loc == movePoint{
                             ttrbview.items[i] = GraphItem.node(loc: endPoint, name: name, highlighted: highlighted)
                         }
-                    case .edge(let src, let dst, _, let highlighted, let color):
+                    case .edge(let src, let dst, _, let highlighted, let color, let duplicate):
                         if src == movePoint{
                             ttrbview.items[i] = GraphItem.edge(src: endPoint,
                                                                dst: dst,
                                                                label: String(calculateEdgeLength(start: endPoint, end: dst)),
                                                                highlighted: highlighted,
-                                                               color: color)
+                                                               color: color,
+                                                               duplicate: duplicate)
                         }
                         if dst == movePoint{
                             ttrbview.items[i] = GraphItem.edge(src: src,
                                                                dst: endPoint,
                                                                label: String(calculateEdgeLength(start: src, end: endPoint)),
                                                                highlighted: highlighted,
-                                                               color: color)
+                                                               color: color,
+                                                               duplicate: duplicate)
                         }
                     }
                 }

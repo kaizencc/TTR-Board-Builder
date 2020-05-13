@@ -78,6 +78,10 @@ public class TTRBModel {
         return graph.getEdges()
     }
     
+    public func amountOfSimilarEdges(src: String, dst: String) -> Int {
+        return graph.similarEdges(src: src, dst: dst)
+    }
+    
     public func printGraph() {
         print(graph.getNodes())
         print(graph.getEdges())

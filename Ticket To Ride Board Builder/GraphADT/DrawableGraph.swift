@@ -211,4 +211,15 @@ public class DrawableGraph<N: Hashable, E: Comparable> {
         checkRep()
     }
     
+    public func similarEdges(src start: N, dst end: N) -> Int{
+        var similar = 0
+        let edges = graph.edges
+        for edge in edges{
+            if edge.src == start && edge.dst == end{
+                similar = similar + 1
+            }
+        }
+        return similar
+    }
+    
 }
