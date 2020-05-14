@@ -283,24 +283,27 @@ public class GraphView: UIView {
                 case .left:
                     let unit_vectorS = orthogonalUnitVector(src: src, dst: dst) //src unit vector
                     //edge is offset from the center by 10 units
-                    let new_vectorS = (unit_vectorS.0 * 10, unit_vectorS.1 * 10)
+                    print(unitTransform.zoomScale)
+                    let scale = 10*(1/unitTransform.zoomScale)
+                    let new_vectorS = (unit_vectorS.0 * scale, unit_vectorS.1 * scale)
                     var newSrc = src
                     newSrc.x = newSrc.x + new_vectorS.0
                     newSrc.y = newSrc.y + new_vectorS.1
                     let unit_vectorD = orthogonalUnitVector(src: dst, dst: src) //dst unit vector
-                    let new_vectorD = (unit_vectorD.0 * 10, unit_vectorD.1 * 10)
+                    let new_vectorD = (unit_vectorD.0 * scale, unit_vectorD.1 * scale)
                     var newDst = dst
                     newDst.x = newDst.x + new_vectorD.0
                     newDst.y = newDst.y + new_vectorD.1
                     drawEdge(from: newSrc, to: newDst, label: label, highlighted: highlight, color: color)
                 case .right:
+                    let scale = 10*(1/unitTransform.zoomScale)
                     let unit_vectorS = orthogonalUnitVector(src: src, dst: dst)
-                    let new_vectorS = (unit_vectorS.0 * 10, unit_vectorS.1 * 10)
+                    let new_vectorS = (unit_vectorS.0 * scale, unit_vectorS.1 * scale)
                     var newSrc = src
                     newSrc.x = newSrc.x - new_vectorS.0
                     newSrc.y = newSrc.y - new_vectorS.1
                     let unit_vectorD = orthogonalUnitVector(src: dst, dst: src)
-                    let new_vectorD = (unit_vectorD.0 * 10, unit_vectorD.1 * 10)
+                    let new_vectorD = (unit_vectorD.0 * scale, unit_vectorD.1 * scale)
                     var newDst = dst
                     newDst.x = newDst.x - new_vectorD.0
                     newDst.y = newDst.y - new_vectorD.1
