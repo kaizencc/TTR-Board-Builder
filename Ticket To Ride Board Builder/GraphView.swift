@@ -311,13 +311,13 @@ public class GraphView: UIView {
     - Returns: GraphItem.edge or nil
     
     */
-    public func findEdge(src startPoint: CGPoint, dst endPoint: CGPoint, color: UIColor) -> GraphItem?{
+    public func findEdge(src startPoint: CGPoint, dst endPoint: CGPoint, duplicate: dup) -> GraphItem?{
         for item in items{
             switch item{
                 case .node(_, _, _):
                     break
-                case .edge(let src, let dst, _, _, let col, _):
-                    if src == startPoint && dst == endPoint && col == color || src == endPoint && dst == startPoint && col == color {
+                case .edge(let src, let dst, _, _, _, let dupl):
+                    if src == startPoint && dst == endPoint && duplicate == dupl || src == endPoint && dst == startPoint && duplicate == dupl {
                         return item
                 }
             }

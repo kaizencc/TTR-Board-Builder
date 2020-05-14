@@ -276,6 +276,95 @@ UINavigationControllerDelegate {
         ttrbview.items.append(GraphItem.node(loc: point, name: node, highlighted: false))
     }
     
+    private func deleteFromView(_ similar: Int, src: CGPoint, dst: CGPoint, color: UIColor, duplicate: dup){
+        if duplicate == dup.center || duplicate == dup.none{
+            let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)
+            let index = ttrbview.items.firstIndex(of: removal!)!
+            ttrbview.items.remove(at: index)
+        }
+        else if duplicate == dup.left{
+            if similar == 2{
+                //update dup.right to dup.none
+                //find other edge to modify
+                let modify = ttrbview.findEdge(src: src, dst: dst, duplicate: dup.right)
+                //find original edge to remove
+                let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)
+                switch modify{
+                case .node: break
+                case .edge(let s, let d, let l, let h, let c, _):
+                    let newEdge = GraphItem.edge(src: s, dst: d, label: l, highlighted: h, color: c, duplicate: dup.none)
+                    //remove modify and removal, and add in newEdge
+                    let index1 = ttrbview.items.firstIndex(of: removal!)!
+                    ttrbview.items.remove(at: index1)
+                    let index2 = ttrbview.items.firstIndex(of: modify!)!
+                    ttrbview.items.remove(at: index2)
+                    ttrbview.items.append(newEdge)
+                default: break
+                }
+                
+            }
+            if similar == 3{
+                //update dup.center to dup.left
+                //find other edge to modify
+                let modify = ttrbview.findEdge(src: src, dst: dst, duplicate: dup.center)
+                //find original edge to remove
+                let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)
+                switch modify{
+                case .node: break
+                case .edge(let s, let d, let l, let h, let c, _):
+                    let newEdge = GraphItem.edge(src: s, dst: d, label: l, highlighted: h, color: c, duplicate: dup.left)
+                    //remove modify and removal, and add in newEdge
+                    let index1 = ttrbview.items.firstIndex(of: removal!)!
+                    ttrbview.items.remove(at: index1)
+                    let index2 = ttrbview.items.firstIndex(of: modify!)!
+                    ttrbview.items.remove(at: index2)
+                    ttrbview.items.append(newEdge)
+                default: break
+                }
+            }
+        }
+        else if duplicate == dup.right{
+            if similar == 2{
+                //update dup.left to dup.none
+                //find other edge to modify
+                let modify = ttrbview.findEdge(src: src, dst: dst, duplicate: dup.left)
+                //find original edge to remove
+                let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)
+                switch modify{
+                case .node: break
+                case .edge(let s, let d, let l, let h, let c, _):
+                    let newEdge = GraphItem.edge(src: s, dst: d, label: l, highlighted: h, color: c, duplicate: dup.none)
+                    //remove modify and removal, and add in newEdge
+                    let index1 = ttrbview.items.firstIndex(of: removal!)!
+                    ttrbview.items.remove(at: index1)
+                    let index2 = ttrbview.items.firstIndex(of: modify!)!
+                    ttrbview.items.remove(at: index2)
+                    ttrbview.items.append(newEdge)
+                default: break
+                }
+            }
+            if similar == 3{
+                //update dup.center to dup.right
+                //find other edge to modify
+                let modify = ttrbview.findEdge(src: src, dst: dst, duplicate: dup.center)
+                //find original edge to remove
+                let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)
+                switch modify{
+                case .node: break
+                case .edge(let s, let d, let l, let h, let c, _):
+                    let newEdge = GraphItem.edge(src: s, dst: d, label: l, highlighted: h, color: c, duplicate: dup.right)
+                    //remove modify and removal, and add in newEdge
+                    let index1 = ttrbview.items.firstIndex(of: removal!)!
+                    ttrbview.items.remove(at: index1)
+                    let index2 = ttrbview.items.firstIndex(of: modify!)!
+                    ttrbview.items.remove(at: index2)
+                    ttrbview.items.append(newEdge)
+                default: break
+                }
+            }
+        }
+    }
+    
     
     @IBAction func ScreenTapped(_ sender: UITapGestureRecognizer) {
         switch mode {
@@ -377,20 +466,21 @@ UINavigationControllerDelegate {
                 }
                 print(model)
             }
-            //user clicks on an edge -> delete that edge only
+                //user clicks on an edge -> delete that edge only and updates other edges
             else if let targetPoint = ttrbview.findEdgefromCenter(centeredAt: sender.location(in: ttrbview)){
                 switch targetPoint{
-                    case .node: break
-                    case .edge(let src, let dst, let label, _ , let color, _):
-                        //delete from model
-                        let remove = Edge(from: model.getNodeName(withLocation: src),
-                                          to: model.getNodeName(withLocation: dst),
-                                          withLabel: Route(withLength: Int(label)!, withColor: uiColorToRouteColor[color]!))
-                        model.removeEdge(withEdge: remove)
-                        //delete from view
-                        let rem = ttrbview.findEdge(src: src, dst: dst, color: color)
-                        let index = ttrbview.items.firstIndex(of: rem!)!
-                        ttrbview.items.remove(at: index)
+                case .node: break
+                case .edge(let src, let dst, let label, _ , let color, let dup):
+                    //delete from view
+                    let similar = model.numberOfSimilarEdges(src: model.getNodeName(withLocation: src),
+                                                             dst: model.getNodeName(withLocation: dst))
+                    deleteFromView(similar, src: src, dst: dst, color: color, duplicate: dup)
+                    
+                    //delete from model
+                    let remove = Edge(from: model.getNodeName(withLocation: src),
+                                      to: model.getNodeName(withLocation: dst),
+                                      withLabel: Route(withLength: Int(label)!, withColor: uiColorToRouteColor[color]!))
+                    model.removeEdge(withEdge: remove)
                 }
             }
         case Mode.move:
