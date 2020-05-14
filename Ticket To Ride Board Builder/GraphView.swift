@@ -282,8 +282,7 @@ public class GraphView: UIView {
                     drawEdge(from: src, to: dst, label: label, highlighted: highlight, color: color)
                 case .left:
                     let unit_vectorS = orthogonalUnitVector(src: src, dst: dst) //src unit vector
-                    //edge is offset from the center by 10 units
-                    print(unitTransform.zoomScale)
+                    //edge is offset from the center by 10 times the reciprocal of the zoom
                     let scale = 10*(1/unitTransform.zoomScale)
                     let new_vectorS = (unit_vectorS.0 * scale, unit_vectorS.1 * scale)
                     var newSrc = src
@@ -296,6 +295,7 @@ public class GraphView: UIView {
                     newDst.y = newDst.y + new_vectorD.1
                     drawEdge(from: newSrc, to: newDst, label: label, highlighted: highlight, color: color)
                 case .right:
+                    //edge is offset from the center by 10 times the reciprocal of the zoom
                     let scale = 10*(1/unitTransform.zoomScale)
                     let unit_vectorS = orthogonalUnitVector(src: src, dst: dst)
                     let new_vectorS = (unit_vectorS.0 * scale, unit_vectorS.1 * scale)
