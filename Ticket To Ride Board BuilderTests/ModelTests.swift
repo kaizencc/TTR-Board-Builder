@@ -93,8 +93,8 @@ class ModelTests: XCTestCase {
         model.addEdge(withEdge: Edge(from: "1", to: "2", withLabel: Route(withLength: 5, withColor: Color.blue)))
         model.addEdge(withEdge: Edge(from: "1", to: "2", withLabel: Route(withLength: 5, withColor: Color.green)))
         model.addEdge(withEdge: Edge(from: "2", to: "3", withLabel: Route(withLength: 5, withColor: Color.blue)))
-        XCTAssert(model.amountOfSimilarEdges(src: "2", dst: "3") == 1)
-        XCTAssert(model.amountOfSimilarEdges(src: "1", dst: "2") == 3)
+        XCTAssert(model.numberOfSimilarEdges(src: "2", dst: "3") == 1)
+        XCTAssert(model.numberOfSimilarEdges(src: "1", dst: "2") == 3)
         
     }
     

@@ -233,8 +233,8 @@ UINavigationControllerDelegate {
             //modify existing edge to be dup.left
             let modifyEdge = ttrbview.findEdge(src: startPoint, dst: endPoint)
             switch modifyEdge {
-            case .node(_, _, _): break
-            case .edge(let src, let dst, let label, let highlighted, let color, _):
+            case .node(_, _, _)?: break
+            case .edge(let src, let dst, let label, let highlighted, let color, _)?:
                 let newEdge = GraphItem.edge(src: src,
                                             dst: dst,
                                             label: label,
@@ -298,7 +298,7 @@ UINavigationControllerDelegate {
                     //find name of end node
                     let endName = model.getNodeName(withLocation: endPoint!)
                     //find amount of similar edges in the model
-                    let similar = model.amountOfSimilarEdges(src: startName, dst: endName)
+                    let similar = model.numberOfSimilarEdges(src: startName, dst: endName)
                     //add edge to view and if it succeeds, adds to model
                     if addEdgeToView(similar, startPoint!, endPoint!) {
                         //add to model
@@ -310,7 +310,8 @@ UINavigationControllerDelegate {
                         model.addEdge(withEdge: edge)
                     }
                     //sorta verifies it works lmao
-                    model.printGraph()
+                    
+                    print(model)
                 }
                 ttrbview.switchHighlight(withLocation: startPoint!)
                 //reset startNode
@@ -361,7 +362,7 @@ UINavigationControllerDelegate {
                         break
                     }
                 }
-                model.printGraph()
+                print(model)
             }
         case Mode.move:
             //to move, user has to click and then reclick in the updated location

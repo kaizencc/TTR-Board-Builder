@@ -17,10 +17,25 @@ import CoreGraphics
  
  
  */
-public class DrawableGraph<N: Hashable, E: Comparable> {
+public class DrawableGraph<N: Hashable, E: Comparable>: CustomStringConvertible {
     
     private let graph : Graph<N, E>
     private var locations : [N:CGPoint]
+    
+    public var description: String {
+        get {
+            var description = "Nodes:\n"
+            for node in graph.nodes {
+                description.append("\(node)\n")
+            }
+            description.append("\nEdges:\n")
+            for edge in graph.edges {
+                description.append("(\(edge.src), \(edge.dst), \(edge.label))\n")
+            }
+            return description
+        }
+    }
+    
     
     // Representation Invariant: for node in graph.nodes, locations[node] != nil
     //
@@ -211,7 +226,20 @@ public class DrawableGraph<N: Hashable, E: Comparable> {
         checkRep()
     }
     
-    public func similarEdges(src start: N, dst end: N) -> Int{
+    /**
+     
+     **Requires**: src and dst are in the graph
+     
+     **Modifies**: none
+     
+     **Effects**: returns number of edges with the same source and destination
+     
+     - Parameter src: the start node
+                 dst: the end node
+     - Returns: number of edges with the same src and dst
+     
+     */
+    public func numberOfSimilarEdges(src start: N, dst end: N) -> Int {
         var similar = 0
         let edges = graph.edges
         for edge in edges{
@@ -221,5 +249,6 @@ public class DrawableGraph<N: Hashable, E: Comparable> {
         }
         return similar
     }
+    
     
 }

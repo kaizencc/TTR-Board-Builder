@@ -58,16 +58,15 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
    - ~~Add new struct for edge label~~
    - ~~Allow view to show multiple routes on an edge~~
 5. Save/load 
+6. Allow user to type name for nodes
 6. Generate Destination tickets through dijsktras
 7. Multiple Views
 8. Gameplay?
 
-### Bug Fixes
+### Bug To Be Quashed
 - Update model edge weights when nodes are moved in view
-- ~~Have uploaded photo fill the screen initially~~
-- ~~Change double tap to double double tap~~
-- ~~Change "delete" to "delete node"~~
 
 ### Nice Things to Have
 - Delete edges in view
 - Change edge color in view
+- Duplicate edges have scaled distances (not hardcoded)
