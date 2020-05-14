@@ -231,7 +231,7 @@ UINavigationControllerDelegate {
         }
         else if similar == 1{
             //modify existing edge to be dup.left
-            let modifyEdge = ttrbview.findEdge(src: startPoint, dst: endPoint)
+            let modifyEdge = ttrbview.findSimilarEdge(src: startPoint, dst: endPoint)
             switch modifyEdge {
             case .node(_, _, _)?: break
             case .edge(let src, let dst, let label, let highlighted, let color, _)?:
@@ -324,9 +324,7 @@ UINavigationControllerDelegate {
                                         to: endName,
                                         withLabel: route)
                         model.addEdge(withEdge: edge)
-                    }
-                    //sorta verifies it works lmao
-                    
+                    }                    
                     print(model)
                 }
                 ttrbview.switchHighlight(withLocation: startPoint!)
@@ -335,8 +333,7 @@ UINavigationControllerDelegate {
             }
             
         case Mode.delete:
-            //how do we delete edges? bonus
-            //delete nodes + connected edges
+            //user clicks on a node -> delete nodes + connected edges
             if let targetPoint = ttrbview.findPoint(sender.location(in: ttrbview)) {
                 //deleting all connected edges
                 let targetName = model.getNodeName(withLocation: targetPoint)
@@ -379,6 +376,22 @@ UINavigationControllerDelegate {
                     }
                 }
                 print(model)
+            }
+            //user clicks on an edge -> delete that edge only
+            else if let targetPoint = ttrbview.findEdgefromCenter(centeredAt: sender.location(in: ttrbview)){
+                switch targetPoint{
+                    case .node: break
+                    case .edge(let src, let dst, let label, _ , let color, _):
+                        //delete from model
+                        let remove = Edge(from: model.getNodeName(withLocation: src),
+                                          to: model.getNodeName(withLocation: dst),
+                                          withLabel: Route(withLength: Int(label)!, withColor: uiColorToRouteColor[color]!))
+                        model.removeEdge(withEdge: remove)
+                        //delete from view
+                        let rem = ttrbview.findEdge(src: src, dst: dst, color: color)
+                        let index = ttrbview.items.firstIndex(of: rem!)!
+                        ttrbview.items.remove(at: index)
+                }
             }
         case Mode.move:
             //to move, user has to click and then reclick in the updated location

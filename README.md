@@ -67,6 +67,6 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
 - Update model edge weights when nodes are moved in view
 
 ### Nice Things to Have
-- Delete edges in view
+- ~~Delete edges in view~~
 - Change edge color in view
 - ~~Duplicate edges have scaled distances (not hardcoded)~~

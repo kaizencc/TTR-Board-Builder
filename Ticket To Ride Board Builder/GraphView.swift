@@ -137,7 +137,7 @@ public class GraphView: UIView {
             setNeedsDisplay()
         }
     }
-    
+        
     /// The Zoom/Offset transform to convert from the graph item's model coordinates
     /// to the view's coordinates
     public var unitTransform = ModelToViewCoordinates(zoomScale: 1.0,
@@ -162,6 +162,70 @@ public class GraphView: UIView {
     }
     
     // MARK: Coordinates
+    
+    /**
+    
+    Finds the center between two points
+    
+    - Parameter src: Start point
+    - Parameter dst: End point
+    - Returns: point that is in the center
+    
+    */
+    private func findCenter(src start: CGPoint, dst end: CGPoint) -> CGPoint{
+        let x = (start.x + end.x) / 2
+        let y = (start.y + end.y) / 2
+        let center = CGPoint(x: x, y: y)
+        print(center)
+        return center
+    }
+    
+    /**
+    
+    Finds the center of an edge in items
+    
+    - Parameter point: point that was clicked in the view
+    - Returns: edge if found, nil otherwise
+    
+    */
+    public func findEdgefromCenter(centeredAt point: CGPoint) -> GraphItem?{
+        for item in items {
+            switch item{
+            case .node: break
+            case .edge(let src, let dst, _,_,_,let dup):
+                switch dup{
+                case .left:
+                    let newPoints = leftEdgeCoordinates(src: src, dst: dst)
+                    let center = findCenter(src: newPoints.0, dst: newPoints.1)
+                    if pointIsInside(point, nodeCenteredAt: center){
+                        return item
+                    }
+                case .right:
+                    let newPoints = rightEdgeCoordinates(src: src, dst: dst)
+                    let center = findCenter(src: newPoints.0, dst: newPoints.1)
+                    if pointIsInside(point, nodeCenteredAt: center){
+                        return item
+                    }
+                default:
+                    let center = findCenter(src: src, dst: dst)
+                    if pointIsInside(point, nodeCenteredAt: center){
+                        return item
+                    }
+                }
+            }
+        }
+        return nil
+    }
+    
+    //gets the unit vector but I don't currently use this function
+    private func unitVector(src start: CGPoint, dst end: CGPoint) -> (CGFloat, CGFloat){
+        let slope = (start.y - end.y) / (start.x - end.x)
+        let intercept = start.y - slope * start.x
+        let vector = (0-start.x , intercept - start.y)
+        let distance = sqrt((vector.0*vector.0) + (vector.1*vector.1))
+        let unit_vector = (vector.0/distance, vector.1/distance)
+        return unit_vector
+    }
     
     /**
     
@@ -243,10 +307,34 @@ public class GraphView: UIView {
     
     - Parameter src: Start point of the edge
     - Parameter dst: End point of the edge
+     - Parameter color: color of the edge
     - Returns: GraphItem.edge or nil
     
     */
-    public func findEdge(src startPoint: CGPoint, dst endPoint: CGPoint) -> GraphItem?{
+    public func findEdge(src startPoint: CGPoint, dst endPoint: CGPoint, color: UIColor) -> GraphItem?{
+        for item in items{
+            switch item{
+                case .node(_, _, _):
+                    break
+                case .edge(let src, let dst, _, _, let col, _):
+                    if src == startPoint && dst == endPoint && col == color || src == endPoint && dst == startPoint && col == color {
+                        return item
+                }
+            }
+        }
+        return nil
+    }
+    
+    /**
+    
+    Finds  edge in the list of items, nil if not found. Requires that there be only one edge from the startPoint to the endPoint
+    
+    - Parameter src: Start point of the edge
+    - Parameter dst: End point of the edge
+    - Returns: GraphItem.edge or nil
+    
+    */
+    public func findSimilarEdge(src startPoint: CGPoint, dst endPoint: CGPoint) -> GraphItem?{
         for item in items{
             switch item{
                 case .node(_, _, _):
@@ -258,6 +346,56 @@ public class GraphView: UIView {
             }
         }
         return nil
+    }
+    
+    /**
+    
+     Modifies edge src and dst to offset to the left
+    
+    - Parameter src: Start point of the edge
+    - Parameter dst: End point of the edge
+    - Returns: tuple of new coordinates
+    
+    */
+    private func leftEdgeCoordinates(src: CGPoint, dst: CGPoint) -> (CGPoint, CGPoint){
+        let unit_vectorS = orthogonalUnitVector(src: src, dst: dst) //src unit vector
+        //edge is offset from the center by 10 times the reciprocal of the zoom
+        let scale = 10*(1/unitTransform.zoomScale)
+        let new_vectorS = (unit_vectorS.0 * scale, unit_vectorS.1 * scale)
+        var newSrc = src
+        newSrc.x = newSrc.x + new_vectorS.0
+        newSrc.y = newSrc.y + new_vectorS.1
+        let unit_vectorD = orthogonalUnitVector(src: dst, dst: src) //dst unit vector
+        let new_vectorD = (unit_vectorD.0 * scale, unit_vectorD.1 * scale)
+        var newDst = dst
+        newDst.x = newDst.x + new_vectorD.0
+        newDst.y = newDst.y + new_vectorD.1
+        return (newSrc, newDst)
+    }
+    
+    /**
+    
+     Modifies edge src and dst to offset to the right
+    
+    - Parameter src: Start point of the edge
+    - Parameter dst: End point of the edge
+    - Returns: tuple of new coordinates
+    
+    */
+    private func rightEdgeCoordinates(src: CGPoint, dst: CGPoint) -> (CGPoint, CGPoint){
+        let unit_vectorS = orthogonalUnitVector(src: src, dst: dst) //src unit vector
+        //edge is offset from the center by 10 times the reciprocal of the zoom
+        let scale = 10*(1/unitTransform.zoomScale)
+        let new_vectorS = (unit_vectorS.0 * scale, unit_vectorS.1 * scale)
+        var newSrc = src
+        newSrc.x = newSrc.x - new_vectorS.0
+        newSrc.y = newSrc.y - new_vectorS.1
+        let unit_vectorD = orthogonalUnitVector(src: dst, dst: src) //dst unit vector
+        let new_vectorD = (unit_vectorD.0 * scale, unit_vectorD.1 * scale)
+        var newDst = dst
+        newDst.x = newDst.x - new_vectorD.0
+        newDst.y = newDst.y - new_vectorD.1
+        return (newSrc, newDst)
     }
     
     // MARK: Drawing
@@ -281,33 +419,11 @@ public class GraphView: UIView {
                 case .none:
                     drawEdge(from: src, to: dst, label: label, highlighted: highlight, color: color)
                 case .left:
-                    let unit_vectorS = orthogonalUnitVector(src: src, dst: dst) //src unit vector
-                    //edge is offset from the center by 10 times the reciprocal of the zoom
-                    let scale = 10*(1/unitTransform.zoomScale)
-                    let new_vectorS = (unit_vectorS.0 * scale, unit_vectorS.1 * scale)
-                    var newSrc = src
-                    newSrc.x = newSrc.x + new_vectorS.0
-                    newSrc.y = newSrc.y + new_vectorS.1
-                    let unit_vectorD = orthogonalUnitVector(src: dst, dst: src) //dst unit vector
-                    let new_vectorD = (unit_vectorD.0 * scale, unit_vectorD.1 * scale)
-                    var newDst = dst
-                    newDst.x = newDst.x + new_vectorD.0
-                    newDst.y = newDst.y + new_vectorD.1
-                    drawEdge(from: newSrc, to: newDst, label: label, highlighted: highlight, color: color)
+                    let newPoints = leftEdgeCoordinates(src: src, dst: dst)
+                    drawEdge(from: newPoints.0, to: newPoints.1, label: label, highlighted: highlight, color: color)
                 case .right:
-                    //edge is offset from the center by 10 times the reciprocal of the zoom
-                    let scale = 10*(1/unitTransform.zoomScale)
-                    let unit_vectorS = orthogonalUnitVector(src: src, dst: dst)
-                    let new_vectorS = (unit_vectorS.0 * scale, unit_vectorS.1 * scale)
-                    var newSrc = src
-                    newSrc.x = newSrc.x - new_vectorS.0
-                    newSrc.y = newSrc.y - new_vectorS.1
-                    let unit_vectorD = orthogonalUnitVector(src: dst, dst: src)
-                    let new_vectorD = (unit_vectorD.0 * scale, unit_vectorD.1 * scale)
-                    var newDst = dst
-                    newDst.x = newDst.x - new_vectorD.0
-                    newDst.y = newDst.y - new_vectorD.1
-                    drawEdge(from: newSrc, to: newDst, label: label, highlighted: highlight, color: color)
+                    let newPoints = rightEdgeCoordinates(src: src, dst: dst)
+                    drawEdge(from: newPoints.0, to: newPoints.1, label: label, highlighted: highlight, color: color)
                 case .center:
                     drawEdge(from: src, to: dst, label: label, highlighted: highlight, color: color)
                 }
