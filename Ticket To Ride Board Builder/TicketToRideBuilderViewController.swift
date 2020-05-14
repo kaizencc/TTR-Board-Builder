@@ -236,11 +236,11 @@ UINavigationControllerDelegate {
             case .node(_, _, _)?: break
             case .edge(let src, let dst, let label, let highlighted, let color, _)?:
                 let newEdge = GraphItem.edge(src: src,
-                                            dst: dst,
-                                            label: label,
-                                            highlighted: highlighted,
-                                            color: color,
-                                            duplicate: dup.left)
+                                             dst: dst,
+                                             label: label,
+                                             highlighted: highlighted,
+                                             color: color,
+                                             duplicate: dup.left)
                 let index = ttrbview.items.firstIndex(of: modifyEdge!)
                 ttrbview.items.append(newEdge)
                 ttrbview.items.remove(at: index!)
@@ -269,16 +269,32 @@ UINavigationControllerDelegate {
         return false
     }
     
+    private func addNode(nodeName node: String, withLocation point: CGPoint){
+        //add to model, transform tapped point to model coordinates
+        model.addNode(withName: node, withLocation: point)
+        //add to view
+        ttrbview.items.append(GraphItem.node(loc: point, name: node, highlighted: false))
+    }
+    
     
     @IBAction func ScreenTapped(_ sender: UITapGestureRecognizer) {
         switch mode {
         case Mode.addNode:
-            //add to model, transform tapped point to model coordinates
+            //finds the point to add a node at
             let point = ttrbview.unitTransform.fromView(viewPoint: sender.location(in: ttrbview))
-            model.addNode(withName: String(nCounter), withLocation: point)
-            //add to view
-            ttrbview.items.append(GraphItem.node(loc: point, name: String(nCounter), highlighted: false))
-            nCounter = nCounter + 1
+            //new UIController to facilitate keyboard text
+            let controller = UIAlertController(title: "Create New Node", message: nil, preferredStyle: .alert)
+            controller.addTextField(configurationHandler: { $0.placeholder = "max 10 chars" })
+            controller.addAction(UIAlertAction(title: "Done", style: .default) {
+                _ in
+                //requirements are that node name is between 1 and 10 characters inclusive
+                if let nodeName = controller.textFields![0].text,
+                    nodeName.count > 0, nodeName.count < 11{
+                    self.addNode(nodeName: nodeName, withLocation: point)
+                }
+            })
+            self.present(controller, animated: false, completion: nil )
+            
             
         case Mode.addEdge:
             
@@ -414,4 +430,3 @@ UINavigationControllerDelegate {
     }
     
 }
-
