@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="landscape" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Yt-zO-dGL">
+    <device id="retina6_1" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,35 +26,35 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjx-ok-jqy">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="MakeRed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GoQ-Ph-LbJ"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1M1-ti-s69">
                                                 <rect key="frame" x="30" y="0.0" width="30" height="30"/>
-                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="MakeGreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ea7-lI-UaI"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6W-Cv-0x0">
                                                 <rect key="frame" x="60" y="0.0" width="30" height="30"/>
-                                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="MakeBlue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PNT-aa-9Mv"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLN-q7-05y">
                                                 <rect key="frame" x="90" y="0.0" width="30" height="30"/>
-                                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="MakeYellow:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jR7-kM-2om"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gx-eh-C9S">
                                                 <rect key="frame" x="120" y="0.0" width="30" height="30"/>
-                                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="MakePurple:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JaA-rz-pri"/>
                                                 </connections>
@@ -73,16 +75,79 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vnb-23-qY1">
                                                 <rect key="frame" x="210" y="0.0" width="30" height="30"/>
-                                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="MakeOrange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uIw-PD-dd4"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CRz-j5-eu3">
                                                 <rect key="frame" x="240" y="0.0" width="30" height="30"/>
-                                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="MakeGray:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lZg-qK-CdN"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="bottom" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="rTu-DA-28W">
+                                        <rect key="frame" x="802" y="18" width="73" height="324"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prX-TY-oq4">
+                                                <rect key="frame" x="0.0" y="0.0" width="73" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title=" Add Node"/>
+                                                <connections>
+                                                    <action selector="AddNode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pKF-4V-DOk"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq3-ou-3Dj">
+                                                <rect key="frame" x="6" y="49" width="67" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Add Edge"/>
+                                                <connections>
+                                                    <action selector="AddEdge:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EFV-cR-3jz"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQI-8l-l0r">
+                                                <rect key="frame" x="28" y="98" width="45" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Delete"/>
+                                                <connections>
+                                                    <action selector="Delete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lP1-uS-LUr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCu-dg-Gca">
+                                                <rect key="frame" x="35" y="147" width="38" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Move"/>
+                                                <connections>
+                                                    <action selector="Move:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Tx-bY-bIm"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qk9-2i-vnE">
+                                                <rect key="frame" x="24" y="196" width="49" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Upload"/>
+                                                <connections>
+                                                    <action selector="Move:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8t7-Z1-1QF"/>
+                                                    <action selector="Upload:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iwB-0Z-0Hv"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gw-JO-CEr">
+                                                <rect key="frame" x="37" y="245" width="36" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Clear"/>
+                                                <connections>
+                                                    <action selector="Clear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Zl-GQ-thg"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0C-GF-x4D">
+                                                <rect key="frame" x="15" y="294" width="58" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Go Back"/>
+                                                <connections>
+                                                    <segue destination="6Yt-zO-dGL" kind="show" id="xQV-PY-8Xi"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -99,65 +164,14 @@
                                     <outletCollection property="gestureRecognizers" destination="czl-Nf-hgO" appends="YES" id="WWp-SD-rWx"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQI-8l-l0r">
-                                <rect key="frame" x="835" y="124" width="45" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Delete"/>
-                                <connections>
-                                    <action selector="Delete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lP1-uS-LUr"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCu-dg-Gca">
-                                <rect key="frame" x="842" y="170" width="38" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Move"/>
-                                <connections>
-                                    <action selector="Move:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Tx-bY-bIm"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq3-ou-3Dj">
-                                <rect key="frame" x="813" y="78" width="67" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Add Edge"/>
-                                <connections>
-                                    <action selector="AddEdge:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EFV-cR-3jz"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qk9-2i-vnE">
-                                <rect key="frame" x="831" y="216" width="49" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Upload"/>
-                                <connections>
-                                    <action selector="Move:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8t7-Z1-1QF"/>
-                                    <action selector="Upload:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iwB-0Z-0Hv"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prX-TY-oq4">
-                                <rect key="frame" x="807" y="32" width="73" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title=" Add Node"/>
-                                <connections>
-                                    <action selector="AddNode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pKF-4V-DOk"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Qk9-2i-vnE" secondAttribute="trailing" constant="16" id="2bI-kI-MDF"/>
-                            <constraint firstItem="Qk9-2i-vnE" firstAttribute="top" secondItem="FCu-dg-Gca" secondAttribute="bottom" constant="16" id="6rb-Qi-VZh"/>
                             <constraint firstItem="Zfd-RF-qfg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="MST-zo-SXU"/>
                             <constraint firstAttribute="bottom" secondItem="Zfd-RF-qfg" secondAttribute="bottom" id="NGE-H1-xaL"/>
-                            <constraint firstAttribute="trailing" secondItem="prX-TY-oq4" secondAttribute="trailing" constant="16" id="W14-57-nFr"/>
-                            <constraint firstAttribute="trailing" secondItem="Kq3-ou-3Dj" secondAttribute="trailing" constant="16" id="ZFP-I2-0so"/>
-                            <constraint firstAttribute="trailing" secondItem="FCu-dg-Gca" secondAttribute="trailing" constant="16" id="ajw-uD-SQd"/>
-                            <constraint firstAttribute="trailing" secondItem="HQI-8l-l0r" secondAttribute="trailing" constant="16" id="dp5-K3-7p2"/>
-                            <constraint firstItem="HQI-8l-l0r" firstAttribute="top" secondItem="Kq3-ou-3Dj" secondAttribute="bottom" constant="16" id="dtX-tq-8K0"/>
                             <constraint firstItem="Zfd-RF-qfg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fQP-EV-1VP"/>
-                            <constraint firstItem="prX-TY-oq4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="fYF-uH-feL"/>
                             <constraint firstAttribute="trailing" secondItem="Zfd-RF-qfg" secondAttribute="trailing" id="o5x-SJ-Hmm"/>
-                            <constraint firstItem="FCu-dg-Gca" firstAttribute="top" secondItem="HQI-8l-l0r" secondAttribute="bottom" constant="16" id="ryz-vI-BbN"/>
-                            <constraint firstItem="Kq3-ou-3Dj" firstAttribute="top" secondItem="prX-TY-oq4" secondAttribute="bottom" constant="16" id="wEB-nE-Yc7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
@@ -202,7 +216,40 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="435.9375" y="44.927536231884062"/>
+            <point key="canvasLocation" x="298.66071428571428" y="-152.17391304347828"/>
+        </scene>
+        <!--Start View Controller-->
+        <scene sceneID="9q6-Od-C8y">
+            <objects>
+                <viewController id="6Yt-zO-dGL" customClass="StartViewController" customModule="Ticket_To_Ride_Board_Builder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hqa-0e-6qB">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VFI-j1-Raf">
+                                <rect key="frame" x="421" y="266" width="57" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="Build"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="7TW-0o-FAn"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Ticket to Ride Builder or Traveling Salesman on Trains" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="y6n-FC-hEN">
+                                <rect key="frame" x="138" y="58" width="621" height="189"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="aTI-B4-YNd"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ujr-tt-JGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="298.66071428571428" y="779.71014492753625"/>
         </scene>
     </scenes>
 </document>

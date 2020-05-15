@@ -182,6 +182,12 @@ UINavigationControllerDelegate {
         resetStartPoint()
     }
     
+    @IBAction func Clear(_ sender: UIButton) {
+        model.clearGraph()
+        ttrbview.items = []
+    }
+    
+    
     @IBAction func MakeRed(_ sender: UIButton) {
         currentColor = UIColor.red
     }

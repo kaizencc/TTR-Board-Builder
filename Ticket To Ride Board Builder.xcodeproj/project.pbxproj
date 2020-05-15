@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E002323246F53D800576704 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E002322246F53D800576704 /* StartViewController.swift */; };
 		0E1E25DF246B672900E2D79F /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E25DE246B672900E2D79F /* ModelTests.swift */; };
 		0E1E25E1246B6D5200E2D79F /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E25E0246B6D5200E2D79F /* Route.swift */; };
 		0E64DE6324625CC100A93A26 /* EdgeImplementationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6224625CC100A93A26 /* EdgeImplementationTests.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E002322246F53D800576704 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		0E1E25DE246B672900E2D79F /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		0E1E25E0246B6D5200E2D79F /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		0E64DE6224625CC100A93A26 /* EdgeImplementationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeImplementationTests.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				0ED3D73624625826001BCFFB /* Support Files */,
 				0E1E25E0246B6D5200E2D79F /* Route.swift */,
 				0ED3D71624625419001BCFFB /* Main.storyboard */,
+				0E002322246F53D800576704 /* StartViewController.swift */,
 				0E64DE6E2462619C00A93A26 /* TTRBModel.swift */,
 				0ED3D71424625419001BCFFB /* TicketToRideBuilderViewController.swift */,
 				17E7D3F7246382EE00FC8B98 /* GraphView.swift */,
@@ -278,6 +281,7 @@
 				0E64DE73246263F000A93A26 /* DrawableGraph.swift in Sources */,
 				0ED3D71324625419001BCFFB /* AppDelegate.swift in Sources */,
 				0E64DE6924625DD200A93A26 /* PathADT.swift in Sources */,
+				0E002323246F53D800576704 /* StartViewController.swift in Sources */,
 				17E7D3F8246382EE00FC8B98 /* GraphView.swift in Sources */,
 				0E64DE6524625D1800A93A26 /* PriorityQueue.swift in Sources */,
 				17E7D4002464B70900FC8B98 /* UIExtensions.swift in Sources */,

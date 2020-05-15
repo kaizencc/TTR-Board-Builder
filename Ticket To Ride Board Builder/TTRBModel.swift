@@ -208,10 +208,17 @@ public class TTRBModel: CustomStringConvertible {
         return graph.numberOfSimilarEdges(src: src, dst: dst)
     }
     
-//    // TODO change to description
-//    public func printGraph() {
-//        print(graph.getNodes())
-//        print(graph.getEdges())
-//    }
+    /**
+     
+     **Requires**: none
+     
+     **Modifies**: none
+     
+     **Effects**: removes all nodes and edges in the graph
+     
+     */
+    public func clearGraph() {
+        graph = DrawableGraph<String, Route>()
+    }
     
 }

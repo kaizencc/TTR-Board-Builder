@@ -613,7 +613,7 @@ public class GraphView: UIView {
             switch(item) {
             case .node(let loc, _, _):
                 points.append(loc)
-            case .edge(_, _, _, _, _, _):
+            case .edge:
                 break
             }
         }
