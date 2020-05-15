@@ -286,40 +286,38 @@ UINavigationControllerDelegate {
             if similar == 2{
                 //update dup.right to dup.none
                 //find other edge to modify
-                let modify = ttrbview.findEdge(src: src, dst: dst, duplicate: dup.right)
+                let modify = ttrbview.findEdge(src: src, dst: dst, duplicate: dup.right)!
                 //find original edge to remove
-                let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)
+                let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)!
                 switch modify{
                 case .node: break
                 case .edge(let s, let d, let l, let h, let c, _):
                     let newEdge = GraphItem.edge(src: s, dst: d, label: l, highlighted: h, color: c, duplicate: dup.none)
                     //remove modify and removal, and add in newEdge
-                    let index1 = ttrbview.items.firstIndex(of: removal!)!
+                    let index1 = ttrbview.items.firstIndex(of: removal)!
                     ttrbview.items.remove(at: index1)
-                    let index2 = ttrbview.items.firstIndex(of: modify!)!
+                    let index2 = ttrbview.items.firstIndex(of: modify)!
                     ttrbview.items.remove(at: index2)
                     ttrbview.items.append(newEdge)
-                default: break
                 }
                 
             }
             if similar == 3{
                 //update dup.center to dup.left
                 //find other edge to modify
-                let modify = ttrbview.findEdge(src: src, dst: dst, duplicate: dup.center)
+                let modify = ttrbview.findEdge(src: src, dst: dst, duplicate: dup.center)!
                 //find original edge to remove
-                let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)
+                let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)!
                 switch modify{
                 case .node: break
                 case .edge(let s, let d, let l, let h, let c, _):
                     let newEdge = GraphItem.edge(src: s, dst: d, label: l, highlighted: h, color: c, duplicate: dup.left)
                     //remove modify and removal, and add in newEdge
-                    let index1 = ttrbview.items.firstIndex(of: removal!)!
+                    let index1 = ttrbview.items.firstIndex(of: removal)!
                     ttrbview.items.remove(at: index1)
-                    let index2 = ttrbview.items.firstIndex(of: modify!)!
+                    let index2 = ttrbview.items.firstIndex(of: modify)!
                     ttrbview.items.remove(at: index2)
                     ttrbview.items.append(newEdge)
-                default: break
                 }
             }
         }
@@ -327,39 +325,37 @@ UINavigationControllerDelegate {
             if similar == 2{
                 //update dup.left to dup.none
                 //find other edge to modify
-                let modify = ttrbview.findEdge(src: src, dst: dst, duplicate: dup.left)
+                let modify = ttrbview.findEdge(src: src, dst: dst, duplicate: dup.left)!
                 //find original edge to remove
-                let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)
+                let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)!
                 switch modify{
                 case .node: break
                 case .edge(let s, let d, let l, let h, let c, _):
                     let newEdge = GraphItem.edge(src: s, dst: d, label: l, highlighted: h, color: c, duplicate: dup.none)
                     //remove modify and removal, and add in newEdge
-                    let index1 = ttrbview.items.firstIndex(of: removal!)!
+                    let index1 = ttrbview.items.firstIndex(of: removal)!
                     ttrbview.items.remove(at: index1)
-                    let index2 = ttrbview.items.firstIndex(of: modify!)!
+                    let index2 = ttrbview.items.firstIndex(of: modify)!
                     ttrbview.items.remove(at: index2)
                     ttrbview.items.append(newEdge)
-                default: break
                 }
             }
             if similar == 3{
                 //update dup.center to dup.right
                 //find other edge to modify
-                let modify = ttrbview.findEdge(src: src, dst: dst, duplicate: dup.center)
+                let modify = ttrbview.findEdge(src: src, dst: dst, duplicate: dup.center)!
                 //find original edge to remove
-                let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)
+                let removal = ttrbview.findEdge(src: src, dst: dst, duplicate: duplicate)!
                 switch modify{
                 case .node: break
                 case .edge(let s, let d, let l, let h, let c, _):
                     let newEdge = GraphItem.edge(src: s, dst: d, label: l, highlighted: h, color: c, duplicate: dup.right)
                     //remove modify and removal, and add in newEdge
-                    let index1 = ttrbview.items.firstIndex(of: removal!)!
+                    let index1 = ttrbview.items.firstIndex(of: removal)!
                     ttrbview.items.remove(at: index1)
-                    let index2 = ttrbview.items.firstIndex(of: modify!)!
+                    let index2 = ttrbview.items.firstIndex(of: modify)!
                     ttrbview.items.remove(at: index2)
                     ttrbview.items.append(newEdge)
-                default: break
                 }
             }
         }
