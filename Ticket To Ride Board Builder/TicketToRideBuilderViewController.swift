@@ -500,7 +500,7 @@ UINavigationControllerDelegate {
                 model.moveNode(withName: model.getNodeName(withLocation: movePoint!),
                                newLocation: endPoint)
                 //move node + edges in view
-                for i in 0..<ttrbview.items.count{
+                for i in 0..<ttrbview.items.count {
                     switch ttrbview.items[i]{
                     case .node(let loc, let name, let highlighted):
                         if loc == movePoint{
