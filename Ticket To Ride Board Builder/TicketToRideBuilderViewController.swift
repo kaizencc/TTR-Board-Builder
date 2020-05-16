@@ -36,30 +36,22 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
     // make ttrbview show the current model...
     func updateUI() {
         if model != nil && ttrbview != nil {  // ensure we have both model and view
-          let nodes = model.getAllNodes()
-          for node in nodes{
-            ttrbview.items.append(GraphItem.node(loc: model.getLocation(forNode: node), name: node, highlighted: false))
-          }
-          // take all pairs of nodes, but if you process (src,dst), DON'T process (dst, src)...
-          for i in 0..<nodes.count {
-            for j in 0..<i {
-              let src = nodes[i]
-              let dst = nodes[j]
-              // find all edges src -> dst and given them unique similar values.
-              for (similar, edge) in model.getEdges(start: src, end: dst).enumerated() {
-              addEdgeToView(similar, model.getLocation(forNode: edge.src), model.getLocation(forNode: edge.dst), routeColorToUIColor[edge.label.color]!)
-              }
+            let nodes = model.getAllNodes()
+            for node in nodes{
+                ttrbview.items.append(GraphItem.node(loc: model.getLocation(forNode: node), name: node, highlighted: false))
             }
-          }
-      }
-    }
-    
-    private func addEdge(similar sim: Int, edge: Edge<String, Route>){
-        //add to model
-        model.addEdge(withEdge: edge)
-        //add to view
-        //model already has the edge so similar overcounts by 1
-        _ = addEdgeToView(sim-1, model.getLocation(forNode: edge.src), model.getLocation(forNode: edge.dst), routeColorToUIColor[edge.label.color]!)
+            // take all pairs of nodes, but if you process (src,dst), DON'T process (dst, src)...
+            for i in 0..<nodes.count {
+                for j in 0..<i {
+                    let src = nodes[i]
+                    let dst = nodes[j]
+                    // find all edges src -> dst and given them unique similar values.
+                    for (similar, edge) in model.getEdges(start: src, end: dst).enumerated() {
+                        _ = addEdgeToView(similar, model.getLocation(forNode: edge.src), model.getLocation(forNode: edge.dst), routeColorToUIColor[edge.label.color]!)
+                    }
+                }
+            }
+        }
     }
     
     
@@ -87,8 +79,10 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        grey.setTitle("o", for: .normal)
         //set color buttons to be hidden initially
         hideAllColors()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -223,40 +217,70 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
         ttrbview.items = []
     }
     
+    private func clearButtons(){
+        red.setTitle("", for: .normal)
+        green.setTitle("", for: .normal)
+        blue.setTitle("", for: .normal)
+        yellow.setTitle("", for: .normal)
+        purple.setTitle("", for: .normal)
+        black.setTitle("", for: .normal)
+        white.setTitle("", for: .normal)
+        orange.setTitle("", for: .normal)
+        grey.setTitle("", for: .normal)
+    }
+    
     
     @IBAction func MakeRed(_ sender: UIButton) {
         currentColor = UIColor.red
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeGreen(_ sender: UIButton) {
         currentColor = UIColor.green
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeBlue(_ sender: UIButton) {
         currentColor = UIColor.blue
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeYellow(_ sender: UIButton) {
         currentColor = UIColor.yellow
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     @IBAction func MakePurple(_ sender: UIButton) {
         currentColor = UIColor.purple
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeBlack(_ sender: UIButton) {
         currentColor = UIColor.black
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeWhite(_ sender: UIButton) {
         currentColor = UIColor.white
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeOrange(_ sender: UIButton) {
         currentColor = UIColor.orange
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeGray(_ sender: UIButton) {
         currentColor = UIColor.gray
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     //adds the edge to a view if 3 other paths do not already exist. returns true if successfully adds in edge.
@@ -312,10 +336,12 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
     }
     
     private func addNode(nodeName node: String, withLocation point: CGPoint){
-        //add to model, transform tapped point to model coordinates
-        model.addNode(withName: node, withLocation: point)
-        //add to view
-        ttrbview.items.append(GraphItem.node(loc: point, name: node, highlighted: false))
+        if !model.containsNode(withName: node){
+            //add to model, transform tapped point to model coordinates
+            model.addNode(withName: node, withLocation: point)
+            //add to view
+            ttrbview.items.append(GraphItem.node(loc: point, name: node, highlighted: false))
+        }
     }
     
     

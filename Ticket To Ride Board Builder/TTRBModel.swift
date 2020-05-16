@@ -108,6 +108,10 @@ public class TTRBModel: CustomStringConvertible {
         graph.moveNode(withName: node, newLocation: loc)
     }
     
+    public func containsNode(withName node: String) -> Bool {
+        return graph.contains(withName: node)
+    }
+    
     
     /**
      
