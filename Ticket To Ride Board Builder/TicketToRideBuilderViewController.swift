@@ -36,28 +36,22 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
     // make ttrbview show the current model...
     func updateUI() {
         if model != nil && ttrbview != nil {  // ensure we have both model and view
-            let edges = model.getAllEdges()
-            var prunedEdges = edges
-            for edge in edges{
-                for pruned in prunedEdges{
-                    if edge.src == pruned.dst && edge.dst == pruned.src && edge.label.color == pruned.label.color {
-                        let index = prunedEdges.index(of: edge)
-                        prunedEdges.remove(at: index!)
-                    }
-                }
+          let nodes = model.getAllNodes()
+          for node in nodes{
+            ttrbview.items.append(GraphItem.node(loc: model.getLocation(forNode: node), name: node, highlighted: false))
+          }
+          // take all pairs of nodes, but if you process (src,dst), DON'T process (dst, src)...
+          for i in 0..<nodes.count {
+            for j in 0..<i {
+              let src = nodes[i]
+              let dst = nodes[j]
+              // find all edges src -> dst and given them unique similar values.
+              for (similar, edge) in model.getEdges(start: src, end: dst).enumerated() {
+              addEdgeToView(similar, model.getLocation(forNode: edge.src), model.getLocation(forNode: edge.dst), routeColorToUIColor[edge.label.color]!)
+              }
             }
-            print(prunedEdges)
-            for edge in prunedEdges{
-                let similar = model.numberOfSimilarEdges(src: edge.src, dst: edge.dst)
-                print(similar-1)
-                addEdge(similar: similar, edge: edge)
-                //addEdge(similar-1, model.getLocation(forNode: edge.src), model.getLocation(forNode: edge.dst), routeColorToUIColor[edge.label.color]!)
-            }
-            let nodes = model.getAllNodes()
-            for node in nodes{
-                addNode(nodeName: node, withLocation: model.getLocation(forNode: node))
-            }
-        }
+          }
+      }
     }
     
     private func addEdge(similar sim: Int, edge: Edge<String, Route>){
