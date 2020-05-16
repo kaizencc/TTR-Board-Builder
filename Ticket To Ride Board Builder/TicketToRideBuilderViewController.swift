@@ -15,17 +15,59 @@ private enum Mode {
     case move
 }
 
-class TicketToRideBuilderViewController: UIViewController,
-    UIImagePickerControllerDelegate,
-UINavigationControllerDelegate {
+class TicketToRideBuilderViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //Model
-    
-    private let model = TTRBModel()
+    // public, so we can set it in seque
+    public var model : TTRBModel! {
+        didSet {
+            updateUI() // might happen before ttrbview is set!
+        }
+    }
     
     //View
     
-    @IBOutlet weak var ttrbview: GraphView!
+    @IBOutlet weak var ttrbview: GraphView!{
+        didSet {
+            updateUI()  // might happen before model is set!
+        }
+    }
+    
+    // make ttrbview show the current model...
+    func updateUI() {
+        if model != nil && ttrbview != nil {  // ensure we have both model and view
+            let edges = model.getAllEdges()
+            var prunedEdges = edges
+            for edge in edges{
+                for pruned in prunedEdges{
+                    if edge.src == pruned.dst && edge.dst == pruned.src && edge.label.color == pruned.label.color {
+                        let index = prunedEdges.index(of: edge)
+                        prunedEdges.remove(at: index!)
+                    }
+                }
+            }
+            print(prunedEdges)
+            for edge in prunedEdges{
+                let similar = model.numberOfSimilarEdges(src: edge.src, dst: edge.dst)
+                print(similar-1)
+                addEdge(similar: similar, edge: edge)
+                //addEdge(similar-1, model.getLocation(forNode: edge.src), model.getLocation(forNode: edge.dst), routeColorToUIColor[edge.label.color]!)
+            }
+            let nodes = model.getAllNodes()
+            for node in nodes{
+                addNode(nodeName: node, withLocation: model.getLocation(forNode: node))
+            }
+        }
+    }
+    
+    private func addEdge(similar sim: Int, edge: Edge<String, Route>){
+        //add to model
+        model.addEdge(withEdge: edge)
+        //add to view
+        //model already has the edge so similar overcounts by 1
+        _ = addEdgeToView(sim-1, model.getLocation(forNode: edge.src), model.getLocation(forNode: edge.dst), routeColorToUIColor[edge.label.color]!)
+    }
+    
     
     //color buttons
     @IBOutlet weak var red: UIButton!
@@ -224,14 +266,14 @@ UINavigationControllerDelegate {
     }
     
     //adds the edge to a view if 3 other paths do not already exist. returns true if successfully adds in edge.
-    private func addEdgeToView(_ similar: Int, _ startPoint: CGPoint, _ endPoint: CGPoint) -> Bool{
+    private func addEdgeToView(_ similar: Int, _ startPoint: CGPoint, _ endPoint: CGPoint, _ color: UIColor) -> Bool{
         if similar == 0{
             //add to view as dup.none
             ttrbview.items.append(GraphItem.edge(src: startPoint,
                                                  dst: endPoint,
                                                  label: String(calculateEdgeLength(start: startPoint, end: endPoint)),
                                                  highlighted: false,
-                                                 color: currentColor,
+                                                 color: color,
                                                  duplicate: dup.none))
             return true
         }
@@ -257,7 +299,7 @@ UINavigationControllerDelegate {
                                                  dst: endPoint,
                                                  label: String(calculateEdgeLength(start: startPoint, end: endPoint)),
                                                  highlighted: false,
-                                                 color: currentColor,
+                                                 color: color,
                                                  duplicate: dup.right))
             return true
         }
@@ -267,7 +309,7 @@ UINavigationControllerDelegate {
                                                  dst: endPoint,
                                                  label: String(calculateEdgeLength(start: startPoint, end: endPoint)),
                                                  highlighted: false,
-                                                 color: currentColor,
+                                                 color: color,
                                                  duplicate: dup.center))
             return true
         }
@@ -281,6 +323,7 @@ UINavigationControllerDelegate {
         //add to view
         ttrbview.items.append(GraphItem.node(loc: point, name: node, highlighted: false))
     }
+    
     
     private func deleteFromView(_ similar: Int, src: CGPoint, dst: CGPoint, color: UIColor, duplicate: dup){
         if duplicate == dup.center || duplicate == dup.none{
@@ -388,7 +431,7 @@ UINavigationControllerDelegate {
             
             
         case Mode.addEdge:
-            
+            print(model)
             // if we have not initialized a starting point
             if startPoint == nil {
                 if ttrbview.findPoint(sender.location(in: ttrbview)) != nil {
@@ -406,8 +449,9 @@ UINavigationControllerDelegate {
                     let endName = model.getNodeName(withLocation: endPoint!)
                     //find amount of similar edges in the model
                     let similar = model.numberOfSimilarEdges(src: startName, dst: endName)
+                    print("new add " + String(similar))
                     //add edge to view and if it succeeds, adds to model
-                    if addEdgeToView(similar, startPoint!, endPoint!) {
+                    if addEdgeToView(similar, startPoint!, endPoint!, currentColor) {
                         //add to model
                         let route = Route(withLength: calculateEdgeLength(start: startPoint!, end: endPoint!),
                                           withColor: uiColorToRouteColor[currentColor]!)

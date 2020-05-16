@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Yt-zO-dGL">
-    <device id="retina6_1" orientation="landscape">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ogw-05-UbH">
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zfd-RF-qfg" customClass="GraphView" customModule="Ticket_To_Ride_Board_Builder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                                <rect key="frame" x="0.0" y="44" width="896" height="370"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="V1e-ca-qdR">
                                         <rect key="frame" x="32" y="0.0" width="270" height="30"/>
@@ -91,7 +89,6 @@
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="bottom" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="rTu-DA-28W">
                                         <rect key="frame" x="802" y="18" width="73" height="324"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prX-TY-oq4">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="30"/>
@@ -146,9 +143,6 @@
                                                 <rect key="frame" x="15" y="294" width="58" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Go Back"/>
-                                                <connections>
-                                                    <segue destination="6Yt-zO-dGL" kind="show" id="xQV-PY-8Xi"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -179,6 +173,7 @@
                         </connections>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Wxj-S5-a10"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="black" destination="ekI-eo-N4c" id="7DT-n3-WAo"/>
@@ -232,7 +227,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Build"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="7TW-0o-FAn"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="xbH-81-Tfu"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Ticket to Ride Builder or Traveling Salesman on Trains" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="y6n-FC-hEN">
@@ -246,8 +241,27 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="aTI-B4-YNd"/>
                     </view>
+                    <navigationItem key="navigationItem" id="aGJ-DK-GKK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ujr-tt-JGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1041.9642857142858" y="779.71014492753625"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="51J-EL-tgu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ogw-05-UbH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9ac-7Z-FYL">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6Yt-zO-dGL" kind="relationship" relationship="rootViewController" id="G5E-qU-aYU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KHX-17-8Wz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="298.66071428571428" y="779.71014492753625"/>
         </scene>
