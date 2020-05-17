@@ -12,8 +12,7 @@ class PlayViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.title = "TTR Player"
     }
     
     //Model
@@ -125,4 +124,18 @@ class PlayViewController: UIViewController {
         //we don't allow more than 3 edges from same source to same destination
         return false
     }
+    
+    
+    @IBAction func generateDestinationTicket(_ sender: UIButton) {
+        //pick two nodes at random and ensure there is no edge between the two
+        //use dijkstras to calculate minimum cost path (score)
+        //update view with some sort of destination ticket/card
+        //highlight starting node
+        //start timer
+    }
+    
+    //TODO: function to recognize tap on node (that has edge with highlighted node
+        //if selected node is destination node, stop timer and report a success
+    
+    
 }

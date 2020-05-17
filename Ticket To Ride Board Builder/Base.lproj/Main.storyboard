@@ -247,7 +247,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.93676292823314999" blue="0.854562906853089" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.891070272" green="0.891070272" blue="0.891070272" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="aTI-B4-YNd" firstAttribute="trailing" secondItem="aRQ-q3-e9B" secondAttribute="trailing" constant="12" id="0JD-Xz-M3f"/>
                             <constraint firstItem="aRQ-q3-e9B" firstAttribute="top" secondItem="aTI-B4-YNd" secondAttribute="top" constant="100" id="IpO-Eq-joP"/>
@@ -291,6 +291,17 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGI-8r-AnM" customClass="GraphView" customModule="Ticket_To_Ride_Board_Builder" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="896" height="370"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SK8-Ab-HJ9">
+                                        <rect key="frame" x="52" y="30" width="110" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Generate Ticket"/>
+                                        <connections>
+                                            <action selector="generateDestinationTicket:" destination="hKx-RU-3DT" eventType="touchUpInside" id="PGW-Mo-ahu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="0.891070272" green="0.891070272" blue="0.891070272" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <gestureRecognizers/>
                                 <connections>

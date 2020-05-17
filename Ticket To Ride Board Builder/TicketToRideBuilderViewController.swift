@@ -82,6 +82,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
         grey.setTitle("o", for: .normal)
         //set color buttons to be hidden initially
         hideAllColors()
+        self.title = "TTR Builder"
         
         // Do any additional setup after loading the view, typically from a nib.
     }
