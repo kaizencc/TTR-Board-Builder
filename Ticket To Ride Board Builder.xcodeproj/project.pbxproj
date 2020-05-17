@@ -13,10 +13,10 @@
 		0E64DE6324625CC100A93A26 /* EdgeImplementationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6224625CC100A93A26 /* EdgeImplementationTests.swift */; };
 		0E64DE6524625D1800A93A26 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6424625D1800A93A26 /* PriorityQueue.swift */; };
 		0E64DE6724625D9E00A93A26 /* DijkstraGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6624625D9E00A93A26 /* DijkstraGraph.swift */; };
-		0E64DE6924625DD200A93A26 /* PathADT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6824625DD200A93A26 /* PathADT.swift */; };
 		0E64DE6D24625E8600A93A26 /* DijkstraGraphImplementationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6C24625E8600A93A26 /* DijkstraGraphImplementationTests.swift */; };
 		0E64DE6F2462619C00A93A26 /* TTRBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE6E2462619C00A93A26 /* TTRBModel.swift */; };
 		0E64DE73246263F000A93A26 /* DrawableGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E64DE72246263F000A93A26 /* DrawableGraph.swift */; };
+		0EBD497A2471B21F005B02BA /* RoutePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBD49792471B21F005B02BA /* RoutePath.swift */; };
 		0ED3D71324625419001BCFFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D71224625419001BCFFB /* AppDelegate.swift */; };
 		0ED3D71524625419001BCFFB /* TicketToRideBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D71424625419001BCFFB /* TicketToRideBuilderViewController.swift */; };
 		0ED3D71824625419001BCFFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ED3D71624625419001BCFFB /* Main.storyboard */; };
@@ -51,10 +51,10 @@
 		0E64DE6224625CC100A93A26 /* EdgeImplementationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeImplementationTests.swift; sourceTree = "<group>"; };
 		0E64DE6424625D1800A93A26 /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		0E64DE6624625D9E00A93A26 /* DijkstraGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DijkstraGraph.swift; sourceTree = "<group>"; };
-		0E64DE6824625DD200A93A26 /* PathADT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathADT.swift; sourceTree = "<group>"; };
 		0E64DE6C24625E8600A93A26 /* DijkstraGraphImplementationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DijkstraGraphImplementationTests.swift; sourceTree = "<group>"; };
 		0E64DE6E2462619C00A93A26 /* TTRBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTRBModel.swift; sourceTree = "<group>"; };
 		0E64DE72246263F000A93A26 /* DrawableGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableGraph.swift; sourceTree = "<group>"; };
+		0EBD49792471B21F005B02BA /* RoutePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoutePath.swift; path = "Ticket To Ride Board Builder/GraphADT/RoutePath.swift"; sourceTree = SOURCE_ROOT; };
 		0ED3D70F24625419001BCFFB /* Ticket To Ride Board Builder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ticket To Ride Board Builder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ED3D71224625419001BCFFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ED3D71424625419001BCFFB /* TicketToRideBuilderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketToRideBuilderViewController.swift; sourceTree = "<group>"; };
@@ -118,7 +118,6 @@
 			children = (
 				0ED3D73D24625933001BCFFB /* GraphADT */,
 				0ED3D73624625826001BCFFB /* Support Files */,
-				0E1E25E0246B6D5200E2D79F /* Route.swift */,
 				0ED3D71624625419001BCFFB /* Main.storyboard */,
 				0E002322246F53D800576704 /* StartViewController.swift */,
 				0E64DE6E2462619C00A93A26 /* TTRBModel.swift */,
@@ -162,9 +161,10 @@
 				0ED3D74024625966001BCFFB /* EdgeADT.swift */,
 				0ED3D74224625986001BCFFB /* MutableCollection.swift */,
 				0E64DE6424625D1800A93A26 /* PriorityQueue.swift */,
-				0E64DE6824625DD200A93A26 /* PathADT.swift */,
 				0E64DE6624625D9E00A93A26 /* DijkstraGraph.swift */,
 				0E64DE72246263F000A93A26 /* DrawableGraph.swift */,
+				0E1E25E0246B6D5200E2D79F /* Route.swift */,
+				0EBD49792471B21F005B02BA /* RoutePath.swift */,
 			);
 			path = GraphADT;
 			sourceTree = "<group>";
@@ -280,11 +280,11 @@
 				17E7D3FA246495B600FC8B98 /* GraphItem.swift in Sources */,
 				0E64DE73246263F000A93A26 /* DrawableGraph.swift in Sources */,
 				0ED3D71324625419001BCFFB /* AppDelegate.swift in Sources */,
-				0E64DE6924625DD200A93A26 /* PathADT.swift in Sources */,
 				0E002323246F53D800576704 /* StartViewController.swift in Sources */,
 				17E7D3F8246382EE00FC8B98 /* GraphView.swift in Sources */,
 				0E64DE6524625D1800A93A26 /* PriorityQueue.swift in Sources */,
 				17E7D4002464B70900FC8B98 /* UIExtensions.swift in Sources */,
+				0EBD497A2471B21F005B02BA /* RoutePath.swift in Sources */,
 				17E7D3FE246496D600FC8B98 /* CGPointArrow.swift in Sources */,
 				17E7D3FC246495E200FC8B98 /* ModelToViewCoordinates.swift in Sources */,
 				0E64DE6F2462619C00A93A26 /* TTRBModel.swift in Sources */,

@@ -27,7 +27,6 @@ public struct Route: Comparable, Equatable {
     public let length: Int
     public let color: Color
     
-    
     public init(withLength length: Int, withColor color: Color) {
         self.length = length
         self.color = color

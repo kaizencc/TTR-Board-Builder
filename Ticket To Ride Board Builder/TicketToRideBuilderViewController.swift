@@ -17,7 +17,7 @@ private enum Mode {
 
 class TicketToRideBuilderViewController: UIViewController,
     UIImagePickerControllerDelegate,
-UINavigationControllerDelegate {
+    UINavigationControllerDelegate {
     
     //Model
     

@@ -216,7 +216,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="298.66071428571428" y="-152.17391304347828"/>
+            <point key="canvasLocation" x="345" y="309"/>
         </scene>
         <!--Start View Controller-->
         <scene sceneID="9q6-Od-C8y">
@@ -246,10 +246,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="aTI-B4-YNd"/>
                     </view>
+                    <navigationItem key="navigationItem" id="x0m-EI-cXp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ujr-tt-JGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="298.66071428571428" y="779.71014492753625"/>
+            <point key="canvasLocation" x="378" y="-632"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="7TW-0o-FAn"/>
+    </inferredMetricsTieBreakers>
 </document>

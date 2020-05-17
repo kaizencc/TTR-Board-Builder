@@ -17,18 +17,18 @@ import Foundation
  **Abstract Invariant**: For every edge in path, the dst of an edge must be the src of the next edge
  
  */
-public class Path<N: Hashable, E: Numeric & Comparable>: Comparable  {
+public class RoutePath<N: Hashable>: Comparable  {
     
     // Representation Invariant: For every edge e in edgeList, edgeList[i].dst == edgeList[i+1].src
     //
     // Abstraction Function: P is a path composed of edges starting at node src and ending at node dst.
     
-    private var edgeList: [Edge<N, E>]
+    private var edgeList: [Edge<N, Route>]
     
     // The sum of the weights of all the edges in the path
-    public var totalWeight: E
+    public var totalWeight: Int
     
-    public var edges: [Edge<N, E>] {
+    public var edges: [Edge<N, Route>] {
         get {
             return edgeList
         }
@@ -77,10 +77,10 @@ public class Path<N: Hashable, E: Numeric & Comparable>: Comparable  {
      - Parameter edge: the edge to be added
      
      */
-    public func add(_ edge: Edge<N, E>) {
+    public func add(_ edge: Edge<N, Route>) {
         checkRep()
         edgeList.append(edge)
-        totalWeight += edge.label
+        totalWeight += edge.label.length
         checkRep()
     }
     
@@ -97,7 +97,7 @@ public class Path<N: Hashable, E: Numeric & Comparable>: Comparable  {
      - Returns: True if the total weight of lhs is less than the total weight of rhs
      
      */
-    public static func < (lhs: Path<N, E>, rhs: Path<N, E>) -> Bool {
+    public static func < (lhs: RoutePath<N>, rhs: RoutePath<N>) -> Bool {
         lhs.checkRep()
         rhs.checkRep()
         return lhs.totalWeight < rhs.totalWeight
@@ -116,7 +116,7 @@ public class Path<N: Hashable, E: Numeric & Comparable>: Comparable  {
      - Returns: True if the total weight of lhs equal to the total weight of rhs, and false otherwise
      
      */
-    public static func == (lhs: Path<N, E>, rhs: Path<N, E>) -> Bool {
+    public static func == (lhs: RoutePath<N>, rhs: RoutePath<N>) -> Bool {
         lhs.checkRep()
         rhs.checkRep()
         return lhs.totalWeight == rhs.totalWeight
