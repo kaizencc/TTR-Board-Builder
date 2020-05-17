@@ -61,10 +61,9 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
 6. Generate Destination tickets through dijsktras
 7. ~~Multiple Views~~
 8. ~~Save/load~~
-8. Gameplay/Puzzle?
+9. Puzzle view
 
 ### Bug To Be Quashed
-- Update model edge weights when nodes are moved in view
 - Background isn't preserved between pages
 
 ### Nice Things to Have

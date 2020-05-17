@@ -91,6 +91,16 @@ public class TTRBModel: CustomStringConvertible {
         graph.removeEdge(flippedEdge)
     }
     
+    //calculates the distance between two CGPoints
+    private func CGPointDistance(from: CGPoint, to: CGPoint) -> CGFloat {
+        return sqrt((from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y))
+    }
+    
+    //calculates what the edge length should be after adding an edge or moving a point
+    public func calculateEdgeLength(start src: CGPoint, end dst: CGPoint) -> Int{
+        let distance = CGPointDistance(from: src, to: dst)
+        return Int(distance/100) + 1
+    }
     
     /**
      
@@ -106,8 +116,40 @@ public class TTRBModel: CustomStringConvertible {
      */
     public func moveNode(withName node: String, newLocation loc: CGPoint){
         graph.moveNode(withName: node, newLocation: loc)
+        updateAllEdges(withName: node)
     }
     
+    //private function called by move() to update edges with the moved node
+    private func updateAllEdges(withName node: String){
+        let edges = graph.getEdges()
+        for edge in edges{
+            if edge.src == node || edge.dst == node {
+                let newLength = calculateEdgeLength(start: graph.getLocation(forNode: edge.src), end: graph.getLocation(forNode: edge.dst))
+                updateEdge(edge: edge, newLength: newLength)
+            }
+        }
+    }
+    
+    //private function called by updateAllEdges() to remove old edge and add in updated edge
+    private func updateEdge(edge: Edge<String,Route>, newLength length: Int){
+        let newEdge = Edge<String,Route>(from: edge.src, to: edge.dst, withLabel: Route(withLength: length, withColor: edge.label.color))
+        graph.removeEdge(edge)
+        graph.addEdge(newEdge)
+    }
+    
+    
+    /**
+    
+    **Requires**: none
+    
+    **Modifies**: none
+    
+    **Effects**: none
+    
+    - Parameter withName: a possible node in the graph
+    - Returns: true if node name is in graph
+    
+    */
     public func containsNode(withName node: String) -> Bool {
         return graph.contains(withName: node)
     }

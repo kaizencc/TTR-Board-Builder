@@ -164,13 +164,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
             ttrbview.background = pickedImage.resized(toFitIn: CGSize(width: 0.5*UIScreen.main.bounds.width, height: 0.5*UIScreen.main.bounds.height))
         }
     }
-    
-    //calculates what the edge length should be after adding an edge or moving a point
-    public func calculateEdgeLength(start src: CGPoint, end dst: CGPoint) -> Int{
-        let distance = ttrbview.CGPointDistance(from: src, to: dst)
-        print(distance)
-        return Int(distance/100) + 1
-    }
+
     
     //reset the startPoint highlight if needed
     private func resetStartPoint(){
@@ -218,20 +212,19 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
     }
     
     @IBAction func Clear(_ sender: UIButton) {
+        //sends out clear confirmation alert
         let controller = UIAlertController(title: "Confirm Clear?", message: nil, preferredStyle: .alert)
         let cancelAction = UIAlertAction(
             title: "Cancel",
-            style: UIAlertAction.Style.destructive) { (action) in
-                
-        }
+            style: UIAlertAction.Style.destructive) { (action) in }
 
         let confirmAction = UIAlertAction(
         title: "OK", style: UIAlertAction.Style.default) { (action) in
             self.clearAll()
         }
         
-        controller.addAction(confirmAction)
-        controller.addAction(cancelAction)
+        controller.addAction(confirmAction) //yes
+        controller.addAction(cancelAction) //no
         self.present(controller, animated: false, completion: nil )
         
     }
@@ -308,7 +301,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
             //add to view as dup.none
             ttrbview.items.append(GraphItem.edge(src: startPoint,
                                                  dst: endPoint,
-                                                 label: String(calculateEdgeLength(start: startPoint, end: endPoint)),
+                                                 label: String(model.calculateEdgeLength(start: startPoint, end: endPoint)),
                                                  highlighted: false,
                                                  color: color,
                                                  duplicate: dup.none))
@@ -334,7 +327,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
             //add to view as dup.right
             ttrbview.items.append(GraphItem.edge(src: startPoint,
                                                  dst: endPoint,
-                                                 label: String(calculateEdgeLength(start: startPoint, end: endPoint)),
+                                                 label: String(model.calculateEdgeLength(start: startPoint, end: endPoint)),
                                                  highlighted: false,
                                                  color: color,
                                                  duplicate: dup.right))
@@ -344,7 +337,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
             //add to view as dup.center
             ttrbview.items.append(GraphItem.edge(src: startPoint,
                                                  dst: endPoint,
-                                                 label: String(calculateEdgeLength(start: startPoint, end: endPoint)),
+                                                 label: String(model.calculateEdgeLength(start: startPoint, end: endPoint)),
                                                  highlighted: false,
                                                  color: color,
                                                  duplicate: dup.center))
@@ -492,7 +485,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
                     //add edge to view and if it succeeds, adds to model
                     if addEdgeToView(similar, startPoint!, endPoint!, currentColor) {
                         //add to model
-                        let route = Route(withLength: calculateEdgeLength(start: startPoint!, end: endPoint!),
+                        let route = Route(withLength: model.calculateEdgeLength(start: startPoint!, end: endPoint!),
                                           withColor: uiColorToRouteColor[currentColor]!)
                         let edge = Edge(from: startName,
                                         to: endName,
@@ -593,7 +586,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
                         if src == movePoint{
                             ttrbview.items[i] = GraphItem.edge(src: endPoint,
                                                                dst: dst,
-                                                               label: String(calculateEdgeLength(start: endPoint, end: dst)),
+                                                               label: String(model.calculateEdgeLength(start: endPoint, end: dst)),
                                                                highlighted: highlighted,
                                                                color: color,
                                                                duplicate: duplicate)
@@ -601,7 +594,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
                         if dst == movePoint{
                             ttrbview.items[i] = GraphItem.edge(src: src,
                                                                dst: endPoint,
-                                                               label: String(calculateEdgeLength(start: src, end: endPoint)),
+                                                               label: String(model.calculateEdgeLength(start: src, end: endPoint)),
                                                                highlighted: highlighted,
                                                                color: color,
                                                                duplicate: duplicate)
