@@ -240,6 +240,9 @@
                                         <rect key="frame" x="182" y="0.0" width="86" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <state key="normal" title="Play"/>
+                                        <connections>
+                                            <segue destination="hKx-RU-3DT" kind="show" id="lxk-yr-Lrh"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -276,6 +279,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHX-17-8Wz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="298.66071428571428" y="779.71014492753625"/>
+        </scene>
+        <!--Play View Controller-->
+        <scene sceneID="gxR-sM-nkz">
+            <objects>
+                <viewController id="hKx-RU-3DT" customClass="PlayViewController" customModule="Ticket_To_Ride_Board_Builder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qoq-9t-Nfq">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EGI-8r-AnM" customClass="GraphView" customModule="Ticket_To_Ride_Board_Builder" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="22" width="896" height="370"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.891070272" green="0.891070272" blue="0.891070272" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="BaN-Vp-c1V" appends="YES" id="Ooa-zg-HHL"/>
+                                    <outletCollection property="gestureRecognizers" destination="YmP-6m-jzk" appends="YES" id="Eff-cY-I43"/>
+                                    <outletCollection property="gestureRecognizers" destination="ToJ-Tg-cR8" appends="YES" id="sAe-s4-mdj"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="9xq-sq-4Tv"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uOS-vO-Hxd"/>
+                    <connections>
+                        <outlet property="ttrbview" destination="EGI-8r-AnM" id="wZ4-zr-UAo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vTA-fp-j88" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="BaN-Vp-c1V">
+                    <connections>
+                        <action selector="pinched:" destination="EGI-8r-AnM" id="Jqy-uM-9hC"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="YmP-6m-jzk">
+                    <connections>
+                        <action selector="panned:" destination="EGI-8r-AnM" id="6YS-de-R6Z"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="ToJ-Tg-cR8">
+                    <connections>
+                        <action selector="doubleTapped:" destination="EGI-8r-AnM" id="FLf-h5-5tE"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="634" y="2511"/>
         </scene>
     </scenes>
 </document>

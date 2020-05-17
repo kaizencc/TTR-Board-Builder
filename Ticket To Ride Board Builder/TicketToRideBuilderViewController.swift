@@ -604,10 +604,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
                 ttrbview.switchHighlight(withLocation: endPoint)
                 movePoint = nil
             }
-            
-            
         }
         print(mode)
     }
-    
 }

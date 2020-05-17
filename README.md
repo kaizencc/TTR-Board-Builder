@@ -58,10 +58,14 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
    - ~~Add new struct for edge label~~
    - ~~Allow view to show multiple routes on an edge~~
 5. ~~Allow user to type name for nodes~~
-6. Generate Destination tickets through dijsktras
-7. ~~Multiple Views~~
-8. ~~Save/load~~
-9. Puzzle view
+6. ~~Multiple Views~~
+7. ~~Save/load~~
+8. Puzzle view 
+   - ~~Pass model along to puzzle view~~
+   - ~~Connect graphview gestures~~
+   - Allow user to complete a route
+   - Add destination ticket generator through dijsktras algorithm
+   - Add timer
 
 ### Bug To Be Quashed
 - Background isn't preserved between pages
@@ -70,5 +74,5 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
 - ~~Delete edges in view~~
 - Change edge color in view
 - ~~Duplicate edges have scaled distances (not hardcoded)~~
-- ~~highlight the selected color when adding edges~~
-- ~~alert prompt for clearing all~~
+- ~~Highlight the selected color when adding edges~~
+- ~~Alert prompt for clearing all~~

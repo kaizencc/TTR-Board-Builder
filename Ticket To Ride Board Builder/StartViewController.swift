@@ -12,10 +12,12 @@ class StartViewController: UIViewController {
     
     private let model = TTRBModel()  // model shared by all controllers
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? TicketToRideBuilderViewController {
             destination.model = model  // give the model to the builder.
+        }
+        if let destination = segue.destination as? PlayViewController {
+            destination.model = model
         }
     }
 }
