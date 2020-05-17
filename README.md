@@ -72,3 +72,4 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
 - Change edge color in view
 - ~~Duplicate edges have scaled distances (not hardcoded)~~
 - ~~highlight the selected color when adding edges~~
+- ~~alert prompt for clearing all~~

@@ -212,9 +212,28 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
         resetStartPoint()
     }
     
-    @IBAction func Clear(_ sender: UIButton) {
+    private func clearAll(){
         model.clearGraph()
         ttrbview.items = []
+    }
+    
+    @IBAction func Clear(_ sender: UIButton) {
+        let controller = UIAlertController(title: "Confirm Clear?", message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(
+            title: "Cancel",
+            style: UIAlertAction.Style.destructive) { (action) in
+                
+        }
+
+        let confirmAction = UIAlertAction(
+        title: "OK", style: UIAlertAction.Style.default) { (action) in
+            self.clearAll()
+        }
+        
+        controller.addAction(confirmAction)
+        controller.addAction(cancelAction)
+        self.present(controller, animated: false, completion: nil )
+        
     }
     
     private func clearButtons(){
