@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ogw-05-UbH">
-    <device id="retina6_1" orientation="landscape" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ogw-05-UbH">
+    <device id="retina6_1" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -209,7 +211,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="345" y="309"/>
+            <point key="canvasLocation" x="298.66071428571428" y="-152.17391304347828"/>
         </scene>
         <!--Start View Controller-->
         <scene sceneID="9q6-Od-C8y">
@@ -220,7 +222,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ticket To Ride Board Builder + Puzzle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRQ-q3-e9B">
-                                <rect key="frame" x="57.5" y="144" width="782.5" height="60"/>
+                                <rect key="frame" x="59" y="144" width="781" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -256,13 +258,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aTI-B4-YNd"/>
                     </view>
-<<<<<<< HEAD
-                    <navigationItem key="navigationItem" id="x0m-EI-cXp"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ujr-tt-JGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="378" y="-632"/>
-=======
                     <navigationItem key="navigationItem" id="aGJ-DK-GKK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ujr-tt-JGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -286,7 +281,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHX-17-8Wz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="298.66071428571428" y="779.71014492753625"/>
->>>>>>> 50a92da9ea1d59b28a92d3a490876bbebfe8ab42
         </scene>
         <!--Play View Controller-->
         <scene sceneID="gxR-sM-nkz">
@@ -319,7 +313,7 @@
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="9xq-sq-4Tv"/>
                     </view>
                     <navigationItem key="navigationItem" id="uOS-vO-Hxd"/>
@@ -347,7 +341,4 @@
             <point key="canvasLocation" x="634" y="2511"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="7TW-0o-FAn"/>
-    </inferredMetricsTieBreakers>
 </document>

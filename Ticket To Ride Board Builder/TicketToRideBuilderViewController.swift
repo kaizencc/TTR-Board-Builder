@@ -15,13 +15,8 @@ private enum Mode {
     case move
 }
 
-<<<<<<< HEAD
-class TicketToRideBuilderViewController: UIViewController,
-    UIImagePickerControllerDelegate,
-    UINavigationControllerDelegate {
-=======
+
 class TicketToRideBuilderViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
->>>>>>> 50a92da9ea1d59b28a92d3a490876bbebfe8ab42
     
     //Model
     // public, so we can set it in seque

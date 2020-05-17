@@ -17,16 +17,7 @@ class StartViewController: UIViewController {
         self.title = "TTR Home"
         
     }
-<<<<<<< HEAD
 
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-=======
-    
->>>>>>> 50a92da9ea1d59b28a92d3a490876bbebfe8ab42
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? TicketToRideBuilderViewController {
             destination.model = model  // give the model to the builder.
