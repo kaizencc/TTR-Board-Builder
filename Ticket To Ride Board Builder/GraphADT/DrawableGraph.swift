@@ -172,6 +172,11 @@ public class DrawableGraph<N: Hashable, E: Comparable>: CustomStringConvertible 
         return nil
     }
     
+    public func contains(withName name: N) -> Bool {
+        checkRep()
+        return graph.contains(node: name)
+    }
+    
     
     /**
      

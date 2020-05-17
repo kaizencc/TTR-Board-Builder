@@ -15,17 +15,51 @@ private enum Mode {
     case move
 }
 
+<<<<<<< HEAD
 class TicketToRideBuilderViewController: UIViewController,
     UIImagePickerControllerDelegate,
     UINavigationControllerDelegate {
+=======
+class TicketToRideBuilderViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+>>>>>>> 50a92da9ea1d59b28a92d3a490876bbebfe8ab42
     
     //Model
-    
-    private let model = TTRBModel()
+    // public, so we can set it in seque
+    public var model : TTRBModel! {
+        didSet {
+            updateUI() // might happen before ttrbview is set!
+        }
+    }
     
     //View
     
-    @IBOutlet weak var ttrbview: GraphView!
+    @IBOutlet weak var ttrbview: GraphView!{
+        didSet {
+            updateUI()  // might happen before model is set!
+        }
+    }
+    
+    // make ttrbview show the current model...
+    func updateUI() {
+        if model != nil && ttrbview != nil {  // ensure we have both model and view
+            let nodes = model.getAllNodes()
+            for node in nodes{
+                ttrbview.items.append(GraphItem.node(loc: model.getLocation(forNode: node), name: node, highlighted: false))
+            }
+            // take all pairs of nodes, but if you process (src,dst), DON'T process (dst, src)...
+            for i in 0..<nodes.count {
+                for j in 0..<i {
+                    let src = nodes[i]
+                    let dst = nodes[j]
+                    // find all edges src -> dst and given them unique similar values.
+                    for (similar, edge) in model.getEdges(start: src, end: dst).enumerated() {
+                        _ = addEdgeToView(similar, model.getLocation(forNode: edge.src), model.getLocation(forNode: edge.dst), routeColorToUIColor[edge.label.color]!)
+                    }
+                }
+            }
+        }
+    }
+    
     
     //color buttons
     @IBOutlet weak var red: UIButton!
@@ -51,8 +85,11 @@ class TicketToRideBuilderViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        grey.setTitle("o", for: .normal)
         //set color buttons to be hidden initially
         hideAllColors()
+        self.title = "TTR Builder"
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -134,13 +171,7 @@ class TicketToRideBuilderViewController: UIViewController,
             ttrbview.background = pickedImage.resized(toFitIn: CGSize(width: 0.5*UIScreen.main.bounds.width, height: 0.5*UIScreen.main.bounds.height))
         }
     }
-    
-    //calculates what the edge length should be after adding an edge or moving a point
-    public func calculateEdgeLength(start src: CGPoint, end dst: CGPoint) -> Int{
-        let distance = ttrbview.CGPointDistance(from: src, to: dst)
-        print(distance)
-        return Int(distance/100) + 1
-    }
+
     
     //reset the startPoint highlight if needed
     private func resetStartPoint(){
@@ -182,56 +213,104 @@ class TicketToRideBuilderViewController: UIViewController,
         resetStartPoint()
     }
     
-    @IBAction func Clear(_ sender: UIButton) {
+    private func clearAll(){
         model.clearGraph()
         ttrbview.items = []
+    }
+    
+    @IBAction func Clear(_ sender: UIButton) {
+        //sends out clear confirmation alert
+        let controller = UIAlertController(title: "Confirm Clear?", message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(
+            title: "Cancel",
+            style: UIAlertAction.Style.destructive) { (action) in }
+
+        let confirmAction = UIAlertAction(
+        title: "OK", style: UIAlertAction.Style.default) { (action) in
+            self.clearAll()
+        }
+        
+        controller.addAction(confirmAction) //yes
+        controller.addAction(cancelAction) //no
+        self.present(controller, animated: false, completion: nil )
+        
+    }
+    
+    private func clearButtons(){
+        red.setTitle("", for: .normal)
+        green.setTitle("", for: .normal)
+        blue.setTitle("", for: .normal)
+        yellow.setTitle("", for: .normal)
+        purple.setTitle("", for: .normal)
+        black.setTitle("", for: .normal)
+        white.setTitle("", for: .normal)
+        orange.setTitle("", for: .normal)
+        grey.setTitle("", for: .normal)
     }
     
     
     @IBAction func MakeRed(_ sender: UIButton) {
         currentColor = UIColor.red
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeGreen(_ sender: UIButton) {
         currentColor = UIColor.green
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeBlue(_ sender: UIButton) {
         currentColor = UIColor.blue
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeYellow(_ sender: UIButton) {
         currentColor = UIColor.yellow
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     @IBAction func MakePurple(_ sender: UIButton) {
         currentColor = UIColor.purple
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeBlack(_ sender: UIButton) {
         currentColor = UIColor.black
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeWhite(_ sender: UIButton) {
         currentColor = UIColor.white
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeOrange(_ sender: UIButton) {
         currentColor = UIColor.orange
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     @IBAction func MakeGray(_ sender: UIButton) {
         currentColor = UIColor.gray
+        clearButtons()
+        sender.setTitle("o", for: .normal)
     }
     
     //adds the edge to a view if 3 other paths do not already exist. returns true if successfully adds in edge.
-    private func addEdgeToView(_ similar: Int, _ startPoint: CGPoint, _ endPoint: CGPoint) -> Bool{
+    private func addEdgeToView(_ similar: Int, _ startPoint: CGPoint, _ endPoint: CGPoint, _ color: UIColor) -> Bool{
         if similar == 0{
             //add to view as dup.none
             ttrbview.items.append(GraphItem.edge(src: startPoint,
                                                  dst: endPoint,
-                                                 label: String(calculateEdgeLength(start: startPoint, end: endPoint)),
+                                                 label: String(model.calculateEdgeLength(start: startPoint, end: endPoint)),
                                                  highlighted: false,
-                                                 color: currentColor,
+                                                 color: color,
                                                  duplicate: dup.none))
             return true
         }
@@ -255,9 +334,9 @@ class TicketToRideBuilderViewController: UIViewController,
             //add to view as dup.right
             ttrbview.items.append(GraphItem.edge(src: startPoint,
                                                  dst: endPoint,
-                                                 label: String(calculateEdgeLength(start: startPoint, end: endPoint)),
+                                                 label: String(model.calculateEdgeLength(start: startPoint, end: endPoint)),
                                                  highlighted: false,
-                                                 color: currentColor,
+                                                 color: color,
                                                  duplicate: dup.right))
             return true
         }
@@ -265,9 +344,9 @@ class TicketToRideBuilderViewController: UIViewController,
             //add to view as dup.center
             ttrbview.items.append(GraphItem.edge(src: startPoint,
                                                  dst: endPoint,
-                                                 label: String(calculateEdgeLength(start: startPoint, end: endPoint)),
+                                                 label: String(model.calculateEdgeLength(start: startPoint, end: endPoint)),
                                                  highlighted: false,
-                                                 color: currentColor,
+                                                 color: color,
                                                  duplicate: dup.center))
             return true
         }
@@ -276,11 +355,14 @@ class TicketToRideBuilderViewController: UIViewController,
     }
     
     private func addNode(nodeName node: String, withLocation point: CGPoint){
-        //add to model, transform tapped point to model coordinates
-        model.addNode(withName: node, withLocation: point)
-        //add to view
-        ttrbview.items.append(GraphItem.node(loc: point, name: node, highlighted: false))
+        if !model.containsNode(withName: node){
+            //add to model, transform tapped point to model coordinates
+            model.addNode(withName: node, withLocation: point)
+            //add to view
+            ttrbview.items.append(GraphItem.node(loc: point, name: node, highlighted: false))
+        }
     }
+    
     
     private func deleteFromView(_ similar: Int, src: CGPoint, dst: CGPoint, color: UIColor, duplicate: dup){
         if duplicate == dup.center || duplicate == dup.none{
@@ -388,7 +470,7 @@ class TicketToRideBuilderViewController: UIViewController,
             
             
         case Mode.addEdge:
-            
+            print(model)
             // if we have not initialized a starting point
             if startPoint == nil {
                 if ttrbview.findPoint(sender.location(in: ttrbview)) != nil {
@@ -406,10 +488,11 @@ class TicketToRideBuilderViewController: UIViewController,
                     let endName = model.getNodeName(withLocation: endPoint!)
                     //find amount of similar edges in the model
                     let similar = model.numberOfSimilarEdges(src: startName, dst: endName)
+                    print("new add " + String(similar))
                     //add edge to view and if it succeeds, adds to model
-                    if addEdgeToView(similar, startPoint!, endPoint!) {
+                    if addEdgeToView(similar, startPoint!, endPoint!, currentColor) {
                         //add to model
-                        let route = Route(withLength: calculateEdgeLength(start: startPoint!, end: endPoint!),
+                        let route = Route(withLength: model.calculateEdgeLength(start: startPoint!, end: endPoint!),
                                           withColor: uiColorToRouteColor[currentColor]!)
                         let edge = Edge(from: startName,
                                         to: endName,
@@ -510,7 +593,7 @@ class TicketToRideBuilderViewController: UIViewController,
                         if src == movePoint{
                             ttrbview.items[i] = GraphItem.edge(src: endPoint,
                                                                dst: dst,
-                                                               label: String(calculateEdgeLength(start: endPoint, end: dst)),
+                                                               label: String(model.calculateEdgeLength(start: endPoint, end: dst)),
                                                                highlighted: highlighted,
                                                                color: color,
                                                                duplicate: duplicate)
@@ -518,7 +601,7 @@ class TicketToRideBuilderViewController: UIViewController,
                         if dst == movePoint{
                             ttrbview.items[i] = GraphItem.edge(src: src,
                                                                dst: endPoint,
-                                                               label: String(calculateEdgeLength(start: src, end: endPoint)),
+                                                               label: String(model.calculateEdgeLength(start: src, end: endPoint)),
                                                                highlighted: highlighted,
                                                                color: color,
                                                                duplicate: duplicate)
@@ -528,10 +611,7 @@ class TicketToRideBuilderViewController: UIViewController,
                 ttrbview.switchHighlight(withLocation: endPoint)
                 movePoint = nil
             }
-            
-            
         }
         print(mode)
     }
-    
 }

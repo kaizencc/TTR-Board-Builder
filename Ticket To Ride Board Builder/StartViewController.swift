@@ -9,23 +9,30 @@
 import UIKit
 
 class StartViewController: UIViewController {
-
+    
+    private let model = TTRBModel()  // model shared by all controllers
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.title = "TTR Home"
+        
     }
+<<<<<<< HEAD
 
     
     /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+=======
+    
+>>>>>>> 50a92da9ea1d59b28a92d3a490876bbebfe8ab42
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let destination = segue.destination as? TicketToRideBuilderViewController {
+            destination.model = model  // give the model to the builder.
+        }
+        if let destination = segue.destination as? PlayViewController {
+            destination.model = model
+        }
     }
-    */
-
-
 }
