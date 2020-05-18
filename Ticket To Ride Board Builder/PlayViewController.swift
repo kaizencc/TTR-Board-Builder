@@ -128,7 +128,20 @@ class PlayViewController: UIViewController {
     
     @IBAction func generateDestinationTicket(_ sender: UIButton) {
         //pick two nodes at random and ensure there is no edge between the two
+        var src = ""
+        var dst = ""
+        while true {
+            src = model.randomNode()
+            dst = model.randomNode()
+            if src != dst && model.getEdges(start: src, end: dst).count == 0 {
+                break
+            }
+        }
         //use dijkstras to calculate minimum cost path (score)
+        let route = model.findMinCostPath(src: src, dst: dst)
+        if route != nil {
+            print(route!.totalWeight, route!.edges)
+        }
         //update view with some sort of destination ticket/card
         //highlight starting node
         //start timer

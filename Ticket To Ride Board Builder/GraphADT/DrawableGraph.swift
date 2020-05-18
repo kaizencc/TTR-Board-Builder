@@ -255,5 +255,10 @@ public class DrawableGraph<N: Hashable, E: Comparable>: CustomStringConvertible 
         return similar
     }
     
-    
+}
+
+extension DrawableGraph where E == Route {
+    public func findMinCostPath(src start: N, dst end: N) -> RoutePath<N>?{
+        return graph.findMinimumCostPath(from: start, to: end)
+    }
 }

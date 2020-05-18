@@ -254,6 +254,10 @@ public class TTRBModel: CustomStringConvertible {
         return graph.numberOfSimilarEdges(src: src, dst: dst)
     }
     
+    public func findMinCostPath(src start: String, dst end: String) -> RoutePath<String>? {
+        return graph.findMinCostPath(src: start, dst: end)
+    }
+    
     /**
      
      **Requires**: none
@@ -265,6 +269,22 @@ public class TTRBModel: CustomStringConvertible {
      */
     public func clearGraph() {
         graph = DrawableGraph<String, Route>()
+    }
+    
+    /**
+    
+    **Requires**: none
+    
+    **Modifies**: none
+    
+    **Effects**: none
+     
+     - Returns: random node in graph
+    
+    */
+    public func randomNode() -> String {
+        let index = Int.random(in: 0..<graph.getNodes().count)
+        return graph.getNodes()[index]
     }
     
 }
