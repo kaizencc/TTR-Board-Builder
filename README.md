@@ -63,8 +63,8 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
 8. Puzzle view 
    - ~~Pass model along to puzzle view~~
    - ~~Connect graphview gestures~~
-   - Allow user to complete a route
-   - Add destination ticket generator through dijsktras algorithm
+   - ~~Allow user to complete a route~~
+   - ~~Add destination ticket generator through dijsktras algorithm~~
    - Add timer
 
 ### Bug To Be Quashed

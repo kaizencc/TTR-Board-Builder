@@ -171,7 +171,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
     //reset the startPoint highlight if needed
     private func resetStartPoint(){
         if startPoint != nil{
-            ttrbview.switchHighlight(withLocation: startPoint!)
+            ttrbview.switchNodeHighlight(withLocation: startPoint!)
             startPoint = nil
         }
     }
@@ -470,7 +470,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
             if startPoint == nil {
                 if ttrbview.findPoint(sender.location(in: ttrbview)) != nil {
                     startPoint = ttrbview.findPoint(sender.location(in: ttrbview))!
-                    ttrbview.switchHighlight(withLocation: startPoint!)
+                    ttrbview.switchNodeHighlight(withLocation: startPoint!)
                 }
             }
                 // if we've already initialized a starting point
@@ -496,7 +496,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
                     }                    
                     print(model)
                 }
-                ttrbview.switchHighlight(withLocation: startPoint!)
+                ttrbview.switchNodeHighlight(withLocation: startPoint!)
                 //reset startNode
                 startPoint = nil
             }
@@ -568,7 +568,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
             if movePoint == nil {
                 if let startPoint = ttrbview.findPoint(sender.location(in: ttrbview)) {
                     movePoint = startPoint
-                    ttrbview.switchHighlight(withLocation: startPoint)
+                    ttrbview.switchNodeHighlight(withLocation: startPoint)
                 }
             } else {
                 //transform tapped point to model coordinates
@@ -603,7 +603,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
                         }
                     }
                 }
-                ttrbview.switchHighlight(withLocation: endPoint)
+                ttrbview.switchNodeHighlight(withLocation: endPoint)
                 movePoint = nil
             }
         }

@@ -165,11 +165,27 @@ public class TTRBModel: CustomStringConvertible {
      
      - Parameter src: the start of the edge
                  dst: the end of the edge
-     - Returns: List of nodes in edges
+     - Returns: List of edges
      
      */
     public func getEdges(start src: String, end dst: String) -> [Edge<String,Route>] {
         return graph.getEdges().filter({$0.src == src && $0.dst == dst})
+    }
+    
+    /**
+        
+        **Requires**: none
+        
+        **Modifies**: none
+        
+        **Effects**: returns list of edges with the specified source
+        
+        - Parameter src: the start of the edge
+        - Returns: List of edges
+        
+        */
+    public func getNodeEdges(start src: String) -> [Edge<String,Route>]{
+        return graph.getEdges().filter({$0.src == src})
     }
     
     

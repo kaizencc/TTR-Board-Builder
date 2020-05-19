@@ -147,13 +147,40 @@ public class GraphView: UIView {
         }
     }
     
-    public func switchHighlight(withLocation loc: CGPoint){
+    /**
+    
+    Switches highlight of edges
+    
+    - Parameter startPoint: starting point of edge
+     - Parameter endPoint: ending point of edge
+    */
+    public func switchEdgeHighlight(startPoint: CGPoint, endPoint: CGPoint){
+        for i in 0..<items.count{
+            switch items[i] {
+            case .node:
+                break
+            case .edge(let src, let dst, let label,let h,let c,let d):
+                if (startPoint == src && endPoint == dst) || (startPoint == dst && endPoint == src) {
+                    let newEdge = GraphItem.edge(src: src, dst: dst, label: label, highlighted: !h, color: c, duplicate: d)
+                        items[i]=newEdge
+                }
+            }
+        }
+    }
+    
+    /**
+       
+       Switches highlight of nodes
+       
+       - Parameter loc: node
+       */
+    public func switchNodeHighlight(withLocation loc: CGPoint){
         for i in 0..<items.count{
             switch items[i] {
             case .node(let location, let name, let highlight):
                 if location == loc {
-                    let new = GraphItem.node(loc: location, name: name, highlighted: !highlight )
-                    items[i]=new
+                    let newNode = GraphItem.node(loc: location, name: name, highlighted: !highlight )
+                    items[i]=newNode
                 }
             case .edge:
                 break
@@ -516,7 +543,12 @@ public class GraphView: UIView {
         
         path.lineWidth = lineWidth
         path.lineCapStyle = .butt
-        color.set()
+        if !highlighted{
+            color.set()
+        }
+        else{
+            UIColor.yellow.set()
+        }
         path.stroke()
         
         let center = CGPoint(x: path.bounds.midX, y: path.bounds.midY)
