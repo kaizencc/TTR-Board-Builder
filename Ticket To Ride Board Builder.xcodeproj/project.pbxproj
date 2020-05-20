@@ -29,6 +29,10 @@
 		0ED3D74724625A35001BCFFB /* GraphImplementationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D744246259A4001BCFFB /* GraphImplementationTests.swift */; };
 		1750C13A24719852006BFD96 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1750C13924719852006BFD96 /* PlayViewController.swift */; };
 		17DB96E42475738500C804D9 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DB96E32475738500C804D9 /* GameModel.swift */; };
+		17DB96E72475AB9A00C804D9 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 17DB96E62475AB9A00C804D9 /* test.json */; };
+		17DB96E92475AC0700C804D9 /* DrawableGraphExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DB96E82475AC0700C804D9 /* DrawableGraphExtension.swift */; };
+		17DB96EB2475B04500C804D9 /* DataFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DB96EA2475B04500C804D9 /* DataFiles.swift */; };
+		17DB96EF2475B40200C804D9 /* new.json in Resources */ = {isa = PBXBuildFile; fileRef = 17DB96EE2475B40200C804D9 /* new.json */; };
 		17E7D3F8246382EE00FC8B98 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F7246382EE00FC8B98 /* GraphView.swift */; };
 		17E7D3FA246495B600FC8B98 /* GraphItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F9246495B600FC8B98 /* GraphItem.swift */; };
 		17E7D3FC246495E200FC8B98 /* ModelToViewCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */; };
@@ -73,6 +77,10 @@
 		0ED3D744246259A4001BCFFB /* GraphImplementationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphImplementationTests.swift; sourceTree = "<group>"; };
 		1750C13924719852006BFD96 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		17DB96E32475738500C804D9 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		17DB96E62475AB9A00C804D9 /* test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
+		17DB96E82475AC0700C804D9 /* DrawableGraphExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawableGraphExtension.swift; sourceTree = "<group>"; };
+		17DB96EA2475B04500C804D9 /* DataFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFiles.swift; sourceTree = "<group>"; };
+		17DB96EE2475B40200C804D9 /* new.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = new.json; sourceTree = "<group>"; };
 		17E7D3F7246382EE00FC8B98 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		17E7D3F9246495B600FC8B98 /* GraphItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItem.swift; sourceTree = "<group>"; };
 		17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelToViewCoordinates.swift; sourceTree = "<group>"; };
@@ -120,6 +128,7 @@
 		0ED3D71124625419001BCFFB /* Ticket To Ride Board Builder */ = {
 			isa = PBXGroup;
 			children = (
+				17DB96E52475AB6A00C804D9 /* Data */,
 				0ED3D73D24625933001BCFFB /* GraphADT */,
 				0ED3D73624625826001BCFFB /* Support Files */,
 				0ED3D71624625419001BCFFB /* Main.storyboard */,
@@ -169,10 +178,21 @@
 				0E64DE6424625D1800A93A26 /* PriorityQueue.swift */,
 				0E64DE6624625D9E00A93A26 /* DijkstraGraph.swift */,
 				0E64DE72246263F000A93A26 /* DrawableGraph.swift */,
+				17DB96E82475AC0700C804D9 /* DrawableGraphExtension.swift */,
 				0E1E25E0246B6D5200E2D79F /* Route.swift */,
 				0EBD49792471B21F005B02BA /* RoutePath.swift */,
+				17DB96EA2475B04500C804D9 /* DataFiles.swift */,
 			);
 			path = GraphADT;
+			sourceTree = "<group>";
+		};
+		17DB96E52475AB6A00C804D9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				17DB96E62475AB9A00C804D9 /* test.json */,
+				17DB96EE2475B40200C804D9 /* new.json */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +278,8 @@
 			files = (
 				0ED3D71D2462541B001BCFFB /* LaunchScreen.storyboard in Resources */,
 				0ED3D71A2462541B001BCFFB /* Assets.xcassets in Resources */,
+				17DB96EF2475B40200C804D9 /* new.json in Resources */,
+				17DB96E72475AB9A00C804D9 /* test.json in Resources */,
 				0ED3D733246254DF001BCFFB /* README.md in Resources */,
 				0ED3D71824625419001BCFFB /* Main.storyboard in Resources */,
 			);
@@ -281,8 +303,10 @@
 				0ED3D71524625419001BCFFB /* TicketToRideBuilderViewController.swift in Sources */,
 				0ED3D73F24625947001BCFFB /* GraphADT.swift in Sources */,
 				0E64DE6724625D9E00A93A26 /* DijkstraGraph.swift in Sources */,
+				17DB96E92475AC0700C804D9 /* DrawableGraphExtension.swift in Sources */,
 				0ED3D74124625966001BCFFB /* EdgeADT.swift in Sources */,
 				0E1E25E1246B6D5200E2D79F /* Route.swift in Sources */,
+				17DB96EB2475B04500C804D9 /* DataFiles.swift in Sources */,
 				17E7D3FA246495B600FC8B98 /* GraphItem.swift in Sources */,
 				0E64DE73246263F000A93A26 /* DrawableGraph.swift in Sources */,
 				0ED3D71324625419001BCFFB /* AppDelegate.swift in Sources */,

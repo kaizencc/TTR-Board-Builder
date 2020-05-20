@@ -256,9 +256,15 @@ class PlayViewController: UIViewController {
     
     @IBAction func undo(_ sender: UIButton) {
         if !game.complete && game.path.count > 1 {
-            ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: game.currentNode!))
+            let current = game.currentNode!
+            ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: current))
             let previous = game.undo()
             ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: previous))
+            
+            //update score
+            let edge = model.getEdges(start: current, end: previous).first
+            game.currentScore -= edge!.label.length
+            score.text = "Score: " + String(game.currentScore)
         }
     }
     

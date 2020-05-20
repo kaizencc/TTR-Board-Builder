@@ -20,9 +20,17 @@ public enum Color {
     case white
     case orange
     case gray
+    
+    
 }
 
-public struct Route: Comparable, Equatable {
+public struct Route: Comparable, Equatable, CustomStringConvertible {
+    public var description: String {
+        get {
+            return "{\"length\": \(length), \"color\": \"\(color)\"}"
+        }
+    }
+    
     
     public let length: Int
     public let color: Color

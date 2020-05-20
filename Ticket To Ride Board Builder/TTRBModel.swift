@@ -23,6 +23,11 @@ public class TTRBModel: CustomStringConvertible {
         graph = DrawableGraph<String, Route>()
     }
     
+    public convenience init(json: [String:[[String: Any]]]){
+        self.init()
+        graph = DrawableGraph<String, Route>(json: json)
+    }
+    
     /**
      
      **Requires**: none

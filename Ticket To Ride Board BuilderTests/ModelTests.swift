@@ -98,6 +98,24 @@ class ModelTests: XCTestCase {
         
     }
     
+    func testJSON(){
+        let string = DataFiles.loadFile(named: "new.json")
+        let data = string.data(using: .utf8)!
+        do {
+            if let jsonArray = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? Dictionary<String,Any>
+            {
+                print(jsonArray) // use the json here
+                let model = TTRBModel(json: jsonArray as! [String : [[String : Any]]])
+                assert(model.getAllNodes().count == 4)
+            } else {
+                print("bad json")
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+        
+    }
+    
     
     
 }

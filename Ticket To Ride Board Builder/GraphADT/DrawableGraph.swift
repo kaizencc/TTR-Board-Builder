@@ -24,14 +24,15 @@ public class DrawableGraph<N: Hashable, E: Comparable>: CustomStringConvertible 
     
     public var description: String {
         get {
-            var description = "Nodes:\n"
-            for node in graph.nodes {
-                description.append("\(node)\n")
+            var description = "{\n\"nodes\": [\n"
+            for node in locations.keys{
+                description.append("{\"\(node)\": \(String(describing: locations[node]!))},\n")
             }
-            description.append("\nEdges:\n")
+            description.append("],\n\"Edges\": [\n")
             for edge in graph.edges {
-                description.append("(\(edge.src), \(edge.dst), \(edge.label))\n")
+                description.append("{\"src\": \"\(edge.src)\", \"dst\": \"\(edge.dst)\", \"label\": \(edge.label)}\n")
             }
+            description.append("]\n}\n")
             return description
         }
     }
