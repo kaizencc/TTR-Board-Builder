@@ -18,6 +18,7 @@ class PlayViewController: UIViewController {
         start.isHidden = true
         end.isHidden = true
         score.isHidden = true
+        undoButton.isHidden = true
     }
     
     //Model
@@ -139,12 +140,10 @@ class PlayViewController: UIViewController {
     
     @IBOutlet weak var score: UILabel!
     
-    private var inProgress = false
-    private var currentNode: String? = nil
-    private var endNode: String? = nil
-    private var path = [String]()
-    private var complete = false
-    private var currentScore = 0
+    @IBOutlet weak var undoButton: UIButton!
+    
+    
+    private var game = GameModel()
     
     @IBAction func generateDestinationTicket(_ sender: UIButton) {
         //make sure it is possible to generate ticket
@@ -152,22 +151,18 @@ class PlayViewController: UIViewController {
             return
         }
         // if incomplete and starting over
-        if inProgress && currentNode != nil{
-            ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: currentNode!))
+        if game.inProgress && game.currentNode != nil{
+            ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: game.currentNode!))
         }
         // if complete, reset all variables
-        if complete{
+        if game.complete{
             highlightPath()
             //end node doesn't get unhighlighted in highlightPath()
-            ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: endNode!))
-            complete = false
-            currentNode = nil
-            endNode = nil
-            currentScore = 0
-            path = [String]()
+            ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: game.endNode!))
+            game = GameModel()
         }
         //set to be in progress
-        inProgress = true
+        game.inProgress = true
         //pick two nodes at random and ensure there is no edge between the two
         var src = ""
         var dst = ""
@@ -183,13 +178,14 @@ class PlayViewController: UIViewController {
         if route != nil {
             //update view with destination ticket/card
             points.isHidden = false
-            points.text = "Points: " + String(route!.totalWeight)
+            points.text = "Goal:  " + String(route!.totalWeight)
             start.isHidden = false
             start.text = "Start: " + route!.edges.first!.src
             end.isHidden = false
             end.text = "End: " + route!.edges.last!.dst
             score.isHidden = false
             score.text = "Score: 0"
+            undoButton.isHidden = false
             print(route!.totalWeight, route!.edges)
             
             //highlight starting node
@@ -197,41 +193,42 @@ class PlayViewController: UIViewController {
             ttrbview.switchNodeHighlight(withLocation: startLocation)
             
             //update inner variables
-            currentNode = route!.edges.first!.src
-            endNode = route!.edges.last!.dst
+            game.currentNode = route!.edges.first!.src
+            game.endNode = route!.edges.last!.dst
             
             //start path
-            path.append(currentNode!)
+            game.updatePath()
         }
         //start timer
     }
     
     @IBAction func pickNode(_ sender: UITapGestureRecognizer) {
-        if inProgress{
+        if game.inProgress{
             let nextNode = ttrbview.findPoint(sender.location(in: ttrbview))
             
-            if nextNode != nil && hasRouteBetween(start: currentNode!, end: model.getNodeName(withLocation: nextNode!)){
+            if nextNode != nil && hasRouteBetween(start: game.currentNode!, end: model.getNodeName(withLocation: nextNode!)){
                 let nextNodeName = model.getNodeName(withLocation: nextNode!)
                 //turn off old highlight and turn on new one
                 ttrbview.switchNodeHighlight(withLocation: nextNode!)
-                ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: currentNode!))
+                ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: game.currentNode!))
                 
                 //update score
-                let edge = model.getEdges(start: currentNode!, end: nextNodeName).first
-                currentScore += edge!.label.length
-                score.text = "Score: " + String(currentScore)
+                let edge = model.getEdges(start: game.currentNode!, end: nextNodeName).first
+                game.currentScore += edge!.label.length
+                score.text = "Score: " + String(game.currentScore)
                 
-                //update currentNode
-                currentNode = nextNodeName
+                //update nodes
+                game.currentNode = nextNodeName
+                
                 
                 //update path
-                path.append(currentNode!)
+                game.updatePath()
                 
             }
-            if currentNode == endNode {
-                complete = true
+            if game.connected() {
+                game.complete = true
                 highlightPath()
-                inProgress = false
+                game.inProgress = false
             }
         }
     }
@@ -247,8 +244,8 @@ class PlayViewController: UIViewController {
     }
     
     private func highlightPath(){
-        for i in 1..<path.count{
-            let edge = model.getEdges(start: path[i-1], end: path[i]).first
+        for i in 1..<game.path.count{
+            let edge = model.getEdges(start: game.path[i-1], end: game.path[i]).first
             let start = model.getLocation(forNode: edge!.src)
             let end = model.getLocation(forNode: edge!.dst)
             ttrbview.switchEdgeHighlight(startPoint: start,
@@ -256,6 +253,15 @@ class PlayViewController: UIViewController {
             ttrbview.switchNodeHighlight(withLocation: start)
         }
     }
+    
+    @IBAction func undo(_ sender: UIButton) {
+        if !game.complete && game.path.count > 1 {
+            ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: game.currentNode!))
+            let previous = game.undo()
+            ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: previous))
+        }
+    }
+    
 
    //if selected node is destination node, stop timer and report a success
     

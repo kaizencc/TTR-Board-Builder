@@ -28,6 +28,7 @@
 		0ED3D74324625986001BCFFB /* MutableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D74224625986001BCFFB /* MutableCollection.swift */; };
 		0ED3D74724625A35001BCFFB /* GraphImplementationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED3D744246259A4001BCFFB /* GraphImplementationTests.swift */; };
 		1750C13A24719852006BFD96 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1750C13924719852006BFD96 /* PlayViewController.swift */; };
+		17DB96E42475738500C804D9 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DB96E32475738500C804D9 /* GameModel.swift */; };
 		17E7D3F8246382EE00FC8B98 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F7246382EE00FC8B98 /* GraphView.swift */; };
 		17E7D3FA246495B600FC8B98 /* GraphItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3F9246495B600FC8B98 /* GraphItem.swift */; };
 		17E7D3FC246495E200FC8B98 /* ModelToViewCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */; };
@@ -71,6 +72,7 @@
 		0ED3D74224625986001BCFFB /* MutableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCollection.swift; sourceTree = "<group>"; };
 		0ED3D744246259A4001BCFFB /* GraphImplementationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphImplementationTests.swift; sourceTree = "<group>"; };
 		1750C13924719852006BFD96 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		17DB96E32475738500C804D9 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		17E7D3F7246382EE00FC8B98 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		17E7D3F9246495B600FC8B98 /* GraphItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphItem.swift; sourceTree = "<group>"; };
 		17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelToViewCoordinates.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				17E7D3FF2464B70900FC8B98 /* UIExtensions.swift */,
 				0ED3D71E2462541B001BCFFB /* Info.plist */,
 				1750C13924719852006BFD96 /* PlayViewController.swift */,
+				17DB96E32475738500C804D9 /* GameModel.swift */,
 			);
 			path = "Ticket To Ride Board Builder";
 			sourceTree = "<group>";
@@ -283,8 +286,8 @@
 				17E7D3FA246495B600FC8B98 /* GraphItem.swift in Sources */,
 				0E64DE73246263F000A93A26 /* DrawableGraph.swift in Sources */,
 				0ED3D71324625419001BCFFB /* AppDelegate.swift in Sources */,
-				0E64DE6924625DD200A93A26 /* PathADT.swift in Sources */,
 				1750C13A24719852006BFD96 /* PlayViewController.swift in Sources */,
+				17DB96E42475738500C804D9 /* GameModel.swift in Sources */,
 				0E002323246F53D800576704 /* StartViewController.swift in Sources */,
 				17E7D3F8246382EE00FC8B98 /* GraphView.swift in Sources */,
 				0E64DE6524625D1800A93A26 /* PriorityQueue.swift in Sources */,
