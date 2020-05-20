@@ -37,16 +37,43 @@ public class GameModel {
         currentScore = 0
     }
     
+    /**
+    
+    **Requires**: none
+    
+    **Modifies**: self
+    
+    **Effects**: adds a node to the path
+        
+    */
     public func updatePath(){
         path.append(currentNode!)
     }
     
+    /**
+    
+    **Requires**: none
+    
+    **Modifies**: self
+    
+    **Effects**: removes a node from the path and updates currentNode
+        
+    */
     public func undo() -> String {
         path.removeLast()
         currentNode = path.last
         return currentNode!
     }
     
+    /**
+    
+    **Requires**: none
+    
+    **Modifies**: self
+    
+    **Effects**: checks to see if destination is complete
+        
+    */
     public func connected() -> Bool {
         return currentNode == endNode
     }
