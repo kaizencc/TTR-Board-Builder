@@ -38,6 +38,7 @@
 		17E7D3FC246495E200FC8B98 /* ModelToViewCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */; };
 		17E7D3FE246496D600FC8B98 /* CGPointArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3FD246496D600FC8B98 /* CGPointArrow.swift */; };
 		17E7D4002464B70900FC8B98 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7D3FF2464B70900FC8B98 /* UIExtensions.swift */; };
+		EB3969912475B68700E8EA28 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3969902475B68700E8EA28 /* Files.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		17E7D3FB246495E200FC8B98 /* ModelToViewCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelToViewCoordinates.swift; sourceTree = "<group>"; };
 		17E7D3FD246496D600FC8B98 /* CGPointArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointArrow.swift; sourceTree = "<group>"; };
 		17E7D3FF2464B70900FC8B98 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		EB3969902475B68700E8EA28 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 				0E1E25E0246B6D5200E2D79F /* Route.swift */,
 				0EBD49792471B21F005B02BA /* RoutePath.swift */,
 				17DB96EA2475B04500C804D9 /* DataFiles.swift */,
+				EB3969902475B68700E8EA28 /* Files.swift */,
 			);
 			path = GraphADT;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ED3D74324625986001BCFFB /* MutableCollection.swift in Sources */,
+				EB3969912475B68700E8EA28 /* Files.swift in Sources */,
 				0ED3D71524625419001BCFFB /* TicketToRideBuilderViewController.swift in Sources */,
 				0ED3D73F24625947001BCFFB /* GraphADT.swift in Sources */,
 				0E64DE6724625D9E00A93A26 /* DijkstraGraph.swift in Sources */,

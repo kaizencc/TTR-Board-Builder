@@ -99,7 +99,7 @@ class ModelTests: XCTestCase {
     }
     
     func testJSON(){
-        let string = DataFiles.loadFile(named: "new.json")
+      if let string = Files.loadFile(named: "new.json") {
         let data = string.data(using: .utf8)!
         do {
             if let jsonArray = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? Dictionary<String,Any>
@@ -113,7 +113,9 @@ class ModelTests: XCTestCase {
         } catch let error as NSError {
             print(error)
         }
-        
+      } else {
+        assertionFailure("Couldn't read file...")
+      }
     }
     
     
