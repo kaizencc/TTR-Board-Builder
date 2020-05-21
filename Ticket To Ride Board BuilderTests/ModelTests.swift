@@ -107,6 +107,7 @@ class ModelTests: XCTestCase {
                 print(jsonArray) // use the json here
                 let model = TTRBModel(json: jsonArray as! [String : [[String : Any]]])
                 assert(model.getAllNodes().count == 4)
+                assert(model.getAllEdges().count == 8)
             } else {
                 print("bad json")
             }

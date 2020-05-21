@@ -65,10 +65,12 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
    - ~~Connect graphview gestures~~
    - ~~Allow user to complete a route~~
    - ~~Add destination ticket generator through dijsktras algorithm~~
-   - Add timer
-
+   - Reset button
+9. ~~Load premade files into builder~~
+   
 ### Bug To Be Quashed
 - Background isn't preserved between pages
+- Constraints are missing on play page
 
 ### Nice Things to Have
 - ~~Delete edges in view~~
@@ -76,3 +78,4 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
 - ~~Duplicate edges have scaled distances (not hardcoded)~~
 - ~~Highlight the selected color when adding edges~~
 - ~~Alert prompt for clearing all~~
+- Node names more visible

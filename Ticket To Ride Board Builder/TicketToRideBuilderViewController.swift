@@ -163,10 +163,10 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
             dismiss(animated:true, completion: nil)
             
             //make the background the image
-            ttrbview.background = pickedImage.resized(toFitIn: CGSize(width: 0.5*UIScreen.main.bounds.width, height: 0.5*UIScreen.main.bounds.height))
+            ttrbview.background = pickedImage.resized(toFitIn: CGSize(width: 0.8*UIScreen.main.bounds.width, height: 0.8*UIScreen.main.bounds.height))
         }
     }
-
+    
     
     //reset the startPoint highlight if needed
     private func resetStartPoint(){
@@ -219,7 +219,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
         let cancelAction = UIAlertAction(
             title: "Cancel",
             style: UIAlertAction.Style.destructive) { (action) in }
-
+        
         let confirmAction = UIAlertAction(
         title: "OK", style: UIAlertAction.Style.default) { (action) in
             self.clearAll()
@@ -452,12 +452,12 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
             let point = ttrbview.unitTransform.fromView(viewPoint: sender.location(in: ttrbview))
             //new UIController to facilitate keyboard text
             let controller = UIAlertController(title: "Create New Node", message: nil, preferredStyle: .alert)
-            controller.addTextField(configurationHandler: { $0.placeholder = "max 10 chars" })
+            controller.addTextField(configurationHandler: { $0.placeholder = "max 12 chars" })
             controller.addAction(UIAlertAction(title: "Done", style: .default) {
                 _ in
                 //requirements are that node name is between 1 and 10 characters inclusive
                 if let nodeName = controller.textFields![0].text,
-                    nodeName.count > 0, nodeName.count < 11{
+                    nodeName.count > 0, nodeName.count < 13{
                     self.addNode(nodeName: nodeName, withLocation: point)
                 }
             })
@@ -465,7 +465,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
             
             
         case Mode.addEdge:
-            print(model)
+            print(model!)
             // if we have not initialized a starting point
             if startPoint == nil {
                 if ttrbview.findPoint(sender.location(in: ttrbview)) != nil {
@@ -494,7 +494,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
                                         withLabel: route)
                         model.addEdge(withEdge: edge)
                     }                    
-                    print(model)
+                    print(model!)
                 }
                 ttrbview.switchNodeHighlight(withLocation: startPoint!)
                 //reset startNode
@@ -544,7 +544,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
                         break
                     }
                 }
-                print(model)
+                print(model!)
             }
                 //user clicks on an edge -> delete that edge only and updates other edges
             else if let targetPoint = ttrbview.findEdgefromCenter(centeredAt: sender.location(in: ttrbview)){
@@ -609,4 +609,89 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
         }
         print(mode)
     }
+    
+    private func load(fileContent: String) {
+        let data = fileContent.data(using: .ascii)!
+        if let json = (try? JSONSerialization.jsonObject(with: data)) as? [String : [[String : Any]]]{
+            print("HERE")
+            model.clearGraph()
+            ttrbview.items = []
+            addJSON(json: json)
+        }
+        
+    }
+    
+    private func addJSON(json: [String : [[String : Any]]]){
+        for nodes in json["nodes"]!{
+            let node_name = nodes["name"] as! String
+            let coordinates = nodes["location"] as! [String:Double]
+            let node_point = CGPoint(x: coordinates["x"]!, y: coordinates["y"]!)
+            //add to model
+            model.addNode(withName:node_name, withLocation: node_point)
+            //add to view
+            ttrbview.items.append(GraphItem.node(loc: node_point, name: node_name, highlighted: false))
+        }
+        for edges in json["Edges"]!{
+            let src = edges["src"] as! String
+            let dst = edges["dst"] as! String
+            let label = edges["label"] as! [String:Any]
+            let color = label["color"] as! String
+            let route = Route(withLength: label["length"] as! Int, withColor: findColor(color: color))
+            let edge = Edge<String,Route>(from: src, to: dst, withLabel: route)
+            //add to model
+            model.addSingleEdge(withEdge: edge)
+        }
+        //add edges to view
+        // take all pairs of nodes, but if you process (src,dst), DON'T process (dst, src)...
+        let nodes = model.getAllNodes()
+        for i in 0..<nodes.count {
+            for j in 0..<i {
+                let src = nodes[i]
+                let dst = nodes[j]
+                // find all edges src -> dst and given them unique similar values.
+                for (similar, edge) in model.getEdges(start: src, end: dst).enumerated() {
+                    _ = addEdgeToView(similar, model.getLocation(forNode: edge.src), model.getLocation(forNode: edge.dst), routeColorToUIColor[edge.label.color]!)
+                }
+            }
+        }
+    }
+    
+    private func findColor(color: String) -> Color{
+        if color == "black"{
+            return Color.black
+        }
+        if color == "white"{
+            return Color.white
+        }
+        if color == "blue"{
+            return Color.blue
+        }
+        if color == "red"{
+            return Color.red
+        }
+        if color == "gray" || color == "grey"{
+            return Color.gray
+        }
+        if color == "orange"{
+            return Color.orange
+        }
+        if color == "green"{
+            return Color.green
+        }
+        if color == "purple"{
+            return Color.purple
+        }
+        if color == "yellow"{
+            return Color.yellow
+        }
+        return Color.gray
+    }
+    
+    @IBAction func loadGraph(_ sender: UIButton) {
+        Files.chooseFile(withExtension: "json", forController: self) {
+            (fileName: String, contents: String) in
+            self.load(fileContent: contents)
+        }
+    }
+    
 }

@@ -147,6 +147,7 @@ public class GraphView: UIView {
         }
     }
     
+    
     /**
     
     Switches highlight of edges
@@ -386,8 +387,8 @@ public class GraphView: UIView {
     */
     private func leftEdgeCoordinates(src: CGPoint, dst: CGPoint) -> (CGPoint, CGPoint){
         let unit_vectorS = orthogonalUnitVector(src: src, dst: dst) //src unit vector
-        //edge is offset from the center by 10 times the reciprocal of the zoom
-        let scale = 10*(1/unitTransform.zoomScale)
+        //edge is offset from the center by 5 times the reciprocal of the zoom
+        let scale = 5*(1/unitTransform.zoomScale)
         let new_vectorS = (unit_vectorS.0 * scale, unit_vectorS.1 * scale)
         var newSrc = src
         newSrc.x = newSrc.x + new_vectorS.0
@@ -411,8 +412,8 @@ public class GraphView: UIView {
     */
     private func rightEdgeCoordinates(src: CGPoint, dst: CGPoint) -> (CGPoint, CGPoint){
         let unit_vectorS = orthogonalUnitVector(src: src, dst: dst) //src unit vector
-        //edge is offset from the center by 10 times the reciprocal of the zoom
-        let scale = 10*(1/unitTransform.zoomScale)
+        //edge is offset from the center by 5 times the reciprocal of the zoom
+        let scale = 5*(1/unitTransform.zoomScale)
         let new_vectorS = (unit_vectorS.0 * scale, unit_vectorS.1 * scale)
         var newSrc = src
         newSrc.x = newSrc.x - new_vectorS.0

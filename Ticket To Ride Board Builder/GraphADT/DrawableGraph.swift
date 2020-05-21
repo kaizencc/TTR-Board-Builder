@@ -26,11 +26,11 @@ public class DrawableGraph<N: Hashable, E: Comparable>: CustomStringConvertible 
         get {
             var description = "{\n\"nodes\": [\n"
             for node in locations.keys{
-                description.append("{\"\(node)\": \(String(describing: locations[node]!))},\n")
+                description.append("{\"name\":\"\(node)\",\"location\": {\"x\":\(locations[node]!.x),\"y\":\(locations[node]!.y)}},\n")
             }
             description.append("],\n\"Edges\": [\n")
             for edge in graph.edges {
-                description.append("{\"src\": \"\(edge.src)\", \"dst\": \"\(edge.dst)\", \"label\": \(edge.label)}\n")
+                description.append("{\"src\": \"\(edge.src)\", \"dst\": \"\(edge.dst)\", \"label\": \(edge.label)},\n")
             }
             description.append("]\n}\n")
             return description
