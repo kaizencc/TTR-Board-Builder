@@ -78,4 +78,5 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
 - ~~Duplicate edges have scaled distances (not hardcoded)~~
 - ~~Highlight the selected color when adding edges~~
 - ~~Alert prompt for clearing all~~
-- Node names more visible
+- ~~Dynamic font size and edge width~~
+

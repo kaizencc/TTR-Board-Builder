@@ -150,19 +150,40 @@ public class GraphView: UIView {
     
     /**
     
-    Switches highlight of edges
+    Turns on highlight of edges
     
     - Parameter startPoint: starting point of edge
      - Parameter endPoint: ending point of edge
     */
-    public func switchEdgeHighlight(startPoint: CGPoint, endPoint: CGPoint){
+    public func turnOnEdgeHighlight(startPoint: CGPoint, endPoint: CGPoint){
         for i in 0..<items.count{
             switch items[i] {
             case .node:
                 break
-            case .edge(let src, let dst, let label,let h,let c,let d):
+            case .edge(let src, let dst, let label,_,let c,let d):
                 if (startPoint == src && endPoint == dst) || (startPoint == dst && endPoint == src) {
-                    let newEdge = GraphItem.edge(src: src, dst: dst, label: label, highlighted: !h, color: c, duplicate: d)
+                    let newEdge = GraphItem.edge(src: src, dst: dst, label: label, highlighted: true, color: c, duplicate: d)
+                        items[i]=newEdge
+                }
+            }
+        }
+    }
+    
+    /**
+    
+    Turns off highlight of edges
+    
+    - Parameter startPoint: starting point of edge
+     - Parameter endPoint: ending point of edge
+    */
+    public func turnOffEdgeHighlight(startPoint: CGPoint, endPoint: CGPoint){
+        for i in 0..<items.count{
+            switch items[i] {
+            case .node:
+                break
+            case .edge(let src, let dst, let label,_,let c,let d):
+                if (startPoint == src && endPoint == dst) || (startPoint == dst && endPoint == src) {
+                    let newEdge = GraphItem.edge(src: src, dst: dst, label: label, highlighted: false, color: c, duplicate: d)
                         items[i]=newEdge
                 }
             }
@@ -171,16 +192,36 @@ public class GraphView: UIView {
     
     /**
        
-       Switches highlight of nodes
+       Turns on highlight of nodes
        
        - Parameter loc: node
        */
-    public func switchNodeHighlight(withLocation loc: CGPoint){
+    public func turnOnNodeHighlight(withLocation loc: CGPoint){
         for i in 0..<items.count{
             switch items[i] {
-            case .node(let location, let name, let highlight):
+            case .node(let location, let name,_):
                 if location == loc {
-                    let newNode = GraphItem.node(loc: location, name: name, highlighted: !highlight )
+                    let newNode = GraphItem.node(loc: location, name: name, highlighted: true )
+                    items[i]=newNode
+                }
+            case .edge:
+                break
+            }
+        }
+    }
+    
+    /**
+       
+       Turns off highlight of nodes
+       
+       - Parameter loc: node
+       */
+    public func turnOffNodeHighlight(withLocation loc: CGPoint){
+        for i in 0..<items.count{
+            switch items[i] {
+            case .node(let location, let name,_):
+                if location == loc {
+                    let newNode = GraphItem.node(loc: location, name: name, highlighted: false )
                     items[i]=newNode
                 }
             case .edge:
@@ -437,7 +478,7 @@ public class GraphView: UIView {
      */
     override public func draw(_ rect: CGRect) {
         background?.draw(unitTransform: unitTransform, viewBounds: bounds)
-        
+        lineWidth = max(6, min(9,6*unitTransform.zoomScale))
         for item in items {
             switch(item) {
             case .node(let loc, let name, let highlight):
@@ -474,7 +515,7 @@ public class GraphView: UIView {
     private func drawNode(at location : CGPoint,
                           labelled label: String,
                           highlighted: Bool) {
-        
+        textSize = min(max(12, 10*(1/unitTransform.zoomScale)), 30)
         // Compute path for the node
         let viewLocation = unitTransform.toView(modelPoint: location)
         let boundingBox = CGRect(x: viewLocation.x - nodeRadius,
@@ -513,6 +554,7 @@ public class GraphView: UIView {
                           highlighted: Bool,
                           color: UIColor) {
         
+        textSize = 12
         let srcViewLocation = unitTransform.toView(modelPoint: srcLocation)
         let dstViewLocation = unitTransform.toView(modelPoint: dstLocation)
         

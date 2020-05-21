@@ -152,13 +152,13 @@ class PlayViewController: UIViewController {
         }
         // if incomplete and starting over
         if game.inProgress && game.currentNode != nil{
-            ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: game.currentNode!))
+            ttrbview.turnOffNodeHighlight(withLocation: model.getLocation(forNode: game.currentNode!))
         }
         // if complete, reset all variables
         if game.complete{
-            highlightPath()
+            unHighlightPath()
             //end node doesn't get unhighlighted in highlightPath()
-            ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: game.endNode!))
+            ttrbview.turnOffNodeHighlight(withLocation: model.getLocation(forNode: game.endNode!))
             game = GameModel()
         }
         //set to be in progress
@@ -190,7 +190,7 @@ class PlayViewController: UIViewController {
             
             //highlight starting node
             let startLocation = model.getLocation(forNode: route!.edges.first!.src)
-            ttrbview.switchNodeHighlight(withLocation: startLocation)
+            ttrbview.turnOnNodeHighlight(withLocation: startLocation)
             
             //update inner variables
             game.currentNode = route!.edges.first!.src
@@ -209,8 +209,8 @@ class PlayViewController: UIViewController {
             if nextNode != nil && hasRouteBetween(start: game.currentNode!, end: model.getNodeName(withLocation: nextNode!)){
                 let nextNodeName = model.getNodeName(withLocation: nextNode!)
                 //turn off old highlight and turn on new one
-                ttrbview.switchNodeHighlight(withLocation: nextNode!)
-                ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: game.currentNode!))
+                ttrbview.turnOnNodeHighlight(withLocation: nextNode!)
+                ttrbview.turnOffNodeHighlight(withLocation: model.getLocation(forNode: game.currentNode!))
                 
                 //update score
                 let edge = model.getEdges(start: game.currentNode!, end: nextNodeName).first
@@ -248,18 +248,29 @@ class PlayViewController: UIViewController {
             let edge = model.getEdges(start: game.path[i-1], end: game.path[i]).first
             let start = model.getLocation(forNode: edge!.src)
             let end = model.getLocation(forNode: edge!.dst)
-            ttrbview.switchEdgeHighlight(startPoint: start,
+            ttrbview.turnOnEdgeHighlight(startPoint: start,
                                          endPoint: end)
-            ttrbview.switchNodeHighlight(withLocation: start)
+            ttrbview.turnOnNodeHighlight(withLocation: start)
+        }
+    }
+    
+    private func unHighlightPath(){
+        for i in 1..<game.path.count{
+            let edge = model.getEdges(start: game.path[i-1], end: game.path[i]).first
+            let start = model.getLocation(forNode: edge!.src)
+            let end = model.getLocation(forNode: edge!.dst)
+            ttrbview.turnOffEdgeHighlight(startPoint: start,
+                                         endPoint: end)
+            ttrbview.turnOffNodeHighlight(withLocation: start)
         }
     }
     
     @IBAction func undo(_ sender: UIButton) {
         if !game.complete && game.path.count > 1 {
             let current = game.currentNode!
-            ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: current))
+            ttrbview.turnOffNodeHighlight(withLocation: model.getLocation(forNode: current))
             let previous = game.undo()
-            ttrbview.switchNodeHighlight(withLocation: model.getLocation(forNode: previous))
+            ttrbview.turnOnNodeHighlight(withLocation: model.getLocation(forNode: previous))
             
             //update score
             let edge = model.getEdges(start: current, end: previous).first
