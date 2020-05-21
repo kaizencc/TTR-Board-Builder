@@ -18,8 +18,8 @@ We plan on building a Ticket To Ride Board Builder (and potentially game engine)
   * Bonus: Autogenerate destination tickets based off of board
 
 ### UI Sketches: 
-  ![Start Screen](Images/start_screen.png)
-  ![Build screen](Images/build_example.png)
+  ![Start Screen](Images/Builder.png)
+  ![Build screen](Images/Player.png)
 
 ### Key Use Cases:
 
