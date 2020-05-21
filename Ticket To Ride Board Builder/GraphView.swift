@@ -92,7 +92,7 @@ public class GraphView: UIView {
     
     /// Size of edges
     @IBInspectable
-    public var lineWidth : CGFloat = 8.0 {
+    public var lineWidth : CGFloat = 6.0 {
         didSet {
             setNeedsDisplay()
         }
