@@ -452,12 +452,12 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
             let point = ttrbview.unitTransform.fromView(viewPoint: sender.location(in: ttrbview))
             //new UIController to facilitate keyboard text
             let controller = UIAlertController(title: "Create New Node", message: nil, preferredStyle: .alert)
-            controller.addTextField(configurationHandler: { $0.placeholder = "max 12 chars" })
+            controller.addTextField(configurationHandler: { $0.placeholder = "max 13 chars" })
             controller.addAction(UIAlertAction(title: "Done", style: .default) {
                 _ in
                 //requirements are that node name is between 1 and 10 characters inclusive
                 if let nodeName = controller.textFields![0].text,
-                    nodeName.count > 0, nodeName.count < 13{
+                    nodeName.count > 0, nodeName.count < 14{
                     self.addNode(nodeName: nodeName, withLocation: point)
                 }
             })
@@ -610,17 +610,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
         print(mode)
     }
     
-    private func load(fileContent: String) {
-        let data = fileContent.data(using: .ascii)!
-        if let json = (try? JSONSerialization.jsonObject(with: data)) as? [String : [[String : Any]]]{
-            print("HERE")
-            model.clearGraph()
-            ttrbview.items = []
-            addJSON(json: json)
-        }
-        
-    }
-    
+    //called when loading in a premade file.
     private func addJSON(json: [String : [[String : Any]]]){
         for nodes in json["nodes"]!{
             let node_name = nodes["name"] as! String
@@ -656,6 +646,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
         }
     }
     
+    //helper function to translate string oclor to UIColor
     private func findColor(color: String) -> Color{
         if color == "black"{
             return Color.black
@@ -687,6 +678,7 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
         return Color.gray
     }
     
+    //loads the file from Data using Files.swift
     @IBAction func loadGraph(_ sender: UIButton) {
         Files.chooseFile(withExtension: "json", forController: self) {
             (fileName: String, contents: String) in
@@ -694,8 +686,15 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
         }
     }
     
-    private func saveGraph(){
-        //TODO
+    //turns raw data into json
+    private func load(fileContent: String) {
+        let data = fileContent.data(using: .ascii)!
+        if let json = (try? JSONSerialization.jsonObject(with: data)) as? [String : [[String : Any]]]{
+            model.clearGraph()
+            ttrbview.items = []
+            addJSON(json: json)
+        }
+        
     }
     
 }

@@ -147,6 +147,25 @@ public class GraphView: UIView {
         }
     }
     
+    /**
+    
+    Orders items to have edges before nodes
+    
+    */
+    private func orderItems(){
+        var nodes = [GraphItem]()
+        var edges = [GraphItem]()
+        for item in items{
+            switch item{
+            case .node:
+                nodes.append(item)
+            case .edge:
+                edges.append(item)
+            }
+        }
+        items = edges + nodes
+    }
+    
     
     /**
     
@@ -477,6 +496,8 @@ public class GraphView: UIView {
      - Parameter rect: ignored for us.
      */
     override public func draw(_ rect: CGRect) {
+        //moves edges to the front of nodes
+        orderItems()
         background?.draw(unitTransform: unitTransform, viewBounds: bounds)
         lineWidth = max(6, min(9,6*unitTransform.zoomScale))
         for item in items {
@@ -515,7 +536,7 @@ public class GraphView: UIView {
     private func drawNode(at location : CGPoint,
                           labelled label: String,
                           highlighted: Bool) {
-        textSize = min(max(12, 10*(1/unitTransform.zoomScale)), 30)
+        textSize = min(max(14, 14*(1/unitTransform.zoomScale)), 20)
         // Compute path for the node
         let viewLocation = unitTransform.toView(modelPoint: location)
         let boundingBox = CGRect(x: viewLocation.x - nodeRadius,
@@ -534,7 +555,8 @@ public class GraphView: UIView {
         outlineColor.set()
         path.stroke()
         
-        drawCenteredText(at: location, text: label)
+        //drawCenteredText(at: location, text: label)
+        drawRightText(at: location, text: label, textColor: outlineColor, backgroundColor: UIColor.white)
     }
     
     /**
@@ -575,13 +597,13 @@ public class GraphView: UIView {
         //first element is dash; this gets removed by the phase (didn't work well with CGFloat(0))
         dashes.append(CGFloat(1))
         //start with some spacing
-        dashes.append(CGFloat(0.1*Double(viewBlockSize)))
+        dashes.append(CGFloat(0.15*Double(viewBlockSize)))
         for _ in 0..<size {
-            dashes.append(CGFloat(0.8*Double(viewBlockSize))) //add dash
-            dashes.append(CGFloat(0.2*Double(viewBlockSize))) //add spacing
+            dashes.append(CGFloat(0.7*Double(viewBlockSize))) //add dash
+            dashes.append(CGFloat(0.3*Double(viewBlockSize))) //add spacing
         }
         //update last spacing to be less because we borrowed some for the start
-        dashes[dashes.count-1] = CGFloat(0.1*Double(viewBlockSize))
+        dashes[dashes.count-1] = CGFloat(0.15*Double(viewBlockSize))
         path.setLineDash(dashes, count: dashes.count, phase: 1.0)
         
         path.lineWidth = lineWidth
@@ -597,6 +619,41 @@ public class GraphView: UIView {
         let center = CGPoint(x: path.bounds.midX, y: path.bounds.midY)
         drawCenteredText(at: unitTransform.fromView(viewPoint: center), text: label, textColor: highlighted ? outlineHighlightColor : outlineColor, backgroundColor: UIColor.white)
         
+    }
+    
+    /**
+     Draw a text centered at the right of the given location.
+     
+     **Effects    *: New text appears in the current drawing context
+     
+     - Parameter locations: Center of node, in model coordinates.
+     - Parameter text: the text to display.
+     */
+    private func drawRightText(at location: CGPoint, text: String, textColor : UIColor? = nil, backgroundColor : UIColor? = nil) {
+        
+        // Compute view coordinates of center
+        let viewLocation = unitTransform.toView(modelPoint: location)
+        
+        // Use desired color, size, and break at spaces to avoid
+        // text that is overly wide.
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        let text = text.replacingOccurrences(of: " ", with: "\n")
+        var attrs : [NSAttributedString.Key : Any] =
+            [NSAttributedString.Key.font : UIFont.systemFont(ofSize: textSize),
+             NSAttributedString.Key.foregroundColor : textColor ?? self.textColor,
+             NSAttributedString.Key.paragraphStyle : paragraphStyle]
+        
+        if let bgColor = backgroundColor {
+            attrs[NSAttributedString.Key.backgroundColor] = bgColor
+        }
+        
+        // Compute bounding box for text and then draw it in the box.
+        let size = text.size(withAttributes: attrs)
+        let boundingBox = CGRect(origin: CGPoint(x: viewLocation.x - size.width/2 + 50,
+                                                 y: viewLocation.y - size.height/2),
+                                 size: size)
+        text.draw(in: boundingBox, withAttributes: attrs)
     }
     
     /**

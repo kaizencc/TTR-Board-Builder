@@ -245,12 +245,14 @@ class PlayViewController: UIViewController {
     
     private func highlightPath(){
         for i in 1..<game.path.count{
-            let edge = model.getEdges(start: game.path[i-1], end: game.path[i]).first
-            let start = model.getLocation(forNode: edge!.src)
-            let end = model.getLocation(forNode: edge!.dst)
-            ttrbview.turnOnEdgeHighlight(startPoint: start,
-                                         endPoint: end)
-            ttrbview.turnOnNodeHighlight(withLocation: start)
+            if game.path[i-1] != game.path[i]{
+                let edge = model.getEdges(start: game.path[i-1], end: game.path[i]).first
+                let start = model.getLocation(forNode: edge!.src)
+                let end = model.getLocation(forNode: edge!.dst)
+                ttrbview.turnOnEdgeHighlight(startPoint: start,
+                                             endPoint: end)
+                ttrbview.turnOnNodeHighlight(withLocation: start)
+            }
         }
     }
     
