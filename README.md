@@ -46,6 +46,7 @@ To interact with the user-built board, the user can navigate to the play view wh
 - ~~Highlight the selected color when adding edges~~
 - ~~Alert prompt for clearing all~~
 - ~~Dynamic font size and edge width~~
+- ~~Save current graph as image or json file~~
 
 ## Our initial goals are stated here: 
 

@@ -19,8 +19,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zfd-RF-qfg" customClass="GraphView" customModule="Ticket_To_Ride_Board_Builder" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="1024" height="718"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="rTu-DA-28W">
-                                        <rect key="frame" x="50" y="16" width="80" height="373"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rTu-DA-28W">
+                                        <rect key="frame" x="50" y="12" width="80" height="324"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prX-TY-oq4">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="30"/>
@@ -31,7 +31,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq3-ou-3Dj">
-                                                <rect key="frame" x="0.0" y="49" width="67" height="30"/>
+                                                <rect key="frame" x="0.0" y="42" width="67" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Add Edge"/>
                                                 <connections>
@@ -39,7 +39,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQI-8l-l0r">
-                                                <rect key="frame" x="0.0" y="98" width="45" height="30"/>
+                                                <rect key="frame" x="0.0" y="84" width="45" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Delete"/>
                                                 <connections>
@@ -47,7 +47,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCu-dg-Gca">
-                                                <rect key="frame" x="0.0" y="147" width="38" height="30"/>
+                                                <rect key="frame" x="0.0" y="126" width="38" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Move"/>
                                                 <connections>
@@ -55,7 +55,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qk9-2i-vnE">
-                                                <rect key="frame" x="0.0" y="196" width="49" height="30"/>
+                                                <rect key="frame" x="0.0" y="168" width="49" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Upload"/>
                                                 <connections>
@@ -64,7 +64,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Qp-gQ-ZxO">
-                                                <rect key="frame" x="0.0" y="245" width="80" height="30"/>
+                                                <rect key="frame" x="0.0" y="210" width="80" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Load Graph"/>
                                                 <connections>
@@ -72,7 +72,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBI-9s-z3s">
-                                                <rect key="frame" x="0.0" y="294" width="79" height="30"/>
+                                                <rect key="frame" x="0.0" y="252" width="79" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Save Image"/>
                                                 <connections>
@@ -80,7 +80,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gw-JO-CEr">
-                                                <rect key="frame" x="0.0" y="343" width="36" height="30"/>
+                                                <rect key="frame" x="0.0" y="294" width="36" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Clear"/>
                                                 <connections>
@@ -93,7 +93,7 @@
                                 <color key="backgroundColor" red="0.89107027202072542" green="0.89107027202072542" blue="0.89107027202072542" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="rTu-DA-28W" firstAttribute="top" secondItem="Zfd-RF-qfg" secondAttribute="top" constant="16" id="7P9-jz-qRO"/>
+                                    <constraint firstItem="rTu-DA-28W" firstAttribute="top" secondItem="Zfd-RF-qfg" secondAttribute="top" constant="12" id="7P9-jz-qRO"/>
                                     <constraint firstItem="rTu-DA-28W" firstAttribute="leading" secondItem="Zfd-RF-qfg" secondAttribute="leading" constant="50" id="yId-wU-Az4"/>
                                 </constraints>
                                 <connections>
