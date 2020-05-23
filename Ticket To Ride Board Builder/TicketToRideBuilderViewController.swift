@@ -697,4 +697,10 @@ class TicketToRideBuilderViewController: UIViewController, UIImagePickerControll
         
     }
     
+    @IBAction func save(_ sender: UIButton) {
+        let graphImage = ttrbview.asImage()
+        UIImageWriteToSavedPhotosAlbum(graphImage, nil,nil, nil);
+        
+    }
+    
 }
